@@ -108,7 +108,6 @@ class FrontendEventController extends Controller
     public function event_wallet($slug,$eventslug,$eventapplyid)
     {
 
-
         $event = Event::where('slug',$eventslug)->first();
         $org = Organisation::where('slug',$slug)->first();
         $eventapply = Eventapply::where('id',$eventapplyid)->first();
@@ -119,14 +118,14 @@ class FrontendEventController extends Controller
             $balance->event_bal =  $balance->event_bal + $event->price * $eventapply->number_of_people;
             $balance->organisation_id = $org->id;
             $balance->save();
-            return redirect()->back();
+            return redirect()->route('payment.success');
 
         }else{
             $addbal = new Eventbalance;
             $addbal->event_bal = $event->price * $eventapply->number_of_people;
             $addbal->organisation_id = $org->id;
             $addbal->save();
-            return redirect()->back();
+            return redirect()->route('payment.success');
         }
 
 

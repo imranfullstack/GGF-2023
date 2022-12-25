@@ -20,7 +20,6 @@ class EventPaypalController extends Controller
     public function preocesspaypal($slug,$eventslug,$eventapplyid)
     {
 
-
         $event = Event::where('slug',$eventslug)->first();
         $org = Organisation::where('slug',$slug)->first();
         $eventapply = Eventapply::where('id',$eventapplyid)->first();
@@ -83,9 +82,8 @@ class EventPaypalController extends Controller
         $response = $provider->capturePaymentOrder($request['token']);
 
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
-
-
             return redirect()->route('org.event.wallet',[$slug,$eventslug,$eventapplyid]);
+
 
         } else {
             return redirect()

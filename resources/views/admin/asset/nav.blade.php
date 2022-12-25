@@ -144,11 +144,11 @@
                     </div>
                   </div>
                 </li>
-<!-------------------------- Projects Nav Item  -------------------------->
-
-
-                <li class="@yield('orgadmin_org_contribute')"><a href="{{route('admin.orgstatus.index')}}"> Users</a></li>
-
+                <!-------------------------- Projects Nav Item  -------------------------->
+                <li class="@yield('')">
+                  <a href="{{route('admin.orgstatus.index')}}"> Organisation List</a>
+                </li>
+                <!-------------------------- Projects Nav Item  -------------------------->
                 <li class="top-nav-border">
                     <a href="{{ route('logout') }}" 
                        onclick="event.preventDefault();

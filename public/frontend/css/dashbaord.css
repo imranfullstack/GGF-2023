@@ -31,7 +31,9 @@ section.body-aria > .container-fluid {
     margin: 0;
     padding: 0;
 }
-
+span.badge.bg-green {
+    background: #6e933e;
+}
 .nav-menu-left ul li {
     display: block;
     margin: 0;
@@ -68,8 +70,14 @@ li.active-nav {
     font-weight: 700;
 }
 
+a.btn.btn-success.btn-green.btn-top-style i {
+    padding-right: 14px;
+}
 a.btn.btn-success.btn-green.btn-top-style {
-    margin-top: 20px;
+    margin-top: 23px;
+    padding: 15px 52px;
+    border: none;
+    text-transform: uppercase;
 }
 .sigle-form-input-sddksldc0sd input.form-control:focus {
     box-shadow: none;

@@ -109,9 +109,9 @@
             </div>
           </div>
           <div class="col-md-7">
-            <a class="btn btn-success btn-green btn-top-style">
-              <i class="fa fa-plus"></i>
-              Add Post
+            <a class="btn btn-success btn-green btn-top-style" href="{{route('index')}}" target="_blank">
+              <i class="fa fa-eye"></i>
+              Home Page
             </a>
           </div>
           <div class="col-md-3">

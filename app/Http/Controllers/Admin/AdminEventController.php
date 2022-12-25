@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Event;
+use App\Models\Eventapply;
 
 class AdminEventController extends Controller
 {
@@ -14,7 +16,8 @@ class AdminEventController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.event.index');
+        $event = event::get();
+        return view('admin.pages.event.index' , compact('event'));
     }
 
     /**
@@ -22,9 +25,10 @@ class AdminEventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function apply($id)
     {
-        //
+        $apply = Eventapply::where('event_id',$id)->get();
+        return view('admin.pages.event.apply.index', compact('apply'));
     }
 
     /**
@@ -33,9 +37,11 @@ class AdminEventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function single_application($id)
     {
-        //
+        $apply = Eventapply::find($id);
+        return view('admin.pages.event.apply.single', compact('apply'));
+
     }
 
     /**
@@ -57,7 +63,9 @@ class AdminEventController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = event::find($id);
+
+        return view('admin.pages.event.edit-event',compact('event'));
     }
 
     /**
@@ -69,7 +77,10 @@ class AdminEventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $event = Event::find($id);
+        $event->status = $request->status;
+        $event->save();
+        return redirect()->route('admin.event.index');
     }
 
     /**

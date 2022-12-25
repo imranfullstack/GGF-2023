@@ -275,54 +275,6 @@
                   </td>
                 </tr>
               <!-- ---- single Form Start --- -->
-              <!-- ---- single Form Start --- -->
-                <tr>
-                  <th scope="row" width="20%" class="label-dksldc">Bank account name</th>
-                  <td>
-                      <div class="sigle-form-input-sddksldc0sd">
-                        <div class="input-group mb-3">
-                          {{$org->bank_account_name}}
-                        </div>
-                      </div>
-                  </td>
-                </tr>
-              <!-- ---- single Form Start --- -->
-              <!-- ---- single Form Start --- -->
-                <tr>
-                  <th scope="row" width="20%" class="label-dksldc">BSB</th>
-                  <td>
-                      <div class="sigle-form-input-sddksldc0sd">
-                        <div class="input-group mb-3">
-                          {{$org->bsb}}
-                        </div>
-                      </div>
-                  </td>
-                </tr>
-              <!-- ---- single Form Start --- -->
-              <!-- ---- single Form Start --- -->
-                <tr>
-                  <th scope="row" width="20%" class="label-dksldc">Account number</th>
-                  <td>
-                      <div class="sigle-form-input-sddksldc0sd">
-                        <div class="input-group mb-3">
-                          {{$org->account_number}}
-                        </div>
-                      </div>
-                  </td>
-                </tr>
-              <!-- ---- single Form Start --- -->
-              <!-- ---- single Form Start --- -->
-                <tr>
-                  <th scope="row" width="20%" class="label-dksldc">Bpay ID</th>
-                  <td>
-                      <div class="sigle-form-input-sddksldc0sd">
-                        <div class="input-group mb-3">
-                          {{$org->bpay_id}}
-                        </div>
-                      </div>
-                  </td>
-                </tr>
-              <!-- ---- single Form Start --- -->
 
 
             <!-- ---- single Form Start --- -->

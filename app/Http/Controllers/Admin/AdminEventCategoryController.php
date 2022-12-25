@@ -41,7 +41,7 @@ class AdminEventCategoryController extends Controller
     {
         $eventcat = new Eventcat;
         $eventcat->name = $request->name;
-        $eventcat->slug = strtolower(str_replace(' ', '-', $request->name));
+        $eventcat->slug = strtolower(str_replace(' ', '-', $request->name)).'-'.uniqid();
         $eventcat->save();
         return redirect()->route('admin.event.category.index')->with('success','Successfully Added New Category');
     }
@@ -66,7 +66,9 @@ class AdminEventCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $cat = Eventcat::find($id);
+        return view('admin.pages.event.category.edit', compact('cat'));
     }
 
     /**
@@ -78,7 +80,11 @@ class AdminEventCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $eventcat = Eventcat::find($id);
+        $eventcat->name = $request->name;
+        $eventcat->slug = strtolower(str_replace(' ', '-', $request->name)).'-'.uniqid();
+        $eventcat->save();
+        return redirect()->route('admin.event.category.index')->with('success','Successfully Update Category');
     }
 
     /**

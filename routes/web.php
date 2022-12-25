@@ -235,12 +235,25 @@ Route::post('/store', [AdminProjectCategoryController::class, 'store'])->name('s
 Route::group(['as' => 'event.', 'prefix' => 'experiences-and-event' , 'namespace' => 'event'],function(){
 
         Route::get('/index', [AdminEventController::class, 'index'])->name('index');
+        // Edit OR Change Status
+        Route::get('/edit/{id}', [AdminEventController::class, 'edit'])->name('edit');
+        // Edit OR Change Status
+        Route::post('/update/{id}', [AdminEventController::class, 'update'])->name('update');
+        // Event Application Status
+        Route::get('/apply/{id}', [AdminEventController::class, 'apply'])->name('apply');
+        // Event Application Status
+        Route::get('/single-application/{id}', [AdminEventController::class, 'single_application'])->name('apply.single');
 
         // ---------------- Post Category Here 
 Route::group(['as' => 'category.', 'prefix' => 'category' , 'namespace' => 'category'],function(){
 
-    Route::get('/create', [AdminEventCategoryController::class, 'create'])->name('create');
     Route::get('/', [AdminEventCategoryController::class, 'index'])->name('index');
+    // Event Category Create
+    Route::get('/create', [AdminEventCategoryController::class, 'create'])->name('create');
+    // Event Category Edit
+    Route::get('/edit/{id}', [AdminEventCategoryController::class, 'edit'])->name('edit');
+    // Event Category update
+    Route::post('/update/{id}', [AdminEventCategoryController::class, 'update'])->name('update');
 
     // ------ Store Category ----
     Route::post('/store', [AdminEventCategoryController::class, 'store'])->name('store');

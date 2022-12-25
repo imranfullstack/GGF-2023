@@ -101,7 +101,12 @@ div#ID_myMultiInput {
 
 
 
-
+@php
+  $orgnumber = App\Models\Organisation::count();
+  $eventnumber = App\Models\Event::count();
+  $projectnumber = App\Models\Project::count();
+  $servicenumber = App\Models\Service::count();
+@endphp
 
 
 <div class="row">
@@ -110,23 +115,19 @@ div#ID_myMultiInput {
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="https://mbanotesworld.com/wp-content/uploads/2021/07/forms-of-business-organization-1.png" class="img-fluid rounded-start" alt="...">
+          <img src="{{asset('img/icon/membersicon.png')}}" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">ORGANISATIONS</h5>
-          
-            <p class="card-text">55 <a href="#">View</a></p>
-
-            
+            <p class="card-text">{{$orgnumber}} <a href="{{route('admin.orgstatus.index')}}">View</a></p>            
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <!-- /// Single Count Item  -->
-  <div class="col-md-4">
+<!--   <div class="col-md-4">
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
       <div class="row g-0">
         <div class="col-md-4">
@@ -140,9 +141,9 @@ div#ID_myMultiInput {
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- /// Single Count Item  -->
-  <div class="col-md-4">
+<!--   <div class="col-md-4">
 
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
       <div class="row g-0">
@@ -157,19 +158,19 @@ div#ID_myMultiInput {
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- /// Single Count Item  -->
   <div class="col-md-4">
 
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="https://learn.g2.com/hubfs/event-planning-tips.jpg" class="img-fluid rounded-start" alt="...">
+          <img src="{{asset('img/icon/eventicon.png')}}" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">EVENTS / EXP..</h5>
-            <p class="card-text">5 <a href="#">View</a></p>
+            <p class="card-text">{{$eventnumber}} <a href="#">View</a></p>
           </div>
         </div>
       </div>
@@ -185,12 +186,12 @@ div#ID_myMultiInput {
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNT_mkof5zX2jt589B12i7osjtpF84CjjinQp_H3qmiUI_Ea_84lgdQUmGkFi2ru231Wo&usqp=CAU" class="img-fluid rounded-start" alt="...">
+          <img src="{{asset('img/icon/projectsicon.png')}}" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">PROJECTS</h5>
-            <p class="card-text">5 <a href="#">View</a></p>
+            <p class="card-text">{{$projectnumber}} <a href="#">View</a></p>
           </div>
         </div>
       </div>
@@ -206,12 +207,13 @@ div#ID_myMultiInput {
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="https://y26uq11r8xr1zyp0d3inciqv-wpengine.netdna-ssl.com/wp-content/uploads/2020/01/181-1.jpg" class="img-fluid rounded-start" alt="...">
+          
+          <img src="{{asset('img/icon/servicesicon.png')}}" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">SERVICES</h5>
-            <p class="card-text">5 <a href="#">View</a></p>
+            <p class="card-text">{{$servicenumber}} <a href="#">View</a></p>
           </div>
         </div>
       </div>
@@ -231,7 +233,7 @@ div#ID_myMultiInput {
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="https://www.clipartmax.com/png/middle/173-1730336_food-items-food-products-icon-png.png" class="img-fluid rounded-start" alt="...">
+          <img src="{{asset('img/icon/productsicon.png')}}" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-8">
           <div class="card-body">
@@ -248,7 +250,7 @@ div#ID_myMultiInput {
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="https://media.sproutsocial.com/uploads/2020/03/twitter-dms.jpg" class="img-fluid rounded-start" alt="...">
+          <img src="{{asset('img/icon/messagesicon.png')}}" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-8">
           <div class="card-body">
@@ -267,7 +269,7 @@ div#ID_myMultiInput {
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="https://www.seekpng.com/png/detail/232-2326786_how-to-submit-your-post-blog-post-icon.png" class="img-fluid rounded-start" alt="...">
+          <img src="{{asset('img/icon/posticon.png')}}" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-8">
           <div class="card-body">
@@ -286,7 +288,7 @@ div#ID_myMultiInput {
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="https://elearningindustry.com/wp-content/uploads/2020/10/the-3-types-of-learner-feedback-tools-and-goals.jpg" class="img-fluid rounded-start" alt="...">
+          <img src="{{asset('img/icon/feedbacksicon.png')}}" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-8">
           <div class="card-body">

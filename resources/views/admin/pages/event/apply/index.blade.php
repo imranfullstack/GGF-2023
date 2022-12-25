@@ -18,7 +18,7 @@
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item">DASHBOARD</li>
-    <li class="breadcrumb-item active" aria-current="page"><b> New Organisation’ list </b></li>
+    <li class="breadcrumb-item active" aria-current="page"><b> Event Applications </b></li>
   </ol>
 </nav>
 <hr>
@@ -35,51 +35,63 @@
 
 <div class="table-aria-for-info-section">
   <div class="row">
+
+
+<div class="table-aria-for-info-section">
+  <div class="row">
     <div class="col-md-12">
       <table class="table table-hover">
   <thead>
     <tr class="bg-green">
       <th scope="col">#</th>
-      <th scope="col">Logo</th>
-      <th scope="col">Organisatin Name</th>
+      <th scope="col">Image</th>
+      <th scope="col">Event name</th>
       <th scope="col">Status</th>
-      <th scope="col" ></th>
+      <th scope="col">Applicant Person</th>
+      <th scope="col">Applicant Email</th>
+      <th scope="col" width=""></th>
     </tr>
   </thead>
   <tbody>
-    @php
-    $i = 1;
-    @endphp
-    @foreach($org as $item)
-      <tr>
-        <td>{{$i++}}</td>
-        <td>
-          <img src="{{asset('img/upload/org/logo/'.$item->logo)}}" style="height: 50px;width: 50px">
-        </td>
-        <td>{{$item->org_name}}</td>
-        <td>
+@php 
+  $i =1;
+@endphp
+@foreach($apply as $item)
+<tr>
+  <td>{{$i++}}</td>
+  <td>
+    <img src="{{asset('img/upload/event/'.$item->event->image)}}" width="50px">
+  </td>
+  <td>{{$item->event->event_name}}</td>
+  <td>
+
+    @if($item->status == 0)
+      <span class="badge bg-primary">Pendding</span>
+    @elseif($item->status == 1)
+      <span class="badge bg-success">Approve</span>
+
+    @elseif($item->status == 2)
+      <span class="badge bg-info">Contacted</span>
+    @elseif($item->status == 3)
+      <span class="badge bg-danger">Closed</span>
+    @endif
 
 
-                      
 
-        @if($item->status == 2)
-          <span class="badge-danger">Cancel</span>
-        @elseif($item->status == 1)   
-          <span class="badge-success">Approve</span>
-        @else
-          <span class="badge-warn">Pendding</span>
-        @endif                        
-
-        </td>
-        <td>
-          <a href="{{route('admin.orgstatus.single.org',$item->id)}}" class="btn btn-green">
-              <i class="fa fa-eye"></i>
-          </a>
-        </td>
-      </tr>
-    @endforeach
+  </td>
+  <td>{{$item->name}}</td>
+  <td>{{$item->email}}</td>
+  <td>
+    <a href="{{route('admin.event.apply.single',$item->id)}}" class="btn btn-green">
+      <i class="fa fa-eye"></i>
+    </a>
+  </td>
+</tr>
+@endforeach
   </tbody>
 </table>
+<br>
+<br>
     </div>
   </div>
 

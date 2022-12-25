@@ -28,21 +28,39 @@
     <tr class="bg-green">
       <th scope="col">#</th>
       <th scope="col">Category name</th>
-      <th scope="col">Post Count</th>
+      <th scope="col">Total Count</th>
+      <th scope="col">Status</th>
       <th scope="col" width="30%"></th>
     </tr>
   </thead>
   <tbody>
 
-
+@php
+  $i = 1;
+@endphp
     @foreach($eventcet as $item)
 
+
+@php
+  $eventcount = App\Models\Eventhavecategory::where('eventcat_id',$item->id)->count();
+
+@endphp    
+
       <tr>
-        <th scope="row">1</th>
-        <td>{{$item->name}}</td>
-        <td>Otto</td>
+        <th scope="row">{{$i++}}</th>
+        <td>{{$item->name}} </td>
+        <td>
+          <span class="badge badge-success">{{$eventcount}}</span>
+        </td>
+        <td>
+
+          <span>Active</span>
+          <span>Disable</span>
+        </td>
         <td class="actiontable-dksld">
-          <a href="http://127.0.0.1:8000/orgadmin/organisation/2/projects/view" class="view-btn-table">View</a> <span>|</span> <a href="http://127.0.0.1:8000/orgadmin/organisation/2/projects/view" class="view-btn-table">Edit</a>| <a href="" class="view-btn-table danger-skd">Delete</a>
+          <a href="{{route('admin.event.category.edit',$item->id)}}" class="view-btn-table">Edit</a>
+          <span>|| </span>
+          <a href="" class="view-btn-table danger-skd">Disable</a>
         </td>
       </tr>
       @endforeach
