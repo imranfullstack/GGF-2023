@@ -1,0 +1,244 @@
+header.header-aria {
+    background: #3a393b;
+    padding: 5px 0px;
+}
+section.body-aria {
+    height: 86vh;
+}
+
+.body-aria {
+    height: 100vh;
+    overflow: hidden;
+    width: 100%;
+}
+section.body-aria > .container-fluid {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.nav-menu-left {
+    height: 90vh;
+    background: #ad4d4d;
+}
+
+.nav-menu-left {
+    height: 90vh;
+    background: #3a393b;
+    border-right: 5px solid #84b04a;
+    border-top: 2px solid #ffffff;
+}
+
+.nav-menu-left ul {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu-left ul li {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+li.active-nav {
+    background: #84b04a;
+}
+
+.nav-menu-left ul li a {
+	padding: 12px 10px;
+	margin: 0;
+	display: inline-block;
+	color: #fff;
+	text-transform: uppercase;
+	list-style: none;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+
+.nav-menu-left {
+    overflow: auto;
+}
+
+.sigle-form-input-sddksldc0sd input.form-control {
+    border: none;
+    border-bottom: 3px solid #84b04a;
+}
+
+.sigle-form-input-sddksldc0sd span#basic-addon1 {
+    background: none;
+    border: none;
+    font-weight: 700;
+}
+
+a.btn.btn-success.btn-green.btn-top-style {
+    margin-top: 20px;
+}
+.sigle-form-input-sddksldc0sd input.form-control:focus {
+    box-shadow: none;
+}
+
+.content-body-dskd {
+    max-height: 90vh !important;
+    overflow: auto;
+}
+
+.col-md-10.right-aria-sldksd .content-body-dskd {
+    padding-right: 60px;
+}
+
+thead.thead-dark {
+    background: #84b04a;
+    text-transform: uppercase;
+    color: #fff;
+}
+.sosical-icon-dkjskld a {
+    font-size: 28px;
+    padding: 0 8px;
+    color: #84b04a;
+}
+button.btn.btn-success.btn-green {
+    background: #84b04a;
+    border: none;
+}
+button.btn.btn-success.btn-green {
+    text-align: center;
+    padding: 12px 45px;
+}
+ul.navbar-nav.mb-2.mb-lg-0.right-btn-top-026dc.float-right {
+    float: right;
+    margin-top: 15px;
+}
+
+h2.dash-title {
+    color: #000;
+    text-transform: uppercase;
+    font-size: 20px;
+    padding: 12px 0px;
+}
+a.organization-name-dksld03csd {
+    text-decoration: none;
+}
+
+h2.dash-title i{
+	padding: 0 20px 0 10px;
+}
+
+a.organization-name-dksld03csd {
+    color: #000;
+}
+.btn.btn-green{
+    background: #6E933E;
+    color: #fff;
+}
+
+.btn-block {
+    width: 100%;
+    margin: 10px 0px;
+}
+
+.organisations-btn-group a {
+    text-transform: uppercase;
+    padding: 15px 0px;
+    font-weight: 700;
+}
+.organisations-btn-group a:hover {
+    color: #fff;
+    background: #476422 !important;
+    transition: .3s;
+}
+
+.btn-color:hover{    
+    color: #fff;
+    background: #476422 !important;
+    transition: .3s;
+}
+.text-upper{
+    text-transform: uppercase;
+}
+
+img.top-logo-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 15px;
+}
+
+.card.mb-3.box-style-dksld h5.card-title {
+    font-size: 19px;
+}
+
+span.org-name-title-dksld {
+    font-size: 25px;
+}
+
+tr.bg-green {
+    background: #6e933e;
+    color: #fff;
+    text-transform: uppercase;
+}
+a.view-btn-table {
+    color: #6e933e;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0 7px;
+}
+
+.table-aria-for-info-section tr td , .table-aria-for-info-section tr th {
+    padding: 15px 15px !important;
+}
+a.addbtn {
+    font-weight: 700;
+    padding: 10px 40px;
+}
+a.view-btn-table.danger-skd {
+    color: #B04A51;
+}
+
+a.view-btn-table {
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0 20px;
+}
+
+td.actiontable-dksld {
+    text-align: right;
+}
+
+ul.dropdownstylenav li a {
+    color: #3a393b;
+    line-height: 25px;
+}
+
+ul.dropdownstylenav li a i {
+    font-size: 7px;
+    margin-right: 10px;
+}
+a.navwidth {
+    width: 100%;
+}
+.margin-t-50 {
+    margin-top: 25px;
+}
+span.badge-success {
+    background: #6e933e;
+    color: #fff;
+    padding: 6px 13px;
+    border-radius: 50px;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+span.badge-danger {
+    background: #c32424;
+    color: #fff;
+    padding: 6px 13px;
+    border-radius: 50px;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+span.badge-warn {
+    background: #FDFF7C;
+    color: #000;
+    padding: 6px 13px;
+    border-radius: 50px;
+    font-size: 10px;
+    text-transform: uppercase;
+}

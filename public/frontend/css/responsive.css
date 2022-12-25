@@ -1,0 +1,292 @@
+
+
+
+
+
+@media (max-width: 576px) { 
+/*Header*/
+header.header.desktop {
+    display: none;
+}
+
+header.header.mobile  ul.dropdown-menu.item-skdld.show {
+    position: absolute;
+    left: -100px;
+}
+
+
+header.header.mobile a#navbarDropdown {
+    margin: 0;
+    padding: 0;
+}
+
+
+		/*Auth Page*/
+	.auth-left {
+	    margin: 0px 40px;
+	}
+	.form-body-dks {
+	    width: 100%;
+	}
+	.col-md-6.right-bd-dksld {
+	    display: none;
+	}
+
+/*------- Home Page -----------*/
+
+.left-content-aria-banner-1536dcsd h1 {
+    font-size: 40px;
+}
+
+.banner-right {
+    text-align: left;
+    margin-top: 10px;
+}
+.button-right-sldkd {
+    text-align: left;
+}
+.banner-right img {
+    float: unset;
+}
+
+.left-title-aria h1 {
+    font-size: 24px;
+}
+
+.left-title-aria span i {
+    font-size: 20px;
+}
+.left-title-aria h1 span {
+    margin-right: 15px;
+}
+
+section.explore-ggf-section {
+    margin: 50px 20px;
+}
+
+
+.row.baner-main-aria {
+    padding: 0 20px;
+}
+
+/*auspicing page*/
+
+.main-body-text {
+    padding: 0px 20px;
+}
+
+
+/*Filtter*/
+
+body.filter {
+    overflow: hidden;
+}
+
+h2.result-cound-skdsdf {
+    font-size: 21px;
+    margin-bottom: 0;
+    margin-top: 0px;
+}
+
+
+.activmap-place {
+    margin: 21px 0px;
+    padding: 0px 10px;
+}
+
+div#activmap-places {
+    margin-top: 0px;
+    padding-top: 10px;
+}
+
+
+.right-side-content-aria-map h2 {
+    font-size: 20px;
+    line-height: 31px;
+}
+
+/*------- Business Page --------*/
+
+.title-top-dksldlc h2 {
+    font-size: 30px;
+}
+
+.business-name-title-buttuon-right-dksld0c ul li {
+	padding: 8px 10px;
+}
+
+.business-name-title-buttuon-right-dksld0c {
+    margin-bottom: 25px;
+}
+
+.carousel-inner.slide-dksld0c3sd img {
+    height: 223px;
+}
+
+.banner-btn-dkdls p {
+    padding: 15px 0;
+}
+
+section.main-body {
+    margin: 0 20px;
+}
+
+.business-name-title-dksld {
+    padding: 0 20px;
+}
+
+.right-top-social-dksldkc ul li a {
+    font-size: 21px;
+    width: 39px;
+    padding: 4px 0px;
+}
+.right-top-social-dksldkc {
+    text-align: left;
+}
+
+
+element.style {
+}
+.business-name-title-buttuon-right-dksld0c ul li a {
+    padding: 10px 25px;
+}
+
+/*----- Contribute -----*/
+
+.list-dsksdl {
+    width: 100%;
+}
+
+
+.event-table {
+    padding: 0 20px;
+}
+
+.more-infod-sds {
+    padding: 0 20px;
+}
+
+
+
+/*--------- Dashbard -------*/
+
+header.header-aria {
+    display: none;
+}
+.nav-menu-left {
+    display: none;
+}
+
+.col-md-10.right-aria-sldksd .content-body-dskd {
+    padding: 0 20px;
+}
+
+
+/*--- GGF information*/
+
+section.main-aria {
+    margin: 50px 20px;
+}
+
+
+/*individual-registration*/
+
+.first-collaps-part {
+    margin: 0px 20px;
+}
+
+.title-dkdksldkfdf2 {
+    margin: 20px 0px;
+}
+
+.input-body-fieldddd input.form-control.field-skdlsd {
+    width: 72%;
+}
+.title-dkdksldkfdf2:before {
+    width: 84%;
+}
+
+
+
+/*People Search Page*/
+.search-item-people-skdlsd {
+    padding: 20px 20px;
+}
+
+
+/*product*/
+
+.col-md-6.col-xs-6.halfmo {
+    text-align: center;
+    padding: 5px 14px;
+}
+.product-t-p {
+    margin-top: 25px;
+}
+
+
+.project-item {
+    text-align: center;
+    padding: 20px 20px;
+    box-shadow: -1px 1px 14px 1px #d3d3d3;
+}
+
+.btn-btm-purchase {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+
+/*-------------- Search Result -------------*/
+
+section.search-result-dksld {
+    padding: 0 20px;
+}
+
+
+/*----- Service ------*/
+
+.content-box-ddks a.btn-greend-ds {
+    margin: 50px 0px;
+    display: block;
+}
+
+.project-image-dksldkfd {
+	margin-bottom: 30px;
+}
+
+
+
+/*-------------- Footer ----------*/
+
+
+.footer-btn-left {
+    text-align: center;
+}
+
+.footer-btn-right {
+    text-align: center;
+    margin-top: 15px;
+}
+
+
+
+
+}
+
+
+
+@media (min-width: 576px) and (max-width: 15000px) {
+
+/*Header*/
+header.header.mobile {
+    display: none;
+}
+
+
+
+
+}
+
