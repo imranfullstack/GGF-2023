@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\Posthavecategory;
 
 class AdminPostController extends Controller
 {
@@ -14,7 +16,8 @@ class AdminPostController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.post.index');
+        $post = Post::orderby('id','desc')->get();
+        return view('admin.pages.post.index', compact('post'));
     }
 
     /**
@@ -55,9 +58,11 @@ class AdminPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $post = Post::where('slug',$slug)->first();
+        $cat = Posthavecategory::where('post_id',$post->id)->get();
+        return view('admin.pages.post.edit', compact('post','cat'));
     }
 
     /**
@@ -67,9 +72,14 @@ class AdminPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $post = Post::where('slug',$slug)->first();
+        $post->status = $request->status;
+        $post->suspended_note = $request->suspended_note;
+        $post->save();
+        return redirect()->route('admin.post.index')->with('success','Successfully update post');
+
     }
 
     /**

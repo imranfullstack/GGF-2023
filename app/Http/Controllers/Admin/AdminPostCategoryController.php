@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Postcat;
+use Str;
 
 class AdminPostCategoryController extends Controller
 {
@@ -39,7 +40,7 @@ class AdminPostCategoryController extends Controller
     {
         $postcat = new Postcat;
         $postcat->name = $request->name;
-        $postcat->slug = strtolower(str_replace(' ', '-', $request->name));
+        $postcat->slug = Str::slug($request->name).'-'.uniqid().'-'.$id;
         $postcat->save();
         return redirect()->route('admin.post.category.index')->with('success','Successfully Added New Category');
     }
@@ -63,7 +64,8 @@ class AdminPostCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $postcat = Postcat::find($id);
+        return view('admin.pages.post.category.edit' , compact('postcat'));
     }
 
     /**
@@ -75,7 +77,11 @@ class AdminPostCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $postcat = Postcat::find($id);
+        $postcat->name = $request->name;
+        $postcat->slug = Str::slug($request->name).'-'.uniqid().'-'.$id;
+        $postcat->save();
+        return redirect()->route('admin.post.category.index')->with('success','Successfully Added New Category');
     }
 
     /**
@@ -84,8 +90,24 @@ class AdminPostCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function active($id)
     {
-        //
+        $cat = Postcat::find($id);
+        $cat->status = 1;
+        $cat->save();
+        return redirect()->back()->with('success','Successfully Updated Status');
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deactive($id)
+    {
+        $cat = Postcat::find($id);
+        $cat->status = 0;
+        $cat->save();
+        return redirect()->back()->with('success','Successfully Updated Status');
     }
 }

@@ -223,6 +223,14 @@
             <!-- ---- single Form Start --- -->
 
               <!-- ---- single Form Start --- -->
+                <tr>
+                  <th scope="row" width="20%" class="label-dksldc">Suspended message</th>
+                  <td>
+                    <textarea class="form-control" name="suspend_message">{{$event->suspend_message}}</textarea>
+                  </td>
+                </tr>
+              <!-- ---- single Form Start --- -->
+              <!-- ---- single Form Start --- -->
 
               <!-- ---- single Form Start --- -->
                 <tr>

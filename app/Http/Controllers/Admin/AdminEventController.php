@@ -79,6 +79,9 @@ class AdminEventController extends Controller
     {
         $event = Event::find($id);
         $event->status = $request->status;
+            if($request->suspend_message){
+                $event->suspend_message = $request->suspend_message;            
+            }
         $event->save();
         return redirect()->route('admin.event.index');
     }

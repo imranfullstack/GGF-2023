@@ -57,7 +57,7 @@ class AdminProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "Hello";
     }
 
     /**

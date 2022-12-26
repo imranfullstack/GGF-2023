@@ -11,6 +11,7 @@ use App\Models\Projectapply;
 use Auth;
 use File;
 use Image;
+use Str;
 
 
 class OrgadminProjectController extends Controller
@@ -86,7 +87,7 @@ class OrgadminProjectController extends Controller
         // return $request->projectcat_id;
         $project = new Project;
         $project->name = $request->name;
-        $project->slug = strtolower(str_replace(' ', '-', $request->name));
+        $project->slug = Str::slug($request->name).'-'.uniqid();
         $project->status = 1;
         $project->user_id = Auth::user()->id;
         $project->organisation_id = $id;
@@ -222,7 +223,7 @@ class OrgadminProjectController extends Controller
         $project = Project::where('id',$projectid)->first();
         $project->name = $request->name;
         if($request->name){
-            $project->slug = strtolower(str_replace(' ', '-', $request->name)).'-'.uniqid().''.$id;
+            $project->slug = Str::slug($request->name).'-'.uniqid();
         }
 
         $project->status = $request->status;

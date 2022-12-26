@@ -58,13 +58,15 @@
 
 
 
-               @php $projectcat = App\Models\Eventcat::orderby('id','desc')->get(); @endphp
+              @php 
+                $eventcat = App\Models\Eventcat::orderby('id','desc')->where('status',1)->get(); 
+              @endphp
                 <!-- single Form Start-->
                 <div class="sigle-form-input-sddksldc0sd">
                   <div class="input-group mb-3">
 
                     <select  id="mounth" multiple class="form-select" aria-label="Default select example" name="eventcat_id[]">
-                        @foreach($projectcat as $cat) 
+                        @foreach($eventcat as $cat) 
                           <option value=" {{$cat->id}}"> {{$cat->name}}</option> 
                          @endforeach
                     </select>

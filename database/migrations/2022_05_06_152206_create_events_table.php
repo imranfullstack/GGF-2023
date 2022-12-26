@@ -37,6 +37,7 @@ return new class extends Migration
             $table->text('whats_needed')->nullable();
             $table->string('registration_form')->nullable();
             $table->string('image')->nullable();
+            $table->text('suspend_message')->nullable();
             $table->timestamps();
 
 

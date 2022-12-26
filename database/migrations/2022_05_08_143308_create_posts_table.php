@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('organisation_id');
             $table->text('short_desc')->nullable();
             $table->string('image')->nullable();
+            $table->string('suspended_note')->nullable();
             $table->timestamps();
         });
     }

@@ -39,7 +39,7 @@ class AdminProjectCategoryController extends Controller
     {
         $projectcat = new Projectcat;
         $projectcat->name = $request->name;
-        $projectcat->slug = strtolower(str_replace(' ', '-', $request->name));
+        $projectcat->slug = Str::slug($request->name).'-'.uniqid();
         $projectcat->save();
         return redirect()->route('admin.project.category.index')->with('success','Successfully Added New Category');
     }

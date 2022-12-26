@@ -11,6 +11,7 @@ use App\Models\Eventhavecategory;
 use Auth;
 use File;
 use Image;
+use Str;
 
 class OrgadminEventController extends Controller
 {
@@ -79,7 +80,7 @@ class OrgadminEventController extends Controller
 
         $event = new Event;
         $event->event_name = $request->event_name;
-        $event->slug = strtolower(str_replace(' ', '-', $request->event_name));
+        $event->slug = Str::slug($request->event_name).'-'.uniqid();
         $event->user_id = Auth::user()->id;
         $event->status = 1;
         $event->organisation_id = $id;
@@ -163,7 +164,13 @@ class OrgadminEventController extends Controller
 
         $event = Event::where('organisation_id',$id)->where('id',$eventid)->first(); 
 
-        return view('orgadmin.pages.event.edit', compact('org','event'));
+
+
+        if($event->status == 4){
+            return redirect()->back()->with('danger',"Sorry you don't have Access!");
+        }else{
+               return view('orgadmin.pages.event.edit', compact('org','event'));        
+        }
 
     }
 
@@ -203,7 +210,7 @@ class OrgadminEventController extends Controller
         $event = Event::where('organisation_id',$id)->where('id',$eventid)->first(); 
         $event->event_name = $request->event_name;
         if($event->event_name){
-            $event->slug = strtolower(str_replace(' ', '-', $request->event_name)).'-'.uniqid().''.$id;
+            $event->slug = Str::slug($request->event_name).'-'.uniqid();
         }
         $event->user_id = Auth::user()->id;
         $event->status = $request->status;

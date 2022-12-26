@@ -22,7 +22,7 @@
 					<form method="post" action="{{route('admin.event.category.update',$cat->id)}}">
 							@csrf
 						<div class="form-dlsdkc">
-							<input type="text" value="{{$cat->name}}" name="name" class="form-control" placeholder="Enter Category">
+							<input type="text" value="{{$cat->name}}" name="name" class="form-control" placeholder="Enter Category" required>
 							<button class="btn btn-green btn-block" type="submit">UPDATE NEW</button>
 
 							<a  href="{{route('admin.event.category.index')}}" class="btn btn-green btn-block">GO BACK</a>

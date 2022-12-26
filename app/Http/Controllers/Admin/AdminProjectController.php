@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Project;
+use App\Models\Projecthavecategory;
 
 class AdminProjectController extends Controller
 {
@@ -14,7 +16,8 @@ class AdminProjectController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.project.index');
+        $project = Project::orderby('id','desc')->get();
+        return view('admin.pages.project.index', compact('project'));
     }
 
     /**
@@ -57,7 +60,11 @@ class AdminProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::find($id);
+
+        $category = Projecthavecategory::where('project_id',$project->id)->get();
+
+        return view('admin.pages.project.edit', compact('project','category'));
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Eventcat;
+use Str;
 
 
 class AdminEventCategoryController extends Controller
@@ -41,7 +42,7 @@ class AdminEventCategoryController extends Controller
     {
         $eventcat = new Eventcat;
         $eventcat->name = $request->name;
-        $eventcat->slug = strtolower(str_replace(' ', '-', $request->name)).'-'.uniqid();
+        $eventcat->slug = Str::slug($request->name).'-'.uniqid();
         $eventcat->save();
         return redirect()->route('admin.event.category.index')->with('success','Successfully Added New Category');
     }
@@ -82,7 +83,7 @@ class AdminEventCategoryController extends Controller
     {
         $eventcat = Eventcat::find($id);
         $eventcat->name = $request->name;
-        $eventcat->slug = strtolower(str_replace(' ', '-', $request->name)).'-'.uniqid();
+        $eventcat->slug = Str::slug($request->name).'-'.uniqid();
         $eventcat->save();
         return redirect()->route('admin.event.category.index')->with('success','Successfully Update Category');
     }
@@ -93,8 +94,20 @@ class AdminEventCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function active($id)
     {
-        //
+        $eventcat = Eventcat::find($id);
+        $eventcat->status = 1;
+        $eventcat->save();
+        return redirect()->back()->with('success','Successfully Active Status');
+    }
+
+
+    public function disable($id)
+    {
+        $eventcat = Eventcat::find($id);
+        $eventcat->status = 0;
+        $eventcat->save();
+        return redirect()->back()->with('success','Successfully De-active Status');
     }
 }

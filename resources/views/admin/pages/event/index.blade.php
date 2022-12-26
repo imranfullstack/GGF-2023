@@ -49,7 +49,13 @@
 
       </td>
       <td>{{$item->event_name}}</td>
-      <td>{{$item->organisation->org_name}}</td>
+      <td>
+
+        <a href="{{route('org.index',$item->organisation->slug)}}" target="_blank" class="view-btn-table">
+            {{$item->organisation->org_name}}
+        </a>
+
+      </td>
       <td>
         @if($item->status == 1)
             <span class="badge bg-success">Active</span>

@@ -89,6 +89,14 @@ div#ID_myMultiInput {
 </style>
 
 
+<!-- datatable Style  -->
+@include('orgadmin.asset.datatable-style')
+<!-- datatable Style  -->
+<style type="text/css">
+  span.badge.bg-green {
+    background: #6e933e;
+}
+</style>
 
 @endsection()
 
@@ -161,8 +169,10 @@ div#ID_myMultiInput {
       <td>
         @if($item->status == 1)
           <span class="badge-success">Active</span>
-        @else($item->status == 0)
+        @elseif($item->status == 0)
           <span class="badge-danger">Deactive</span>
+        @elseif($item->status == 4)
+          <span class="badge-danger">Suspended</span>
         @endif
       </td>
 
@@ -173,7 +183,31 @@ div#ID_myMultiInput {
 
       </td>
       <td class="actiontable-dksld">
-        <a href="{{route('org.post.single',['postslug'=>$item->slug,'slug'=>$org->slug])}}" target="_blank" class="view-btn-table">View</a> <span>|</span> <a href="{{route('orgadmin.organisation.post.edit',['slug'=>$item->slug,'id'=>$org->id])}}" class="view-btn-table">Edit</a>|</span> <a href="{{route('orgadmin.organisation.post.delete',['slug'=>$item->slug,'id'=>$org->id])}}" class="view-btn-table danger-skd">Delete</a>
+        @if($item->status == 4)
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop_{{$item->id}}">
+  Why Suspended
+</button>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop_{{$item->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel_{{$item->id}}" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel_{{$item->id}}">{{$item->title}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="text-align: left">
+        {{$item->suspended_note}}
+      </div>
+    </div>
+  </div>
+</div>
+        @else
+           <a href="{{route('org.post.single',['postslug'=>$item->slug,'slug'=>$org->slug])}}" target="_blank" class="view-btn-table">View</a> <span>|</span> <a href="{{route('orgadmin.organisation.post.edit',['slug'=>$item->slug,'id'=>$org->id])}}" class="view-btn-table">Edit</a>|</span> <a href="{{route('orgadmin.organisation.post.delete',['slug'=>$item->slug,'id'=>$org->id])}}" class="view-btn-table danger-skd">Delete</a>
+        @endif
       </td>
     </tr>
     @endforeach
@@ -190,3 +224,8 @@ div#ID_myMultiInput {
 <!-- --------------- Explore GGF End----------------- -->
 @endsection()
 
+
+
+@section('scripts')
+    @include('orgadmin.asset.datatable-script')
+@endsection

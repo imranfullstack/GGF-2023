@@ -126,7 +126,9 @@ a.trash-btn {
                 <tr>
                   <th scope="row" width="20%" class="label-dksldc">Post Category</th>
                   <td>
-                     @php $postcat = App\Models\Postcat::orderby('id','desc')->get(); @endphp
+                    @php 
+                      $postcat = App\Models\Postcat::orderby('id','desc')->where('status',1)->get(); 
+                    @endphp
                       <!-- single Form Start-->
                       <div class="sigle-form-input-sddksldc0sd">
                       	@foreach($cat as $item)  

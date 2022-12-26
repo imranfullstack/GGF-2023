@@ -33,6 +33,7 @@ return new class extends Migration
             $table->text('Whats_needed')->nullable();
             $table->string('registration_form')->nullable();
             $table->string('image')->nullable();
+            $table->text('suspended_note')->nullable();
             $table->timestamps();
         });
     }

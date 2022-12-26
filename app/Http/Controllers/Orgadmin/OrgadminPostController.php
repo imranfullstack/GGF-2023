@@ -10,6 +10,7 @@ use App\Models\Posthavecategory;
 use Auth;
 use Image;
 use File;
+use Str;
 
 
 
@@ -48,20 +49,15 @@ class OrgadminPostController extends Controller
     public function store(Request $request,$id)
     {
 
-
-
         $validated = $request->validate([
             'title' => 'required',
             'short_desc' => 'required',
             'image' => 'required',
-        ]);
-
-
-        
+        ]);        
 
         $post = new Post;
         $post->title = $request->title;
-        $post->slug = strtolower(str_replace(' ', '-', $request->title)).'-'.uniqid().''.$id;
+        $post->slug = Str::slug($request->title).'-'.uniqid().'-'.$id;
         $post->user_id = Auth::user()->id;
         $post->status = 1;
         $post->organisation_id = $id;
@@ -126,7 +122,15 @@ class OrgadminPostController extends Controller
         $org = Organisation::where('id',$id)->where('user_id',Auth::user()->id)->first();
         $post = post::where('slug',$slug)->first();
         $cat = Posthavecategory::where('post_id',$post->id)->get();
-        return view('orgadmin.pages.post.edit', compact('org','post','cat'));
+
+
+
+        if($post->status == 4){
+            return redirect()->back()->with('danger',"Sorry you don't have Access!");
+        }else{            
+            return view('orgadmin.pages.post.edit', compact('org','post','cat'));
+        }
+
     }
 
     /**
@@ -142,13 +146,13 @@ class OrgadminPostController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'short_desc' => 'required',
-            'image' => 'required',
         ]);
 
 
         $org = Organisation::where('id',$id)->where('user_id',Auth::user()->id)->first();
         $post = post::where('slug',$slug)->first();
         $post->title = $request->title;
+        $post->slug = Str::slug($request->title).'-'.uniqid().'-'.$id;
         $post->user_id = Auth::user()->id;
         $post->status = 1;
         $post->organisation_id = $id;

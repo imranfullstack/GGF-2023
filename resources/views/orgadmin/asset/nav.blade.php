@@ -19,7 +19,9 @@ a.subnav {
 
                 <li class="@yield('orgadmin_org_oparation')"><a href="{{route('orgadmin.organisation.operation.index',$org->id)}}"> Details</a></li>
 
-                <li class="@yield('orgadmin_org_team')"><a href="{{route('orgadmin.organisation.team.index',$org->id)}}"> Team</a></li>
+               <!--  <li class="@yield('orgadmin_org_team')">
+                  <a href="{{route('orgadmin.organisation.team.index',$org->id)}}"> Team</a>
+                </li> -->
 
 
 

@@ -1,12 +1,17 @@
 @extends('admin.master')
 @section('admin_content')
+@section('style')
+<!-- datatable Style  -->
+@include('orgadmin.asset.datatable-style')
+<!-- datatable Style  -->
+@endsection
 @section('event_show') show @endsection
 
 
   <div class="col-md-10 right-aria-sldksd">
               <div class="content-body-dskd">
 <br>
-<h2>Post  Categorys</h2>
+<h4>EXPERIENCES & EVENTS  Categorys</h4>
 <hr>
 
 <div class="row">
@@ -53,14 +58,20 @@
           <span class="badge badge-success">{{$eventcount}}</span>
         </td>
         <td>
-
-          <span>Active</span>
-          <span>Disable</span>
+          @if($item->status == 1)
+            <span class="badge badge-success">Active</span>
+          @else
+           <span class="badge badge-danger">Disable</span>
+          @endif
         </td>
         <td class="actiontable-dksld">
           <a href="{{route('admin.event.category.edit',$item->id)}}" class="view-btn-table">Edit</a>
           <span>|| </span>
-          <a href="" class="view-btn-table danger-skd">Disable</a>
+          @if($item->status == 0)
+          <a href="{{route('admin.event.category.active',$item->id)}}" class="view-btn-table danger-skd">Active</a>
+          @else
+          <a href="{{route('admin.event.category.disable',$item->id)}}" class="view-btn-table danger-skd">Disable</a>
+          @endif
         </td>
       </tr>
       @endforeach
@@ -75,4 +86,16 @@
 
 </div>
 </div>
+@endsection
+
+
+@section('scripts')
+  @include('orgadmin.asset.datatable-script')
+
+
+
+<script src='https://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js'></script>
+<script src='https://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js'></script>
+<script src='https://cdn.datatables.net/responsive/1.0.4/js/dataTables.responsive.js'></script>
+
 @endsection

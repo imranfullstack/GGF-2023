@@ -167,6 +167,10 @@ Route::group(['as'=> 'admin.' , 'prefix' => 'admin' , 'namespace' => 'Admin' , '
 // --------------------------------------
 Route::group(['as' => 'post.', 'prefix' => 'post' , 'namespace' => 'post'],function(){
             Route::get('/index', [AdminPostController::class, 'index'])->name('index');
+            // Edit Post Admin
+            Route::get('/edit/{slug}', [AdminPostController::class, 'edit'])->name('edit');
+            // Edit Post Admin
+            Route::post('/update/{slug}', [AdminPostController::class, 'update'])->name('update');
 
 
 
@@ -177,6 +181,14 @@ Route::group(['as' => 'post.', 'prefix' => 'post' , 'namespace' => 'post'],funct
             Route::get('/', [AdminPostCategoryController::class, 'index'])->name('index');
             // ------ Store Category ----
             Route::post('/store', [AdminPostCategoryController::class, 'store'])->name('store');
+            // Edit Post category
+            Route::get('/edit/{id}', [AdminPostCategoryController::class, 'edit'])->name('edit');
+            // update Post category
+            Route::post('/update/{id}', [AdminPostCategoryController::class, 'update'])->name('update');
+            // update Post category
+            Route::get('/active/{id}', [AdminPostCategoryController::class, 'active'])->name('active');
+            // update Post category
+            Route::get('/deactive/{id}', [AdminPostCategoryController::class, 'deactive'])->name('deactive');
         });
 // ---------------- Post Category Here End   
 
@@ -211,6 +223,8 @@ Route::group(['as' => 'project.', 'prefix' => 'project' , 'namespace' => 'projec
 
 
         Route::get('/index', [AdminProjectController::class, 'index'])->name('index');
+        // Edit Projet
+        Route::get('/edit/{id}', [AdminProjectController::class, 'edit'])->name('edit');
 
 // ---------------- Post Category Here 
         Route::group(['as' => 'category.', 'prefix' => 'category' , 'namespace' => 'category'],function(){
@@ -254,9 +268,12 @@ Route::group(['as' => 'category.', 'prefix' => 'category' , 'namespace' => 'cate
     Route::get('/edit/{id}', [AdminEventCategoryController::class, 'edit'])->name('edit');
     // Event Category update
     Route::post('/update/{id}', [AdminEventCategoryController::class, 'update'])->name('update');
-
     // ------ Store Category ----
     Route::post('/store', [AdminEventCategoryController::class, 'store'])->name('store');
+    // ------ Store Category Active----
+    Route::get('/active/{id}', [AdminEventCategoryController::class, 'active'])->name('active');
+    // ------ Store Category Deactive----
+    Route::get('/disable/{id}', [AdminEventCategoryController::class, 'disable'])->name('disable');
 });
 // ---------------- Post Category Here End  
 
