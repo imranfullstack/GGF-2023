@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Productcat;
+use Str;
 
 class AdminProductCategoryController extends Controller
 {
@@ -39,7 +40,7 @@ class AdminProductCategoryController extends Controller
     {
         $productcat = new Productcat;
         $productcat->name = $request->name;
-        $productcat->slug = strtolower(str_replace(' ', '-', $request->name));
+        $productcat->slug = Str::slug($request->name).'-'.uniqid();
         $productcat->save();
         return redirect()->route('admin.product.category.index')->with('success','Successfully Added New Category');
     }
@@ -63,7 +64,8 @@ class AdminProductCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $productcat = Productcat::find($id);
+        return view('admin.pages.product.category.edit', compact('productcat'));
     }
 
     /**
@@ -75,7 +77,11 @@ class AdminProductCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $productcat = Productcat::find($id);
+        $productcat->name = $request->name;
+        $productcat->slug = Str::slug($request->name).'-'.uniqid();
+        $productcat->save();
+        return redirect()->route('admin.product.category.index')->with('success','Successfully Updated Category');
     }
 
     /**
@@ -84,8 +90,25 @@ class AdminProductCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+        public function active($id)
+        {
+            $cat = Productcat::find($id);
+            $cat->status = 1;
+            $cat->save();
+            return redirect()->back()->with('success','Successfully Updated Status');
+        }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+        public function deactive($id)
+        {
+            $cat = Productcat::find($id);
+            $cat->status = 0;
+            $cat->save();
+            return redirect()->back()->with('success','Successfully Updated Status');
+        }
+    
 }

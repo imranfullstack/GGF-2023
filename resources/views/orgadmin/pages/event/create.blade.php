@@ -106,7 +106,7 @@
                 </tr>
               <!-- ---- single Form Start --- -->
 
-
+<div class="tab-container">
               <!-- ---- single Form Start --- -->
                 <tr>
                   <th scope="row" width="20%" class="label-dksldc">Date</th>
@@ -125,12 +125,10 @@
                   <th scope="row" width="20%" class="label-dksldc">Cost Status</th>
                   <td>
                       <div class="sigle-form-input-sddksldc0sd">
-                        <div class="input-group mb-3">
-                          <select class="form-select" name="cost_status">
-                            <option>Value one</option>
-                            <option>Value one</option>
-                            <option>Value one</option>
-                            <option>Value one</option>
+                        <div class="input-group mb-3 tab-navigation">
+                          <select class="form-select" name="cost_status" id="select-box">
+                            <option value="0" selected>Free</option>
+                            <option value="1">Charged</option>
                           </select>
                         </div>
                         @error('cost_status') <span class="text-danger">{{$message}}</span> @enderror
@@ -138,8 +136,12 @@
                   </td>
                 </tr>
               <!-- ---- single Form Start --- -->
+
+
+
+  
               <!-- ---- single Form Start --- -->
-                <tr>
+                <tr id="tab-1" class="tab-content">
                   <th scope="row" width="20%" class="label-dksldc">Price</th>
                   <td>
                       <div class="sigle-form-input-sddksldc0sd">
@@ -147,6 +149,20 @@
                           <input type="number" class="form-control" placeholder="Enter Price" name="price">
                         </div>
                         @error('price') <span class="text-danger">{{$message}}</span> @enderror
+                      </div>
+                  </td>
+                </tr>
+              <!-- ---- single Form Start --- -->
+</div>
+              <!-- ---- single Form Start --- -->
+                <tr>
+                  <th scope="row" width="20%" class="label-dksldc">Limit</th>
+                  <td>
+                      <div class="sigle-form-input-sddksldc0sd">
+                        <div class="input-group mb-3">
+                          <input type="number" class="form-control" placeholder="Maximum user limit" name="limit">
+                        </div>
+                        @error('limit') <span class="text-danger">{{$message}}</span> @enderror
                       </div>
                   </td>
                 </tr>
@@ -272,8 +288,8 @@
                   <div class="input-group mb-3">
                         <!--map div-->
                         <div id="map" style="width: 100%;height: 400px;"></div>
-                          <input name="lat" type="text" id="lat" readonly="yes"><br>
-                          <input name="long" type="text" id="lng" readonly="yes">
+                          <input name="lat" type="hidden" id="lat" readonly="yes"><br>
+                          <input name="long" type="hidden" id="lng" readonly="yes">
                    </div>
                   </div>
                 </div>
@@ -316,4 +332,23 @@
 
 @section('scripts')
 @include('orgadmin.asset.map-select-js')
+
+
+<script type="text/javascript">
+  
+    //hide all tabs first
+$('.tab-content').hide();
+//show the first tab content
+$('#tab-2').show();
+
+$('#select-box').change(function () {
+   dropdown = $('#select-box').val();
+  //first hide all tabs again when a new option is selected
+  $('.tab-content').hide();
+  //then show the tab content of whatever option value was selected
+  $('#' + "tab-" + dropdown).show();                                    
+});
+
+
+</script>
 @endsection()

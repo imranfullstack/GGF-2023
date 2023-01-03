@@ -69,6 +69,9 @@
 header.header.desktop {
     display: none;
 }
+.content-body-dskd h2,.content-body-dskd h4{
+  text-transform: uppercase;
+}
 </style>
 
 @yield('style')

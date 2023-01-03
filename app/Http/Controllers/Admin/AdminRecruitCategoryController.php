@@ -64,7 +64,8 @@ class AdminRecruitCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $recruitcat = Recruitcat::find($id);
+        return view('admin.pages.recruit.category.edit',compact('recruitcat'));
     }
 
     /**
@@ -76,7 +77,10 @@ class AdminRecruitCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $recruitcat = Recruitcat::find($id);
+        $recruitcat->name = $request->name;
+        $recruitcat->save();
+        return redirect()->route('admin.recruit.category.index')->with('success','Successfully update Category');
     }
 
     /**
@@ -85,8 +89,25 @@ class AdminRecruitCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+  
+        public function active($id)
+        {
+            $cat = Recruitcat::find($id);
+            $cat->status = 1;
+            $cat->save();
+            return redirect()->back()->with('success','Successfully Updated Status');
+        }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+        public function deactive($id)
+        {
+            $cat = Recruitcat::find($id);
+            $cat->status = 0;
+            $cat->save();
+            return redirect()->back()->with('success','Successfully Updated Status');
+        }
 }

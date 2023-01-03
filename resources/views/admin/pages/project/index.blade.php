@@ -16,6 +16,7 @@
 
 
 
+@include('admin.asset.message')
 <div class="table-aria-for-info-section">
   <div class="row">
     <div class="col-md-12">
@@ -61,6 +62,8 @@
             <span class="badge bg-success">Active</span>
         @elseif($item->status == 2)
             <span class="badge bg-warning">Paused</span>
+        @elseif($item->status == 4)
+            <span class="badge bg-danger">Suspended</span>
         @else
             <span class="badge bg-danger">Close</span>
         @endif
@@ -77,7 +80,9 @@
           $org = App\Models\Organisation::where('id',$item->organisation_id)->first();
         @endphp
         <td>
-                <span class="badge bg-green">{{$application}} </span>
+              <a href="{{route('admin.project.application',$item->id)}}">
+                  <span class="badge bg-green">{{$application}}   </span>
+              </a>
         </td>
 
       <td class="actiontable-dksld">

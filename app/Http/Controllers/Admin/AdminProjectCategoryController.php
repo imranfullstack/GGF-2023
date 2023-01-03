@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Projectcat;
+use Str;
 
 class AdminProjectCategoryController extends Controller
 {
@@ -63,7 +64,8 @@ class AdminProjectCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $projectcat = Projectcat::find($id);
+        return view('admin.pages.project.category.edit', compact('projectcat'));
     }
 
     /**
@@ -75,7 +77,10 @@ class AdminProjectCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $projectcat = Projectcat::find($id);
+        $projectcat->name = $request->name;
+        $projectcat->save();
+        return redirect()->route('admin.project.category.index')->with('success','Successfully Updated  Category');
     }
 
     /**
@@ -84,8 +89,19 @@ class AdminProjectCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function active($id)
     {
-        //
+        $projectcat = Projectcat::find($id);
+        $projectcat->status = 1;
+        $projectcat->save();
+        return redirect()->route('admin.project.category.index')->with('success','Successfully active category');
+    }
+    // deactive
+    public function deactive($id)
+    {
+        $projectcat = Projectcat::find($id);
+        $projectcat->status = 0;
+        $projectcat->save();
+        return redirect()->route('admin.project.category.index')->with('success','Successfully deactive category');
     }
 }

@@ -111,7 +111,7 @@
                   <td>
                       <div class="sigle-form-input-sddksldc0sd">
                         <div class="input-group mb-3">
-                          <textarea rows="3" class="form-control" name="suspended_note"></textarea>
+                          <textarea rows="3" class="form-control" name="suspended_note">{{$post->suspended_note}}</textarea>
                         </div>
                       </div>
                   </td>

@@ -50,7 +50,6 @@ class FrontendEventController extends Controller
         $org = Organisation::where('slug',$slug)->first();
         $eventid = Event::where('slug',$eventslug)->first();
 
-
         $event = new Eventapply;
         $event->status = 0;
         $event->user_id = Auth::user()->id;
@@ -77,12 +76,14 @@ class FrontendEventController extends Controller
         $event->save();
 
 
-            $eventbuy = 1;
+            $eventbuy = $eventid->cost_status;
             $eventapplyid = $event->id;
 
             if($eventbuy == 1){
                 return redirect()->route('event.payment.process',[$slug,$eventslug,$eventapplyid]);
-            }  
+            }else{
+                return redirect()->route('org.event.wallet',[$slug,$eventslug,$eventapplyid]);
+            }
 
 
         Toastr::success('successfully Submited the form.', 'Congrats! Success');
@@ -114,19 +115,35 @@ class FrontendEventController extends Controller
 
         $balance = Eventbalance::where('organisation_id',$org->id)->first();
 
-        if($balance){
-            $balance->event_bal =  $balance->event_bal + $event->price * $eventapply->number_of_people;
-            $balance->organisation_id = $org->id;
-            $balance->save();
-            return redirect()->route('payment.success');
-
-        }else{
-            $addbal = new Eventbalance;
-            $addbal->event_bal = $event->price * $eventapply->number_of_people;
-            $addbal->organisation_id = $org->id;
-            $addbal->save();
-            return redirect()->route('payment.success');
+        if($eventapply->number_of_people >= $event->limit){
+            return redirect()->back()->with('error','Sorry not enough sit on this event.');
+        }else{            
+            if($eventapply){
+                $sitecount = $event->limit - $eventapply->number_of_people;
+                $event->limit = $sitecount;
+                $event->save();
+            }
         }
+
+
+        if($event->cost_status == 1){
+            if($balance){
+                $balance->event_bal =  $balance->event_bal + $event->price * $eventapply->number_of_people;
+                $balance->organisation_id = $org->id;
+                $balance->save();
+                return redirect()->route('payment.success');
+
+            }else{
+                $addbal = new Eventbalance;
+                $addbal->event_bal = $event->price * $eventapply->number_of_people;
+                $addbal->organisation_id = $org->id;
+                $addbal->save();
+                return redirect()->route('payment.success');
+            }
+
+        }
+                return redirect()->route('payment.success');
+ 
 
 
     }

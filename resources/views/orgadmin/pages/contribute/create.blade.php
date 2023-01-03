@@ -147,7 +147,7 @@
 
 <input  placeholder="Search Location ..." class="form-control" name="location_availability" onFocus="initializeAutocomplete()" id="locality" />
                   
-<div style="display: none">
+<div>
 <input type="text" class="form-control" name="city" id="city" placeholder="City" value="" >
 <input type="text" class="form-control" name="latitude" id="latitude" placeholder="Latitude" value="" >
 <input type="text" class="form-control" name="longitude" id="longitude" placeholder="Longitude" value="" >

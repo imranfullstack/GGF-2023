@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('eventapplies', function (Blueprint $table) {
             $table->id();
             $table->integer('status');
+            $table->integer('payment_status')->default(0);
             $table->integer('user_id');
             $table->integer('event_id');
             $table->integer('organisation_id');

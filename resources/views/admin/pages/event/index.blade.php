@@ -12,11 +12,12 @@
               <div class="content-body-dskd">
 
 <br>
-<h2>Events </h2>
+<h4>EXPERIENCES & EVENTS list</h4>
 <hr>
 
 
 
+@include('admin.asset.message')
 <div class="table-aria-for-info-section">
   <div class="row">
     <div class="col-md-12">
@@ -25,7 +26,7 @@
     <tr class="bg-green">
       <th scope="col">#</th>
       <th scope="col">Image</th>
-      <th scope="col">Project name</th>
+      <th scope="col">Event name</th>
       <th scope="col">Organisation</th>
       <th scope="col">Status</th>
       <th scope="col">Date</th>

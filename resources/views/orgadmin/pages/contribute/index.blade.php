@@ -65,7 +65,7 @@
       <td>{{$item->contact_parson}}</td>
       <td>{{$item->location_availability}}</td>
       <td class="actiontable-dksld">
-        <a href="{{route('orgadmin.organisation.project.view',$org->id)}}" class="view-btn-table">View</a> <span>|</span> <a href="{{route('orgadmin.organisation.project.view',$org->id)}}" class="view-btn-table">Edit</a></span>
+        <a href="" class="view-btn-table">View</a> <span>|</span> <a href="{{route('orgadmin.organisation.contribute.edit',['contributeid'=>$item->id,'id'=>$org->id])}}" class="view-btn-table">Edit</a></span>
       </td>
     </tr>
     @endforeach

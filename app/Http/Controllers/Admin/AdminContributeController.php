@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Contribute;
 
 class AdminContributeController extends Controller
 {
@@ -14,7 +15,8 @@ class AdminContributeController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.contribute.index');
+        $contribute = Contribute::all();
+        return view('admin.pages.contribute.index',compact('contribute'));
     }
 
     /**
@@ -46,7 +48,8 @@ class AdminContributeController extends Controller
      */
     public function show($id)
     {
-        //
+        $contribute = Contribute::find($id);
+        return $contribute;
     }
 
     /**
@@ -57,7 +60,8 @@ class AdminContributeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contribute = Contribute::find($id);
+        return view('admin.pages.contribute.edit',compact('contribute'));
     }
 
     /**

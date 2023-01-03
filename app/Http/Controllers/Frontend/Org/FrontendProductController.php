@@ -65,10 +65,7 @@ class FrontendProductController extends Controller
                 $product->comment = $request->comment;
                 $product->question = $request->question;
                 $product->save();
-                    if($request->quantity){
-                        $mainproduct->stock = $mainproduct->stock - $request->quantity;
-                        $mainproduct->save();
-                    }
+                 
                     
                 $paidproduct = 1;
                 $productbuyid = $product->id;
@@ -112,6 +109,13 @@ class FrontendProductController extends Controller
         $org = Organisation::where('slug',$slug)->first();
         $productbuy = Productbuy::where('id',$productbuyid)->first();
         $balance = Productbalence::where('organisation_id',$org->id)->first();
+        // Product ( - ) From DB
+        if($productbuy->quantity){
+            $product->stock = $product->stock - $productbuy->quantity;
+            $product->save();
+        }
+
+            
 
         if($balance){
             $balance->product_bal =  $balance->product_bal + $product->price * $productbuy->quantity;

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('serviceapplies', function (Blueprint $table) {
             $table->id();
             $table->integer('status');
+            $table->integer('payment_status')->default('0');
             $table->integer('user_id');
             $table->integer('service_id');
             $table->integer('organisation_id');

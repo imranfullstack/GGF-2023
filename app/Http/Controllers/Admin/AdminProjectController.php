@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Projecthavecategory;
+use App\Models\Projectapply;
 
 class AdminProjectController extends Controller
 {
@@ -61,9 +62,7 @@ class AdminProjectController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
-
         $category = Projecthavecategory::where('project_id',$project->id)->get();
-
         return view('admin.pages.project.edit', compact('project','category'));
     }
 
@@ -76,7 +75,11 @@ class AdminProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $project = Project::find($id);
+        $project->status = $request->status;
+        $project->suspended_note = $request->suspended_note;
+        $project->save();
+        return redirect()->route('admin.project.index')->with('success','Successfully update status!');
     }
 
     /**
@@ -85,8 +88,15 @@ class AdminProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function application($id)
     {
-        //
+        $application = Projectapply::where('project_id',$id)->get();
+        return view('admin.pages.project.application.index', compact('application'));
+    }
+    // Single application
+    public function single_application($id)
+    {
+        $apply = Projectapply::where('id',$id)->first();
+        return view('admin.pages.project.application.single', compact('apply'));
     }
 }

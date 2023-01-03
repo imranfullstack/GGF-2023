@@ -59,7 +59,9 @@
       <th scope="col">Status</th>
       <th scope="col">Date</th>
       <th scope="col">Application</th>
-      <th scope="col" width="30%"></th>
+      <th scope="col">Sit Available</th>
+      <th scope="col">Cost Status</th>
+      <th scope="col" ></th>
     </tr>
   </thead>
   <tbody>
@@ -98,6 +100,17 @@
         @endphp
       <td>
         <span class="badge bg-green">{{$application}} </span>
+      </td>
+
+      <td>
+        <span class="badge bg-green">{{$item->limit}} </span>
+      </td>
+      <td>
+        @if($item->cost_status == 0)
+          <span class="badge bg-green">Free </span>
+        @else
+          <span class="badge bg-green">Paid </span>
+        @endif
       </td>
 
 

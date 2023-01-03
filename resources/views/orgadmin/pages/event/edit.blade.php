@@ -149,10 +149,8 @@
                       <div class="sigle-form-input-sddksldc0sd">
                         <div class="input-group mb-3">
                           <select class="form-select" name="cost_status">
-                            <option>Value one</option>
-                            <option>Value one</option>
-                            <option>Value one</option>
-                            <option>Value one</option>
+                            <option value="0"  {{ ($event->cost_status == 0) ? 'selected' : ''}}>Free</option>
+                            <option value="1" {{ ($event->cost_status == 1) ? 'selected' : ''}}>Charged</option>
                           </select>
                         </div>
                         @error('cost_status') <span class="text-danger">{{$message}}</span> @enderror
@@ -173,6 +171,23 @@
                   </td>
                 </tr>
               <!-- ---- single Form Start --- -->
+
+
+              <!-- ---- single Form Start --- -->
+                <tr>
+                  <th scope="row" width="20%" class="label-dksldc">Limit</th>
+                  <td>
+                      <div class="sigle-form-input-sddksldc0sd">
+                        <div class="input-group mb-3">
+                          <input type="number" class="form-control" placeholder="Maximum user limit" name="limit" value="{{$event->limit}}">
+                        </div>
+                        @error('limit') <span class="text-danger">{{$message}}</span> @enderror
+                      </div>
+                  </td>
+                </tr>
+              <!-- ---- single Form Start --- -->
+
+
               <!-- ---- single Form Start --- -->
                 <tr>
                   <th scope="row" width="20%" class="label-dksldc">Contact Person</th>

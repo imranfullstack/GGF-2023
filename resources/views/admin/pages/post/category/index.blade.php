@@ -12,7 +12,7 @@
   <div class="col-md-10 right-aria-sldksd">
               <div class="content-body-dskd">
 <br>
-<h2>List Of Category</h2>
+<h4>List Of Category</h4>
 <hr>
 
 <div class="row">

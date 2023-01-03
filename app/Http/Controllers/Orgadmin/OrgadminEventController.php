@@ -57,7 +57,6 @@ class OrgadminEventController extends Controller
             'long_version' => 'required',
             'date' => 'required',
             'cost_status' => 'required',
-            'price' => 'required',
             'contact_parson' => 'required',
             'contact_email' => 'required',
             'contact_phone' => 'required',
@@ -84,6 +83,7 @@ class OrgadminEventController extends Controller
         $event->user_id = Auth::user()->id;
         $event->status = 1;
         $event->organisation_id = $id;
+        $event->limit = $request->limit;
         $event->short_desc = $request->short_desc;
         $event->long_version = $request->long_version;
         $event->date = $request->date;
@@ -193,7 +193,6 @@ class OrgadminEventController extends Controller
             'long_version' => 'required',
             'date' => 'required',
             'cost_status' => 'required',
-            'price' => 'required',
             'contact_parson' => 'required',
             'contact_email' => 'required',
             'contact_phone' => 'required',
@@ -209,12 +208,10 @@ class OrgadminEventController extends Controller
 
         $event = Event::where('organisation_id',$id)->where('id',$eventid)->first(); 
         $event->event_name = $request->event_name;
-        if($event->event_name){
-            $event->slug = Str::slug($request->event_name).'-'.uniqid();
-        }
         $event->user_id = Auth::user()->id;
         $event->status = $request->status;
         $event->organisation_id = $id;
+        $event->limit = $request->limit;
         $event->short_desc = $request->short_desc;
         $event->long_version = $request->long_version;
         $event->date = $request->date;
@@ -229,19 +226,12 @@ class OrgadminEventController extends Controller
         $event->registration_form = $request->registration_form;
 
           if($request->image){
-
-if($event->event){
-        $image_path = public_path("img/upload/event/{$event->image}");
-
-
+            if($event->event){
+                $image_path = public_path("img/upload/event/{$event->image}");
                 if (File::exists($image_path)) {
                     unlink($image_path);
                 }
-}
-         
-
-
-
+            }
         // -- Image UPload
             if($request->hasFile('image')){
                 $image = $request->file('image');
@@ -250,30 +240,19 @@ if($event->event){
                 $event->image = $img;
             }
         }
-
-
         $event->save();
-
-
-
-
-
-if($request->eventcat_id){
-       foreach($request->eventcat_id as $item){
-            $cat = new Eventhavecategory;
-            $cat->organisation_id = $id;
-            $cat->user_id = Auth::user()->id;
-            $cat->event_id = $event->id;
-            $cat->eventcat_id = $item;
-            $cat->save();
+        if($request->eventcat_id){
+               foreach($request->eventcat_id as $item){
+                    $cat = new Eventhavecategory;
+                    $cat->organisation_id = $id;
+                    $cat->user_id = Auth::user()->id;
+                    $cat->event_id = $event->id;
+                    $cat->eventcat_id = $item;
+                    $cat->save();
+                }
         }
-}
               // Project Category 
-     
-
-
-
-        return redirect()->route('orgadmin.organisation.event.index',$id)->with('success',' Congratulation! You Just Successfully added a Event.');
+        return redirect()->route('orgadmin.organisation.event.index',$id)->with('success',' Congratulation! You Just Successfully updated  Event.');
 
 
     }

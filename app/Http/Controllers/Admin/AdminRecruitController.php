@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Recruit;
+use App\Models\Organisation;
+use App\Models\Jobapply;
 
 class AdminRecruitController extends Controller
 {
@@ -14,7 +17,8 @@ class AdminRecruitController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.recruit.index');
+        $recruit = Recruit::orderby('id','desc')->get();
+        return view('admin.pages.recruit.index',compact('recruit'));
     }
 
     /**
@@ -22,9 +26,11 @@ class AdminRecruitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function application($id)
     {
-        //
+        $apply = Jobapply::where('recruit_id',$id)->get();
+
+        return view('admin.pages.recruit.application.index',compact('apply'));
     }
 
     /**
@@ -33,9 +39,10 @@ class AdminRecruitController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function single_application(Request $request,$id)
     {
-        //
+        $apply = Jobapply::find($id);
+        return view('admin.pages.recruit.application.single',compact('apply'));
     }
 
     /**
@@ -57,7 +64,9 @@ class AdminRecruitController extends Controller
      */
     public function edit($id)
     {
-        //
+        $recruit = Recruit::find($id);
+        $org = Organisation::where('id',$recruit->organisation_id)->first();
+        return view('admin.pages.recruit.edit',compact('recruit','org'));
     }
 
     /**
@@ -69,7 +78,12 @@ class AdminRecruitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $recruit = Recruit::find($id);
+        $recruit->status = $request->status;
+        $recruit->suspended_note = $request->suspended_note;
+        $recruit->save();
+        return redirect()->route('admin.recruit.index')->with('success','Soccessfully updateded');
     }
 
     /**

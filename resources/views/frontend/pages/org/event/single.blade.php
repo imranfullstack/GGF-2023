@@ -20,6 +20,7 @@
 
 
 <br>
+@include('frontend.asset.message')
 <br>
 <section class="main-body">
          <div class="container">
@@ -331,8 +332,11 @@
 
 
         @if(Auth::user())
-            
-          <button type="submit" class="btn btn-green">  <i class="fab fa-paypal"></i> Pay With Paypal</button>
+            @if($event->cost_status == 0)
+              <button type="submit" class="btn btn-green">  Book This Event</button>
+            @else
+              <button type="submit" class="btn btn-green">  <i class="fab fa-paypal"></i> Pay With Paypal</button>
+            @endif
         @else
           <a href="{{route('login')}}" class="btn btn-green">  <i class="fas fa-lock-alt"></i> Login </a>
         @endif

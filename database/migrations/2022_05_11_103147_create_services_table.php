@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->string('enquiry_form')->nullable();
             $table->string('image')->nullable();
+            $table->string('suspended_note')->nullable();
             $table->timestamps();
         });
     }

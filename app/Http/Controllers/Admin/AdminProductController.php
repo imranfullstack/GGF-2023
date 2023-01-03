@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Producthavecategory;
+use App\Models\Productbuy;
 
 class AdminProductController extends Controller
 {
@@ -14,7 +17,8 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.product.index');
+        $product = Product::orderby('id','desc')->get();
+        return view('admin.pages.product.index', compact('product'));
     }
 
     /**
@@ -22,9 +26,16 @@ class AdminProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function product_order($id)
     {
-        //
+        $orders = Productbuy::orderby('id','desc')->where('product_id',$id)->get();
+        return view('admin.pages.product.orders.index', compact('orders'));
+    }
+    // Single Application
+    public function product_single_order($id)
+    {
+        $order = Productbuy::find($id);
+        return view('admin.pages.product.orders.single', compact('order'));
     }
 
     /**
@@ -57,7 +68,9 @@ class AdminProductController extends Controller
      */
     public function edit($id)
     {
-        return "Hello";
+        $product = Product::find($id);
+        $category = Producthavecategory::where('product_id',$product->id)->get();
+        return view('admin.pages.product.edit', compact('product','category'));
     }
 
     /**
@@ -69,7 +82,12 @@ class AdminProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $product->status = $request->status;
+        $product->suspended_note = $request->suspended_note;
+        $product->save();
+        return redirect()->route('admin.product.index')->with('success','Successfully update status!');
+        
     }
 
     /**

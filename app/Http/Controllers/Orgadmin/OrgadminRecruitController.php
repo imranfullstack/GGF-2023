@@ -49,7 +49,7 @@ class OrgadminRecruitController extends Controller
     {
         $recruit = new Recruit;
         $recruit->title = $request->title;
-        $recruit->slug = strtolower(str_replace(' ', '-', $request->short_desc)).'-'.uniqid().'-'.time();
+        $recruit->slug = Str::slug($request->title).'-'.uniqid().'-'.$id;
         $recruit->user_id = Auth::user()->id;
         $recruit->organisation_id = $id;
         $recruit->status = 1;

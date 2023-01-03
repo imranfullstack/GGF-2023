@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Servicecat;
+use App\Models\Service;
 
 class AdminServiceCategoryController extends Controller
 {
@@ -64,7 +65,8 @@ class AdminServiceCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $servicecat = Servicecat::find($id);
+        return view('admin.pages.service.category.edit', compact('servicecat'));
     }
 
     /**
@@ -76,8 +78,12 @@ class AdminServiceCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $servicecat = Servicecat::find($id);
+        $servicecat->name = $request->name;
+        $servicecat->save();
+        return redirect()->route('admin.service.category.index')->with('success','Successfully Update Category');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -85,8 +91,24 @@ class AdminServiceCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+        public function active($id)
+        {
+            $cat = Servicecat::find($id);
+            $cat->status = 1;
+            $cat->save();
+            return redirect()->back()->with('success','Successfully Updated Status');
+        }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+        public function deactive($id)
+        {
+            $cat = Servicecat::find($id);
+            $cat->status = 0;
+            $cat->save();
+            return redirect()->back()->with('success','Successfully Updated Status');
     }
 }

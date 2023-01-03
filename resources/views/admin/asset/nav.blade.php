@@ -102,14 +102,8 @@
                     </div>
                   </div>
                 </li>
-<!-------------------------- Projects Nav Item  -------------------------->
 
-                <li class="@yield('orgadmin_org_sprofile')"><a href="#"> Search Profiles</a></li>
-                <li class="@yield('orgadmin_org_s_resource')"><a href="#"> Search Resources</a></li>
-      
-
-
-<!-------------------------- Projects Nav Item  -------------------------->
+          <!-------------------------- Projects Nav Item  -------------------------->
            <li class="@yield('orgadmin_org_contribute')">
                   <a data-bs-toggle="collapse" href="#collapsecontribute" role="button" aria-expanded="false" aria-controls="collapsecontribute">
                       Contribute
@@ -123,32 +117,50 @@
                     </div>
                   </div>
                 </li>
-<!-------------------------- Projects Nav Item  -------------------------->
-
-<!-------------------------- Projects Nav Item  -------------------------->
-           <li class="@yield('orgadmin_org_contribute')">
-                  <a data-bs-toggle="collapse" href="#keywordset" role="button" aria-expanded="false" aria-controls="keywordset">
-                      Set Keyword
-                    </a>
-                  <div class="collapse @yield('orgtype_show')" id="keywordset">
-                    <div class="card card-body">
-                      <ul class="dropdownstylenav">
-                        <li><a href="{{route('admin.orgtype.index')}}"> <i class="fas fa-circle"></i> Organisation Type</a></li>
-                        <li><a href="{{route('admin.focus.index')}}"> <i class="fas fa-circle"></i>Focus</a></li>
-                        <li><a href="{{route('admin.provide.index')}}"> <i class="fas fa-circle"></i>Provide</a></li>
-                        <!-- Keyskills -->
-                        <li><a href="{{route('admin.keyskill.index')}}"> <i class="fas fa-circle"></i>Key SKills</a></li>
-                        <!-- Key Interests -->
-                        <li><a href="{{route('admin.interests.index')}}"> <i class="fas fa-circle"></i>Interests</a></li>
-                      </ul>
-                    </div>
-                  </div>
+              <!-------------------------- Projects Nav Item  -------------------------->
+                <li class="@yield('orgadmin_users')">
+                  <a href="{{route('admin.user.index')}}">User Profiles</a>
                 </li>
-                <!-------------------------- Projects Nav Item  -------------------------->
                 <li class="@yield('')">
                   <a href="{{route('admin.orgstatus.index')}}"> Organisation List</a>
                 </li>
-                <!-------------------------- Projects Nav Item  -------------------------->
+              <!-------------------------- Projects Nav Item  -------------------------->
+              <!-------------------------- Projects Nav Item  -------------------------->
+               <li class="@yield('orgadmin_org_contribute')">
+                      <a data-bs-toggle="collapse" href="#keywordset" role="button" aria-expanded="false" aria-controls="keywordset">
+                          Set Keyword
+                        </a>
+                      <div class="collapse @yield('orgtype_show')" id="keywordset">
+                        <div class="card card-body">
+                          <ul class="dropdownstylenav">
+                            <li><a href="{{route('admin.orgtype.index')}}"> <i class="fas fa-circle"></i> Organisation Type</a></li>
+                            <li><a href="{{route('admin.focus.index')}}"> <i class="fas fa-circle"></i>Focus</a></li>
+                            <li><a href="{{route('admin.provide.index')}}"> <i class="fas fa-circle"></i>Provide</a></li>
+                            <!-- Keyskills -->
+                            <li><a href="{{route('admin.keyskill.index')}}"> <i class="fas fa-circle"></i>Key SKills</a></li>
+                            <!-- Key Interests -->
+                            <li><a href="{{route('admin.interests.index')}}"> <i class="fas fa-circle"></i>Interests</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                  <!-------------------------- Projects Nav Item  -------------------------->
+              <!-------------------------- Projects Nav Item  -------------------------->
+               <li class="@yield('admin_site_settings')">
+                      <a data-bs-toggle="collapse" href="#sitesettings" role="button" aria-expanded="false" aria-controls="sitesettings">
+                          Site Settings
+                        </a>
+                      <div class="collapse @yield('site_settings')" id="sitesettings">
+                        <div class="card card-body">
+                          <ul class="dropdownstylenav">
+                            <li><a href="#"> <i class="fas fa-circle"></i> Organisation Type</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                  <!-------------------------- Projects Nav Item  -------------------------->
+
+
                 <li class="top-nav-border">
                     <a href="{{ route('logout') }}" 
                        onclick="event.preventDefault();

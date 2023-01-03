@@ -39,7 +39,9 @@
                            <div class="col-md-5">
                               <div class="content-box-ddks">
                                  <h4>{{$item->title}}</h4>
-                                 <p>{{$item->short_desc}}</p>
+                                 <p>
+                                    {{ Str::limit($item->short_desc, 120, $end = '...') }}
+                                 </p>
 
 <a type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop_{{$item->id}}">
   Read More

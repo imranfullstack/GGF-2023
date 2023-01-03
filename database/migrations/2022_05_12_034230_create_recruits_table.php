@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('contact_phone');
             $table->string('location');
             $table->integer('attach_application');
+            $table->string('suspended_note');
             $table->timestamps();
         });
     }

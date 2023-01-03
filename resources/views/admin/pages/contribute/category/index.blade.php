@@ -7,7 +7,7 @@
   <div class="col-md-10 right-aria-sldksd">
               <div class="content-body-dskd">
 <br>
-<h2>Post  Categorys</h2>
+<h4>list of Category</h4>
 <hr>
 
 <div class="row">
@@ -44,7 +44,7 @@
         <td>{{$item->name}}</td>
         <td>Otto</td>
         <td class="actiontable-dksld">
-          <a href="http://127.0.0.1:8000/orgadmin/organisation/2/projects/view" class="view-btn-table">View</a> <span>|</span> <a href="http://127.0.0.1:8000/orgadmin/organisation/2/projects/view" class="view-btn-table">Edit</a>| <a href="" class="view-btn-table danger-skd">Delete</a>
+          <a href="#" class="view-btn-table">View</a> <span>|</span> <a href="#" class="view-btn-table">Edit</a>| <a href="" class="view-btn-table danger-skd">Delete</a>
         </td>
       </tr>
       @endforeach

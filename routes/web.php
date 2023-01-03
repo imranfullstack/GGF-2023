@@ -24,6 +24,7 @@ use App\Http\Controllers\Frontend\Org\FrontendEventController;
 use App\Http\Controllers\Frontend\Org\FrontendProductController;
 // Site Admin
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminPostCategoryController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminProjectCategoryController;
@@ -69,10 +70,8 @@ use App\Http\Controllers\Orgadmin\OrgadminSponsorController;
 use App\Http\Controllers\Orgadmin\OrgadminPaymentController;
 use App\Http\Controllers\Orgadmin\OrgadminBankManageController;
 
-
 // Site Orgeditor
 use App\Http\Controllers\Orgeditor\OrgeditorDashboardController;
-
 // Site Orgmember
 use App\Http\Controllers\Orgmember\OrgmemberDashboardController;
 
@@ -163,6 +162,23 @@ Route::group(['as'=> 'admin.' , 'prefix' => 'admin' , 'namespace' => 'Admin' , '
 
 
 // --------------------------------------
+        // User List Here  AdminUserController
+// --------------------------------------
+
+Route::group(['as' => 'user.', 'prefix' => 'user' , 'namespace' => 'user'],function(){
+
+    Route::get('/index', [AdminUserController::class, 'index'])->name('index');
+    // View
+    Route::get('/view/{id}', [AdminUserController::class, 'view'])->name('view');
+
+
+});
+
+// --------------------------------------
+        // User List Here End
+// --------------------------------------
+
+// --------------------------------------
         // Post Here 
 // --------------------------------------
 Route::group(['as' => 'post.', 'prefix' => 'post' , 'namespace' => 'post'],function(){
@@ -225,6 +241,11 @@ Route::group(['as' => 'project.', 'prefix' => 'project' , 'namespace' => 'projec
         Route::get('/index', [AdminProjectController::class, 'index'])->name('index');
         // Edit Projet
         Route::get('/edit/{id}', [AdminProjectController::class, 'edit'])->name('edit');
+        // Edit Projet
+        Route::post('/update/{id}', [AdminProjectController::class, 'update'])->name('update');
+        // Application Projet
+        Route::get('/application/{id}', [AdminProjectController::class, 'application'])->name('application');
+        Route::get('/single-application/{id}', [AdminProjectController::class, 'single_application'])->name('single.application');
 
 // ---------------- Post Category Here 
         Route::group(['as' => 'category.', 'prefix' => 'category' , 'namespace' => 'category'],function(){
@@ -233,6 +254,14 @@ Route::get('/create', [AdminProjectCategoryController::class, 'create'])->name('
 Route::get('/', [AdminProjectCategoryController::class, 'index'])->name('index');
 // ------ Store Category ----
 Route::post('/store', [AdminProjectCategoryController::class, 'store'])->name('store');
+// ------ Edit Category ----
+Route::get('/edit/{id}', [AdminProjectCategoryController::class, 'edit'])->name('edit');
+// ------ Store Category ----
+Route::post('/update/{id}', [AdminProjectCategoryController::class, 'update'])->name('update');
+// ------ active Category ----
+Route::get('/active/{id}', [AdminProjectCategoryController::class, 'active'])->name('active');
+// ------ deactive Category ----
+Route::get('/deactive/{id}', [AdminProjectCategoryController::class, 'deactive'])->name('deactive');
         });
 // ---------------- Post Category Here End  
 
@@ -294,16 +323,33 @@ Route::group(['as' => 'category.', 'prefix' => 'category' , 'namespace' => 'cate
 Route::group(['as' => 'product.', 'prefix' => 'product' , 'namespace' => 'product'],function(){
 
         Route::get('/index', [AdminProductController::class, 'index'])->name('index');
+        // Edit Product
+        Route::get('/edit/{id}', [AdminProductController::class, 'edit'])->name('edit');
+        // Edit Product
+        Route::post('/update/{id}', [AdminProductController::class, 'update'])->name('update');
+        // Edit Product
+        Route::get('/order/{id}', [AdminProductController::class, 'product_order'])->name('order');
+        // Edit Product
+        Route::get('/single-order/{id}', [AdminProductController::class, 'product_single_order'])->name('order.single');
+
     // ---------------- Product Category Here 
     Route::group(['as' => 'category.', 'prefix' => 'category' , 'namespace' => 'category'],function(){
-    // index
-    Route::get('/', [AdminProductCategoryController::class, 'index'])->name('index');
-    // store
-    Route::get('/create', [AdminProductCategoryController::class, 'create'])->name('create');
+        // index
+        Route::get('/', [AdminProductCategoryController::class, 'index'])->name('index');
+        // store
+        Route::get('/create', [AdminProductCategoryController::class, 'create'])->name('create');
 
-    // ------ Store Category ----
-    Route::post('/store', [AdminProductCategoryController::class, 'store'])->name('store');
-    });
+        // ------ Store Category ----
+        Route::post('/store', [AdminProductCategoryController::class, 'store'])->name('store');
+        // ------ Edit Category ----
+        Route::get('/edit/{id}', [AdminProductCategoryController::class, 'edit'])->name('edit');
+        // ------ Edit Category ----
+        Route::post('/update/{id}', [AdminProductCategoryController::class, 'update'])->name('update');
+     // ------ Store Category Active----
+        Route::get('/active/{id}', [AdminProductCategoryController::class, 'active'])->name('active');
+        // ------ Store Category Deactive----
+        Route::get('/deactive/{id}', [AdminProductCategoryController::class, 'deactive'])->name('deactive');
+        });
     // ---------------- Product Category Here End  
 });
 
@@ -317,12 +363,34 @@ Route::group(['as' => 'product.', 'prefix' => 'product' , 'namespace' => 'produc
 Route::group(['as' => 'service.', 'prefix' => 'service' , 'namespace' => 'service'],function(){
 
         Route::get('/index', [AdminServiceController::class, 'index'])->name('index');
+        // Edit Service
+        Route::get('/edit/{id}', [AdminServiceController::class, 'edit'])->name('edit');
+        // Edit Service
+        Route::post('/update/{id}', [AdminServiceController::class, 'update'])->name('update');
+
+
+        // Edit Service
+        Route::get('/application/{id}', [AdminServiceController::class, 'application'])->name('application');
+        // Edit Service
+        Route::get('/application-single/{id}', [AdminServiceController::class, 'single_application'])->name('single.application');
+
+
+
+
     // ---------------- Service Category Here 
     Route::group(['as' => 'category.', 'prefix' => 'category' , 'namespace' => 'category'],function(){
             Route::get('/', [AdminServiceCategoryController::class, 'index'])->name('index');
             Route::get('/create', [AdminServiceCategoryController::class, 'create'])->name('create');
-    // ------ Store Category ----
-    Route::post('/store', [AdminServiceCategoryController::class, 'store'])->name('store');
+            // ------ Store Category ----
+            Route::post('/store', [AdminServiceCategoryController::class, 'store'])->name('store');
+            // ------ Store Category ----
+            Route::get('/edit/{id}', [AdminServiceCategoryController::class, 'edit'])->name('edit');
+            // ------ Store Category ----
+            Route::post('/update/{id}', [AdminServiceCategoryController::class, 'update'])->name('update');
+            // ------ Store Category Active----
+            Route::get('/active/{id}', [AdminServiceCategoryController::class, 'active'])->name('active');
+            // ------ Store Category Deactive----
+            Route::get('/deactive/{id}', [AdminServiceCategoryController::class, 'deactive'])->name('deactive');
     });
     // ---------------- Service Category Here End  
 });
@@ -337,12 +405,29 @@ Route::group(['as' => 'service.', 'prefix' => 'service' , 'namespace' => 'servic
 Route::group(['as' => 'recruit.', 'prefix' => 'recruit' , 'namespace' => 'recruit'],function(){
 
         Route::get('/index', [AdminRecruitController::class, 'index'])->name('index');
+        // Edit recruit
+        Route::get('/edit/{id}', [AdminRecruitController::class, 'edit'])->name('edit');
+        // Edit recruit
+        Route::post('/update/{id}', [AdminRecruitController::class, 'update'])->name('update');
+        // Edit recruit
+        Route::get('/application/{id}', [AdminRecruitController::class, 'application'])->name('application');
+        // Edit recruit
+        Route::get('/single-application/{id}', [AdminRecruitController::class, 'single_application'])->name('single.application');
+
     // ---------------- Service Category Here 
     Route::group(['as' => 'category.', 'prefix' => 'category' , 'namespace' => 'category'],function(){
-            Route::get('/', [AdminRecruitCategoryController::class, 'index'])->name('index');
-            Route::get('/create', [AdminRecruitCategoryController::class, 'create'])->name('create');
-    // ------ Store Category ----
-    Route::post('/store', [AdminRecruitCategoryController::class, 'store'])->name('store');
+        Route::get('/', [AdminRecruitCategoryController::class, 'index'])->name('index');
+        Route::get('/create', [AdminRecruitCategoryController::class, 'create'])->name('create');
+        // ------ Store Category ----
+        Route::post('/store', [AdminRecruitCategoryController::class, 'store'])->name('store');
+        // ------ Store Category ----
+        Route::post('/update/{id}', [AdminRecruitCategoryController::class, 'update'])->name('update');
+        // ------ Edit Category ----
+        Route::get('/edit/{id}', [AdminRecruitCategoryController::class, 'edit'])->name('edit');
+        // ------ Active Category ----
+        Route::get('/active/{id}', [AdminRecruitCategoryController::class, 'active'])->name('active');
+        // ------ Deactive Category ----
+        Route::get('/deactive/{id}', [AdminRecruitCategoryController::class, 'deactive'])->name('deactive');
     
     });
     // ---------------- Service Category Here End  
@@ -356,8 +441,11 @@ Route::group(['as' => 'recruit.', 'prefix' => 'recruit' , 'namespace' => 'recrui
 // --------------------------------------
 
 Route::group(['as' => 'contribute.', 'prefix' => 'contribute' , 'namespace' => 'contribute'],function(){
-
+        // Contribute Index
         Route::get('/index', [AdminContributeController::class, 'index'])->name('index');
+        // Edit
+        Route::get('/edit/{id}', [AdminContributeController::class, 'edit'])->name('edit');
+
     // ---------------- Service Category Here 
     Route::group(['as' => 'category.', 'prefix' => 'category' , 'namespace' => 'category'],function(){
         Route::get('/', [AdminContributeCategoryController::class, 'index'])->name('index');
@@ -693,6 +781,8 @@ Route::group(['as'=> 'orgadmin.' , 'prefix' => 'orgadmin' , 'namespace' => 'orga
             Route::get('create/', [OrgadminContributeController::class, 'create'])->name('create');
             // store
             Route::post('store/', [OrgadminContributeController::class, 'store'])->name('store');
+            // store
+            Route::get('edit/{contributeid}', [OrgadminContributeController::class, 'edit'])->name('edit');
         });
 
 

@@ -13,7 +13,7 @@
     <div class="content-body-dskd">
 
         <br>
-        <h4>LIST OF PROJECT </h4>
+        <h4>EDIT PROJECT </h4>
         <hr>
 
 @php
@@ -26,10 +26,7 @@
                 <div class="col-md-12">
 
 
-                    <form
-                        action="{{ route('orgadmin.organisation.project.update', ['id' => $org->id, 'projectid' => $project->id]) }}"
-                        method="post" enctype="multipart/form-data">
-                        @csrf
+                 
                         <table class="table table-borderless">
                             <tbody>
                                 <!-- ---- single Form Start --- -->
@@ -204,6 +201,8 @@
                                     </td>
                                 </tr>
                                 <!-- ---- single Form Start --- -->
+<form method="post" action="{{route('admin.project.update',$project->id)}}">
+    @csrf
                                 <!-- ---- single Form Start --- -->
                                 <tr>
                                     <th scope="row" width="20%" class="label-dksldc">Status</th>
@@ -217,6 +216,8 @@
                                                         {{ $project->status == 2 ? 'selected' : '' }}>Paused</option>
                                                     <option value="3"
                                                         {{ $project->status == 3 ? 'selected' : '' }}>Closed</option>
+                                                    <option value="4"
+                                                        {{ $project->status == 4 ? 'selected' : '' }}>Suspended</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -229,7 +230,7 @@
                                     <td>
                                         <div class="sigle-form-input-sddksldc0sd">
                                             <div class="input-group mb-3">
-                                            	<textarea class="form-control" rows="3"></textarea>
+                                            	<textarea class="form-control" rows="3" name="suspended_note">{{$project->suspended_note}}</textarea>
                                             </div>
                                         </div>
                                     </td>
@@ -242,9 +243,9 @@
                                     </td>
                                 </tr>
                                 <!-- ---- single Form Start --- -->
+</form>
                             </tbody>
                         </table>
-                    </form>
                                         <br>
                                         <br>
                 </div>

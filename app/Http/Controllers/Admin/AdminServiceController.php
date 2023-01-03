@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Service;
+use App\Models\Organisation;
+use App\Models\Serviceapply;
 
 class AdminServiceController extends Controller
 {
@@ -14,7 +17,8 @@ class AdminServiceController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.service.index');
+        $service = Service::orderby('id','desc')->get();
+        return view('admin.pages.service.index', compact('service'));
     }
 
     /**
@@ -44,9 +48,10 @@ class AdminServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function single_application($id)
     {
-        //
+        $order = Serviceapply::find($id);
+        return view('admin.pages.service.application.single', compact('order'));
     }
 
     /**
@@ -57,7 +62,9 @@ class AdminServiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $service = Service::find($id);
+        $org = Organisation::where('id',$service->organisation->id)->first();
+        return view('admin.pages.service.edit', compact('service','org'));
     }
 
     /**
@@ -69,7 +76,11 @@ class AdminServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $service = Service::find($id);
+        $service->status = $request->status;
+        $service->suspended_note = $request->suspended_note;
+        $service->save();
+        return redirect()->route('admin.service.index')->with('success','Successfully update status!');
     }
 
     /**
@@ -78,8 +89,9 @@ class AdminServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function application($id)
     {
-        //
+        $application = Serviceapply::where('service_id',$id)->get();
+        return view('admin.pages.service.application.index', compact('application'));
     }
 }

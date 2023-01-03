@@ -5,7 +5,7 @@
   <div class="col-md-10 right-aria-sldksd">
               <div class="content-body-dskd">
 <br>
-<h2>Add New Categorys</h2>
+<h4>Edit Categorys</h4>
 <hr>
 
 

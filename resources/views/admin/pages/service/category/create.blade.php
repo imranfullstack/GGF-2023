@@ -7,7 +7,7 @@
   <div class="col-md-10 right-aria-sldksd">
               <div class="content-body-dskd">
 <br>
-<h2>Add New Categorys</h2>
+<h4>Add New  Category</h4>
 <hr>
 
 
@@ -26,7 +26,7 @@
 			<form method="post" action="{{route('admin.service.category.store')}}">
 				@csrf
 					<div class="form-dlsdkc">
-						<input type="text" name="name" class="form-control" placeholder="Enter Category">
+						<input type="text" name="name" class="form-control" placeholder="Enter Category" required>
 						<button class="btn btn-green btn-block" type="submit">ADD NEW</button>
 
 						<a  href="{{route('admin.post.category.index')}}" class="btn btn-green btn-block">GO BACK</a>

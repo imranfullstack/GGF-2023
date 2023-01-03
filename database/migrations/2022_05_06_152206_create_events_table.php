@@ -25,8 +25,8 @@ return new class extends Migration
             $table->text('short_desc');
             $table->text('long_version');
             $table->string('date');
-            $table->string('cost_status');
-            $table->string('price');
+            $table->string('cost_status')->default('0');
+            $table->string('price')->nullable();
             $table->string('contact_parson');
             $table->string('contact_email');
             $table->string('contact_phone');
@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('registration_form')->nullable();
             $table->string('image')->nullable();
             $table->text('suspend_message')->nullable();
+            $table->integer('limit')->nullable();
             $table->timestamps();
 
 

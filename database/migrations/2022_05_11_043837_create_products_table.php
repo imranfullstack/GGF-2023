@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('stock')->nullable();
             $table->string('location')->nullable();
             $table->string('thumbnail')->nullable();
+            $table->string('suspended_note')->nullable();
             $table->timestamps();
         });
     }

@@ -151,10 +151,12 @@ class BeFoundController extends Controller
         $data->key_interests_status = $request->key_interests_status;
         if($request->resume){
         // Remove exists File
-        $pdf_path = public_path("/img/upload/resume/{$data->resume}");
+        if($data->resume){
+            $pdf_path = public_path("/img/upload/resume/{$data->resume}");
             if (File::exists($pdf_path)) {
                 unlink($pdf_path);
             }
+        }
         // Remove exists File END
             $resume = $request->file('resume');
             $pdf = Auth::user()->id.'-'.uniqid().'.'. $resume->getClientOriginalExtension();
