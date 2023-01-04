@@ -49,7 +49,7 @@
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
-	      	<input type="text"  name="name" class="form-control">
+	      	<input type="text"  name="name" class="form-control" required>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -73,9 +73,8 @@
   <thead>
     <tr class="bg-green">
       <th scope="col">#</th>
-      <th scope="col">Product Name</th>
+      <th scope="col">interests</th>
       <th scope="col">Status</th>
-      <th scope="col">Organisatin</th>
       <th scope="col" ></th>
     </tr>
   </thead>
@@ -99,7 +98,6 @@
 
 
     	</td>
-    	<td>dd</td>
     	<td style="text-align: right;">
 
       		<!-- Button trigger modal -->
@@ -119,14 +117,14 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Add new typed</h5>
+	        <h5 class="modal-title" id="exampleModalLabel">UPDATE</h5>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 
 <form action="{{route('admin.interests.update',$item->id)}}" method="post">
 	@csrf
 	      <div class="modal-body">
-	      	<input type="text"  name="name" class="form-control" value="{{$item->name}}">
+	      	<input type="text"  name="name" class="form-control" value="{{$item->name}}" required>
 	      	<br>
 	      	<select name="status" class="form-select">
 	      		<option value="1" {{ ($item->status == 1) ? 'selected' : ''}}>Active</option>

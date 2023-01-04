@@ -24,6 +24,8 @@ use App\Http\Controllers\Frontend\Org\FrontendEventController;
 use App\Http\Controllers\Frontend\Org\FrontendProductController;
 // Site Admin
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminPaymentController;
+use App\Http\Controllers\Admin\AdminPaymentRequestController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminPostCategoryController;
 use App\Http\Controllers\Admin\AdminPostController;
@@ -172,6 +174,23 @@ Route::group(['as' => 'user.', 'prefix' => 'user' , 'namespace' => 'user'],funct
     Route::get('/view/{id}', [AdminUserController::class, 'view'])->name('view');
 
 
+});
+
+// --------------------------------------
+        // User List Here  AdminUserController
+// --------------------------------------
+
+Route::group(['as' => 'payment.', 'prefix' => 'payment' , 'namespace' => 'payment'],function(){
+
+    Route::get('/index/', [AdminPaymentController::class, 'index'])->name('index');
+
+    Route::group(['as' => 'request.', 'prefix' => 'request' , 'namespace' => 'request'],function(){
+
+
+         Route::get('/index/', [AdminPaymentRequestController::class, 'index'])->name('index');
+         Route::post('/store/{id}', [AdminPaymentRequestController::class, 'store'])->name('store');
+
+    });
 });
 
 // --------------------------------------

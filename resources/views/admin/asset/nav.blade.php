@@ -159,6 +159,21 @@
                       </div>
                     </li>
                   <!-------------------------- Projects Nav Item  -------------------------->
+              <!-------------------------- Projects Nav Item  -------------------------->
+               <li class="@yield('orgadmin_payment')">
+                      <a data-bs-toggle="collapse" href="#paymentstatus" role="button" aria-expanded="false" aria-controls="paymentstatus">
+                          Payment 
+                        </a>
+                      <div class="collapse @yield('orgadmin_payment')" id="paymentstatus">
+                        <div class="card card-body">
+                          <ul class="dropdownstylenav">
+                            <li><a href="{{route('admin.payment.index')}}"> <i class="fas fa-circle"></i> All Payment</a></li>
+                            <li><a href="{{route('admin.payment.request.index')}}"> <i class="fas fa-circle"></i>Request Payment</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                  <!-------------------------- Projects Nav Item  -------------------------->
 
 
                 <li class="top-nav-border">

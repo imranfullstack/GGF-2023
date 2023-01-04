@@ -26,7 +26,7 @@
 			<form method="post" action="{{route('admin.recruit.category.store')}}">
 				@csrf
 					<div class="form-dlsdkc">
-						<input type="text" name="name" class="form-control" placeholder="Enter Category">
+						<input type="text" name="name" class="form-control" placeholder="Enter Category" required> 
 						<button class="btn btn-green btn-block" type="submit">ADD NEW</button>
 
 						<a  href="{{route('admin.recruit.category.index')}}" class="btn btn-green btn-block">GO BACK</a>

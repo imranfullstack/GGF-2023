@@ -116,6 +116,7 @@
                 $eventnumber = App\Models\Event::count();
                 $projectnumber = App\Models\Project::count();
                 $servicenumber = App\Models\Service::count();
+                $postnumber = App\Models\Post::count();
             @endphp
 
 
@@ -183,7 +184,10 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title">EVENTS / EXP..</h5>
-                                    <p class="card-text">{{ $eventnumber }} <a href="#">View</a></p>
+                                    <p class="card-text">{{ $eventnumber }} 
+
+                                        <a href="{{route('admin.event.index')}}">View</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -205,7 +209,9 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title">PROJECTS</h5>
-                                    <p class="card-text">{{ $projectnumber }} <a href="#">View</a></p>
+                                    <p class="card-text">{{ $projectnumber }}
+                                        <a href="{{route('admin.project.index')}}">View</a>
+                                 </p>
                                 </div>
                             </div>
                         </div>
@@ -228,7 +234,9 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title">SERVICES</h5>
-                                    <p class="card-text">{{ $servicenumber }} <a href="#">View</a></p>
+                                    <p class="card-text">{{ $servicenumber }}
+                                        <a href="{{route('admin.service.index')}}">View</a>
+                                 </p>
                                 </div>
                             </div>
                         </div>
@@ -254,7 +262,7 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title">PRODUCTS</h5>
-                                    <p class="card-text">5 <a href="#">View</a></p>
+                                        <a href="{{route('admin.product.index')}}">View</a>
                                 </div>
                             </div>
                         </div>
@@ -292,7 +300,9 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title">POSTS</h5>
-                                    <p class="card-text">5 <a href="#">View</a></p>
+                                    <p class="card-text">{{$postnumber}} 
+                                        <a href="{{route('admin.post.index')}}">View</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>

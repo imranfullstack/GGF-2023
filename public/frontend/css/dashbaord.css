@@ -242,6 +242,14 @@ span.badge-danger {
     font-size: 10px;
     text-transform: uppercase;
 }
+span.badge-warning {
+    background: #ffc107;
+    color: #000;
+    padding: 6px 13px;
+    border-radius: 50px;
+    font-size: 10px;
+    text-transform: uppercase;
+}
 span.badge-warn {
     background: #FDFF7C;
     color: #000;

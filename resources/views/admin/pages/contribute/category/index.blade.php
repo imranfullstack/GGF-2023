@@ -29,8 +29,8 @@
     <tr class="bg-green">
       <th scope="col">#</th>
       <th scope="col">Category name</th>
-      <th scope="col">Post Count</th>
-      <th scope="col" width="30%"></th>
+     <!--  <th scope="col">Post Count</th>
+      <th scope="col" width="30%"></th> -->
     </tr>
   </thead>
   <tbody>
@@ -42,10 +42,10 @@
       <tr>
         <th scope="row">1</th>
         <td>{{$item->name}}</td>
-        <td>Otto</td>
+    <!--     <td>Otto</td>
         <td class="actiontable-dksld">
           <a href="#" class="view-btn-table">View</a> <span>|</span> <a href="#" class="view-btn-table">Edit</a>| <a href="" class="view-btn-table danger-skd">Delete</a>
-        </td>
+        </td> -->
       </tr>
       @endforeach
 
