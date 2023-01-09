@@ -15,23 +15,25 @@
 @section('main_content')
     <!-- ------ Banner Aria Start ------ -->
 
-    <section class="banner-aira">
+    @php
+        $banner = App\Models\Homebanner::first();
+    @endphp
+
+    <section class="banner-aira" style="background: {{$banner->banner_bg}}">
 
         <div class="container">
 
             <div class="baner-main-section">
 
-                <div class="row baner-main-aria">
+                <div class="row baner-main-aria" >
 
                     <div class="col-md-6">
 
                         <div class="left-content-aria-banner-1536dcsd">
 
-                            <h1>Welcome to GGF</h1>
+                            <h1>{{$banner->title}}</h1>
 
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                                been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                                galley of type and scrambled</p>
+                            <p>{{$banner->desc}}</p>
 
                             <!-- <a href="#" class="banner-btn-069905dc">GET STARTED</a> -->
 
@@ -45,7 +47,7 @@
 
                             <div class="map-blog">
 
-                                <img src="{{ asset('frontend/img/banner/earth.jpg') }}">
+                                <img src="{{ asset('/img/upload/home/banner/'.$banner->banner_image) }}">
 
                             </div>
 
@@ -61,7 +63,7 @@
 
                         <div class="button-right-sldkd">
 
-                            <a href="{{ route('filter.index') }}" class="banner-btn-069905dc">Explore</a>
+                            <a href="{{ route('filter.index') }}" class="banner-btn-069905dc" style="background: {{$banner->banner_btn_bg}}">{{$banner->button_text}}</a>
 
                         </div>
 

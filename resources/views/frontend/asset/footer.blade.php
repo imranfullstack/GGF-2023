@@ -8,9 +8,13 @@
     margin-left: 25px;
 }
 </style>
+@php
+  $footer = App\Models\Footer::first();
+@endphp
+
       <footer class="footer">
 
-         <div class="footer-top-aria">
+         <div class="footer-top-aria" style="background: {{$footer->bg_color}}">
 
             <div class="container">
 
@@ -18,20 +22,19 @@
 
                   <div class="row">
 
-
                      <div class="col-md-2">
                                 
-                              <a href="http://www.proofsafe.com.au/" target="_blank"><img src="http://www.proofsafe.com.au/assets/toolbar-logo.png"></a>
+                              <a href="{{$footer->logo_url}}" target="_blank">
+                                <img src="{{asset('img/upload/footer/'.$footer->footer_logo)}}">
+                              </a>
                      </div>
                      <div class="col-md-9">
 
                         <div class="sponsors-dskdlc0s3d footer-common">
 
                             <div class="footertext">
-                              <p>Generously supported by ProofSafe<br>
-                                If you use - and promote - ProofSafe for data collection and compliance<br>
-                                then ProofSafe can help more not-for-profit environmental projects ... for free.
-
+                              <p>
+{!! $footer->desc !!}
 
                               </p>
                            </div>
@@ -48,7 +51,7 @@
 
          </div>
 
-         <div class="footer-btn">
+         <div class="footer-btn"  style="background: {{$footer->bg_color}}">
 
             <div class="container">
 
@@ -88,7 +91,7 @@
 
                      <div class="footer-btn-right">
 
-                        <p>© 2022 GGF - All rights Reserved.</p>
+                        <p>{{$footer->copyright_text}}</p>
 
                      </div>
 

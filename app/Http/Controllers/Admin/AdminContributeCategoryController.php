@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Contributecat;
+use Str;
 
 class AdminContributeCategoryController extends Controller
 {
@@ -62,7 +63,8 @@ class AdminContributeCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cat = Contributecat::find($id);
+        return view('admin.pages.contribute.category.edit' , compact('cat'));
     }
 
     /**
@@ -74,7 +76,11 @@ class AdminContributeCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cat = Contributecat::find($id);
+        $cat->name = $request->name;
+        $cat->slug = Str::slug($request->name).'-'.uniqid();
+        $cat->save();
+        return redirect()->route('admin.contribute.category.index')->with('success','Successfully Update');
     }
 
     /**
@@ -83,8 +89,21 @@ class AdminContributeCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+
+        public function active($id)
+        {
+            $cat = Contributecat::find($id);
+            $cat->status = 1;
+            $cat->save();
+            return redirect()->back()->with('success','Successfully Active Status');
+        }
+
+
+        public function disable($id)
+        {
+            $cat = Contributecat::find($id);
+            $cat->status = 0;
+            $cat->save();
+            return redirect()->back()->with('success','Successfully De-active Status');
+        }
 }

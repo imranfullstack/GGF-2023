@@ -47,6 +47,8 @@ use App\Http\Controllers\Admin\AdminProvideController;
 use App\Http\Controllers\Admin\AdminKeySkillsController;
 use App\Http\Controllers\Admin\AdminInterestsController;
 use App\Http\Controllers\Admin\OrgApproveController;
+use App\Http\Controllers\Admin\AdminHomeEditController;
+use App\Http\Controllers\Admin\AdminFooterEditController;
 
 
 // Site Editor
@@ -160,6 +162,30 @@ Route::group(['as'=> 'admin.' , 'prefix' => 'admin' , 'namespace' => 'Admin' , '
 
     // ------ Dashboard Admin
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('index');
+
+
+
+// --------------------------------------
+        // User List Here  AdminUserController
+// --------------------------------------
+
+Route::group(['as' => 'pages.', 'prefix' => 'pages' , 'namespace' => 'pages'],function(){
+
+    // Home Page Edit
+        Route::group(['as' => 'home.', 'prefix' => 'home' , 'namespace' => 'home'],function(){
+            Route::get('/index', [AdminHomeEditController::class, 'index'])->name('index');
+            // Banner Data Store
+            
+            Route::post('/banner-store', [AdminHomeEditController::class, 'banner_store'])->name('banner.store');
+        });
+    // Home Page Edit
+        Route::group(['as' => 'footer.', 'prefix' => 'footer' , 'namespace' => 'footer'],function(){
+            // Index
+            Route::get('/index', [AdminFooterEditController::class, 'index'])->name('index');
+            // Index
+            Route::post('/store', [AdminFooterEditController::class, 'store'])->name('store');
+        });
+});
 
 
 
@@ -464,6 +490,8 @@ Route::group(['as' => 'contribute.', 'prefix' => 'contribute' , 'namespace' => '
         Route::get('/index', [AdminContributeController::class, 'index'])->name('index');
         // Edit
         Route::get('/edit/{id}', [AdminContributeController::class, 'edit'])->name('edit');
+        // Edit
+        Route::post('/update/{id}', [AdminContributeController::class, 'update'])->name('update');
 
     // ---------------- Service Category Here 
     Route::group(['as' => 'category.', 'prefix' => 'category' , 'namespace' => 'category'],function(){
@@ -471,6 +499,14 @@ Route::group(['as' => 'contribute.', 'prefix' => 'contribute' , 'namespace' => '
         Route::get('/create', [AdminContributeCategoryController::class, 'create'])->name('create');
         // ------ Store Category ----
         Route::post('/store', [AdminContributeCategoryController::class, 'store'])->name('store');
+        // ------ Edit Category ----
+        Route::get('/edit/{id}', [AdminContributeCategoryController::class, 'edit'])->name('edit');
+        // ------ Edit Category ----
+        Route::post('/update/{id}', [AdminContributeCategoryController::class, 'update'])->name('update');
+        // ------ Active Category ----
+        Route::get('/active/{id}', [AdminContributeCategoryController::class, 'active'])->name('active');
+        // ------ Deactive Category ----
+        Route::get('/disable/{id}', [AdminContributeCategoryController::class, 'disable'])->name('disable');
     });
     // ---------------- Service Category Here End  
 });

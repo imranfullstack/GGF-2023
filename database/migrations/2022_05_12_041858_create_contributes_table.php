@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('contact_parson');
             $table->string('contact_email');
             $table->string('contact_phone');
+            $table->text('suspend_message')->nullable();
             // $table->string('keywords')->nullable();
             $table->timestamps();
         });

@@ -52,15 +52,15 @@
 
   		</td>
   		<td>
-{{ $item->created_at->format('d/m/Y')}}
+        {{ Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
       </td>
   		<td>
         @if($item->status == 0)
-          <span class="badge badge-warning">Pendding</span>
+          <span class="badge badge-warning">Pending</span>
         @elseif($item->status == 1)
-          <span class="badge badge-green">Approve</span>
+          <span class="badge badge-green">Approved</span>
         @else
-          <span class="badge badge-danger">Reject</span>
+          <span class="badge badge-danger">Declined</span>
         @endif
   		</td>
   		<td>{{$item->ammount}} AUD</td>
@@ -93,7 +93,7 @@
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label width-bold">Transfer Request Date</label>
             <p>
-                {{ $item->created_at->format('d/m/Y')}}
+        {{ Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
             </p>
           </div>
 
@@ -142,11 +142,11 @@
             <p>
 
 			        @if($item->status == 0)
-			          <span class="badge badge-warning">Pendding</span>
+			          <span class="badge badge-warning">Pending</span>
 			        @elseif($item->status == 1)
-			          <span class="badge badge-green">Approve</span>
+			          <span class="badge badge-green">Approved</span>
 			        @else
-			          <span class="badge badge-danger">Reject</span>
+			          <span class="badge badge-danger">Declined</span>
 			        @endif
             </p>
           </div>

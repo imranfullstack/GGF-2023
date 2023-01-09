@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contributecats', function (Blueprint $table) {
+        Schema::create('footers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug');
-            $table->integer('status')->default('1');
+            $table->integer('user_id')->nullable();
+            $table->string('footer_logo')->nullable();
+            $table->string('logo_url')->nullable();
+            $table->text('desc')->nullable();
+            $table->text('copyright_text')->nullable();
+            $table->string('bg_color')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contributecats');
+        Schema::dropIfExists('footers');
     }
 };

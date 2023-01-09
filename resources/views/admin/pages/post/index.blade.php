@@ -13,7 +13,7 @@
               <div class="content-body-dskd">
 
 <br>
-<h4>POST LIST</h4>
+<h4>POSTS</h4>
 <hr>
 
 

@@ -51,16 +51,16 @@
   			</a>
 
   		</td>
-  		<td>
-{{ $item->created_at->format('d/m/Y')}}
+      <td>
+        {{ Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
       </td>
   		<td>
         @if($item->status == 0)
           <span class="badge badge-warning">Pendding</span>
         @elseif($item->status == 1)
-          <span class="badge badge-green">Approve</span>
+          <span class="badge badge-green">Approved</span>
         @else
-          <span class="badge badge-danger">Reject</span>
+          <span class="badge badge-danger">Declined</span>
         @endif
   		</td>
   		<td>{{$item->ammount}} AUD</td>
@@ -172,8 +172,8 @@
 
             <select class="form-select" name="status">
               <option value="0" selected>Pending</option>
-              <option value="1">Approve</option>
-              <option value="2">Reject</option>
+              <option value="1">Approved</option>
+              <option value="2">Declined</option>
             </select>
           </div>
           <!-- End -->

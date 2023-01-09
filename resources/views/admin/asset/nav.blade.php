@@ -150,10 +150,12 @@
                       <a data-bs-toggle="collapse" href="#sitesettings" role="button" aria-expanded="false" aria-controls="sitesettings">
                           Site Settings
                         </a>
-                      <div class="collapse @yield('site_settings')" id="sitesettings">
+                      <div class="collapse @yield('show_edit_pages')" id="sitesettings">
                         <div class="card card-body">
                           <ul class="dropdownstylenav">
-                            <li><a href="#"> <i class="fas fa-circle"></i> Organisation Type</a></li>
+                            <li><a href="{{route('admin.pages.home.index')}}"> <i class="fas fa-circle"></i> Home Page</a></li>
+                            <li><a href="{{route('admin.pages.footer.index')}}"> <i class="fas fa-circle"></i> Footer</a></li>
+                            <li><a href="#"> <i class="fas fa-circle"></i> Edit Profile</a></li>
                           </ul>
                         </div>
                       </div>
@@ -162,13 +164,13 @@
               <!-------------------------- Projects Nav Item  -------------------------->
                <li class="@yield('orgadmin_payment')">
                       <a data-bs-toggle="collapse" href="#paymentstatus" role="button" aria-expanded="false" aria-controls="paymentstatus">
-                          Payment 
+                          PAYMENTS 
                         </a>
                       <div class="collapse @yield('orgadmin_payment')" id="paymentstatus">
                         <div class="card card-body">
                           <ul class="dropdownstylenav">
-                            <li><a href="{{route('admin.payment.index')}}"> <i class="fas fa-circle"></i> All Payment</a></li>
-                            <li><a href="{{route('admin.payment.request.index')}}"> <i class="fas fa-circle"></i>Request Payment</a></li>
+                            <li><a href="{{route('admin.payment.index')}}"> <i class="fas fa-circle"></i>PAYMENTS LIST</a></li>
+                            <li><a href="{{route('admin.payment.request.index')}}"> <i class="fas fa-circle"></i>PAYMENT REQUESTS</a></li>
                           </ul>
                         </div>
                       </div>

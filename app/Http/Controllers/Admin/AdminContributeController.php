@@ -73,7 +73,13 @@ class AdminContributeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $contribute = Contribute::find($id);
+        $contribute->status = $request->status;
+            if($request->suspend_message){
+                $contribute->suspend_message = $request->suspend_message;            
+            }
+        $contribute->save();
+        return redirect()->route('admin.contribute.index');
     }
 
     /**

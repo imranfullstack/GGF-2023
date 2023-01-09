@@ -174,18 +174,42 @@ Category will come here
                   </td>
                 </tr>
               <!-- ---- single Form Start --- -->
+<form method="post" action="{{route('admin.contribute.update',$contribute->id)}}">
+  @csrf              
+              <!-- ---- single Form Start --- -->
+                <tr>
+                  <th scope="row" width="20%" class="label-dksldc">Status</th>
+                  <td>
+                    <select class="form-select" name="status">
+                      <option value="1" {{ ($contribute->status == 1) ? 'selected' : ''}}>Active</option>
+                      <option value="2" {{ ($contribute->status == 2) ? 'selected' : ''}}>Paused</option>
+                      <option value="3" {{ ($contribute->status == 3) ? 'selected' : ''}}>Closed</option>
+                      <option value="4" {{ ($contribute->status == 4) ? 'selected' : ''}}>Suspended</option>
+                    </select>
+                  </td>
+                </tr>
+              <!-- ---- single Form Start --- -->
+              <!-- ---- single Form Start --- -->
+                <tr>
+                  <th scope="row" width="20%" class="label-dksldc">Suspended Note</th>
+                  <td>
+                    <textarea class="form-control" rows="3" name="suspend_message">{{$contribute->suspend_message}}</textarea>
+                  </td>
+                </tr>
+              <!-- ---- single Form Start --- -->
               <!-- ---- single Form Start --- -->
                 <tr>
                   <td colspan="2">
                       <div class="sigle-form-input-sddksldc0sd">
                         <div class="input-group mb-3">
-                          <button class="btn btn-success btn-green btn-block">GO BACK</button>
+                          <button class="btn btn-success btn-green btn-block">UPDATE</button>
                         </div>
                       </div>
                   </td>
                 </tr>
               <!-- ---- single Form Start --- -->
 
+</form>
 
             </tbody>
           </table>

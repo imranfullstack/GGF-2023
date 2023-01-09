@@ -26,9 +26,9 @@
     <tr class="bg-green">
       <th scope="col">#</th>
       <th scope="col">Contribute Title</th>
-      <th scope="col">Status</th>
       <th scope="col">Contact Parson</th>
       <th scope="col">Location</th>
+      <th scope="col">Status</th>
       <th scope="col" width="30%"></th>
     </tr>
   </thead>
@@ -40,11 +40,27 @@
     <tr>
       <th scope="row">{{$i++}}</th>
       <td>{{$item->title}}</td>
-      <td>{{$item->status}}</td>
       <td>{{$item->contact_parson}}</td>
       <td>{{$item->location_availability}}</td>
+      <td>
+        
+
+        @if($item->status == 1)
+            <span class="badge bg-success">Active</span>
+        @elseif($item->status == 2)
+            <span class="badge bg-warning">Paused</span>
+        @elseif($item->status == 4)
+            <span class="badge bg-danger">Suspended</span>
+        @else
+            <span class="badge bg-danger">Close</span>
+        @endif
+
+
+
+
+      </td>
       <td class="actiontable-dksld">
-        <a href="" class="view-btn-table">View contribute</a> 
+        <a href="" class="view-btn-table">View</a> 
         <span>|</span>
         <a href="{{route('admin.contribute.edit',$item->id)}}" class="view-btn-table">Edit contribute</a></span>
       </td>
