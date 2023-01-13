@@ -22,41 +22,55 @@
 
                      <div class="right-top-social-dksldkc">
                         <ul>
+                           @if($org->web_url)
                            <li>
-                              <a href="#">
+                              <a href="{{$org->web_url}}" target="_blank">
                               <i class="fas fa-globe"></i>
                               </a>
                            </li>
+                           @endif
+                           @if($org->phone)
                            <li>
-                              <a href="#">
+                              <a href="tel:{{$org->phone}}" target="_blank">
                               <i class="fas fa-phone-alt"></i>
                               </a>
                            </li>
+                           @endif
+                           @if($org->org_public_email)
                            <li>
-                              <a href="#">
+                              <a href="mailto:{{$org->org_public_email}}">
                               <i class="fas fa-envelope"></i>
                               </a>
                            </li>
+                           @endif
+                           @if($org->facebook_url)
                            <li>
-                              <a href="#">
+                              <a href="{{$org->facebook_url}}" target="_blank">
                               <i class="fab fa-facebook-f"></i>
                               </a>
                            </li>
+                           @endif
+                           @if($org->instagram_url)
                            <li>
-                              <a href="#">
-                              <i class="fab fa-facebook-messenger"></i>
+                              <a href="{{$org->instagram_url}}" target="_blank">
+                              <i class="fab fa-instagram"></i>
                               </a>
                            </li>
+                           @endif
+                           @if($org->linkedin_url)
                            <li>
-                              <a href="#">
+                              <a href="{{$org->linkedin_url}}" target="_blank">
                               <i class="fab fa-linkedin-in"></i>
                               </a>
                            </li>
+                           @endif
+                           @if($org->twitter_url)
                            <li>
-                              <a href="#">
+                              <a href="{{$org->twitter_url}}" target="_blank">
                               <i class="fab fa-twitter"></i>
                               </a>
                            </li>
+                           @endif
                         </ul>
                      </div>
 

@@ -178,7 +178,7 @@ div#ID_myMultiInput {
 
       <td>
 
-        {{ Str::limit($item->short_desc, 50) }}
+        {{ Str::limit($item->short_desc, 35) }}
 
 
       </td>

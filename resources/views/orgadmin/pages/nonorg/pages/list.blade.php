@@ -77,7 +77,7 @@ span.btn-design-cancel {
 
 
 <br>
-<h2 class="title-heading-dlsd"> ORGANISATION LIST</h2>
+<h4 class="title-heading-dlsd"> ORGANISATION LIST</h4>
 <hr>
 <br>
 <div class="row">
@@ -90,9 +90,12 @@ span.btn-design-cancel {
         <thead>
             <tr>
                 <th>SL</th>
+                <th>Logo</th>
                 <th>Organisation Name</th>
                 <th>Status</th>
-                <th>View</th>
+                <th class="align-right">Site</th>
+                <th class="align-right">Edit</th>
+                <th class="align-right">Details</th>
             </tr>
         </thead>
         <tbody>
@@ -102,18 +105,38 @@ span.btn-design-cancel {
 @foreach($org as $item)         
             <tr>
                 <td>{{$i++}}</td>
+                <td>
+                  @if($item->logo)
+                  <img src="{{asset('img/upload/org/logo/'.$item->logo)}}" width="50px">
+                  @else
+                  <img src="{{asset('img/default.jpg')}}" width="50px">
+                  @endif
+                </td>
                 <td>{{$item->org_name}}</td>
                 <td>
                   @if($item->status == 0)
-                  <span class="btn-design-Pendding">Pendding</span>
+                  <span class="badge badge-pending">pending</span>
                   @elseif($item->status == 1)
-                  <span class="btn-design-active">Active</span>
+                  <span class="badge badge-success">Active</span>
                   @elseif($item->status == 2)
-                  <span class="btn-design-cancel">cancel</span>
+                  <span class="badge badge-danger">cancel</span>
                   @endif
                 </td>
                 <td>
-                  <a href="{{route('orgadmin.view',$item->id)}}" class="btn btn-green btn-block hover-color">VIEW INFO</a>
+                  <a href="{{route('org.index',$item->slug)}}" target="_blank" class="btn btn-green  hover-color float-right pd-btn">
+                    View
+                  </a>
+                </td>
+                <td>
+                  
+                  <a href="{{route('orgadmin.organisation.operation.index',$item->id)}}" class="btn btn-green  hover-color float-right pd-btn">
+                    <i class="fa fa-edit"></i>
+                  </a>
+                </td>
+                <td>
+                  <a href="{{route('orgadmin.view',$item->id)}}" class="btn btn-green  hover-color float-right pd-btn">
+                    <i class="fa fa-eye"></i>
+                  </a>
                 </td>
             </tr>
 @endforeach        

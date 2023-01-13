@@ -94,9 +94,11 @@
                <img src="{{asset('frontend/img/logo/logo.png')}}" class="dashbaord-logo-css">
             </div>
          </div>
-         <div class="col-md-7">
-            <li class="nav-item dropdown">
-               <a class="btn btn-success btn-green btn-top-style" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Select Your Organisation <i class="fas fa-sort-down"></i> </a>
+         <div class="col-md-7 top-btn-dksld">
+            <ul>
+               <li class="nav-item dropdown">
+               <a class="btn btn-success btn-green btn-top-style" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> Select Your Organisation <i class="fas fa-sort-down"></i> </a>
+               <a class="btn btn-success btn-green btn-top-style" href="{{route('index')}}" target="_blank">GGF HOME </a>
 
 
                <ul class="dropdown-menu width-dksldfc">
@@ -108,6 +110,7 @@
                   @endforeach
                </ul>
             </li>
+            </ul>
          </div>
          <div class="col-md-3">
             <ul class="navbar-nav mb-2 mb-lg-0 right-btn-top-026dc float-right">

@@ -27,6 +27,17 @@
 
 
       <style>
+a.btn.btn-green.hover-color.float-right.pd-btn {
+    margin: 0px 12px;
+}
+        span.badge-pending {
+    background: #5c5c5c;
+    color: #fff;
+    padding: 6px 13px;
+    border-radius: 50px;
+    font-size: 10px;
+    text-transform: uppercase;
+}
 .uploadOuter {
   text-align: center;
   padding: 20px;

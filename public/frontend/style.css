@@ -1255,6 +1255,7 @@ section.page-nav-aria.padding-top-0 {
     font-size: 14px;
     text-transform: uppercase;
     cursor: pointer;
+    margin: 5px 4px;
 }
 
 .category-kdlsdkc a.badge.badge-green i {

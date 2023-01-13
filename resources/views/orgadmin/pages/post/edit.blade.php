@@ -132,16 +132,13 @@ a.trash-btn {
                       <!-- single Form Start-->
                       <div class="sigle-form-input-sddksldc0sd">
                       	@foreach($cat as $item)  
-@php
-	$namecat = App\Models\Postcat::where('id',$item->postcat_id)->first();
-@endphp
-
-
-
-                      	<a href="{{route('orgadmin.organisation.post.cat.remove',['catid'=>$item->id,'id'=>$org->id])}}" class="trash-btn">{{$namecat->name}} <i class="fa fa-trash"></i></a>
+                            @php
+        	                   $namecat = App\Models\Postcat::where('id',$item->postcat_id)->first();
+                            @endphp
+                      	<a href="{{route('orgadmin.organisation.post.cat.remove',['catid'=>$item->id,'id'=>$org->id])}}" class="btn btn-green">{{$namecat->name}} <i class="fa fa-trash"></i></a>
                       	@endforeach
+                      <hr>
                         <div class="input-group mb-3">
-
                           <select  id="mounth" multiple class="form-select" aria-label="Default select example" name="postcat_id[]">
                               @foreach($postcat as $cat) 
                                 <option value=" {{$cat->id}}"> {{$cat->name}}</option> 

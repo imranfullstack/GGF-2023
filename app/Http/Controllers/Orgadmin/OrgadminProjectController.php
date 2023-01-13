@@ -119,15 +119,19 @@ class OrgadminProjectController extends Controller
         }
         $project->save();
         // Project Category 
-        foreach($request->projectcat_id as $item){
-            $cat = new Projecthavecategory;
-            $cat->organisation_id = $id;
-            $cat->user_id = Auth::user()->id;
-            $cat->project_id = $project->id;
-            $cat->projectcat_id = $item;
-            $cat->save();
+        if($request->projectcat_id){
+             foreach($request->projectcat_id as $item){
+                $cat = new Projecthavecategory;
+                $cat->organisation_id = $id;
+                $cat->user_id = Auth::user()->id;
+                $cat->project_id = $project->id;
+                $cat->projectcat_id = $item;
+                $cat->save();
+            }
+
         }
-        return redirect()->route('orgadmin.organisation.project.index',$id)->with('success',' Congratulation! You Just Successfully added a Project.');
+     
+        return redirect()->route('orgadmin.organisation.project.index',$id)->with('success','Successfully Added');
     }
     /**
      * Display the specified resource.
@@ -140,6 +144,20 @@ class OrgadminProjectController extends Controller
         $org = Organisation::where('id',$id)->where('user_id',Auth::user()->id)->first();
 
         $apply = Projectapply::where('organisation_id',$id)->get();        
+        return view('orgadmin.pages.project.application', compact('org','apply'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function project_application($id , $projectslug)
+    {
+        $org = Organisation::where('slug',$id)->where('user_id',Auth::user()->id)->first();
+        $project = Project::where('slug',$projectslug)->first();
+        $apply = Projectapply::where('project_id',$project->id)->get();       
         return view('orgadmin.pages.project.application', compact('org','apply'));
     }
 
@@ -172,17 +190,19 @@ class OrgadminProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id , $projectid)
+    public function edit($id , $projectslug)
     {
         $org = Organisation::where('id',$id)->where('user_id',Auth::user()->id)->first();
 
-        $project = Project::where('organisation_id',$id)->where('id',$projectid)->first(); 
-
+        $project = Project::where('organisation_id',$id)->where('slug',$projectslug)->first(); 
         $category = Projecthavecategory::where('project_id',$project->id)->get();
 
+        if($project->status == 4){
+                return redirect()->back()->with('danger',"Sorry you don't have Access!");
+        }else{
+                return view('orgadmin.pages.project.edit', compact('org','project','category'));
+        }
 
-
-        return view('orgadmin.pages.project.edit', compact('org','project','category'));
 
     }
 
@@ -222,10 +242,6 @@ class OrgadminProjectController extends Controller
         // return $request->projectcat_id;
         $project = Project::where('id',$projectid)->first();
         $project->name = $request->name;
-        if($request->name){
-            $project->slug = Str::slug($request->name).'-'.uniqid();
-        }
-
         $project->status = $request->status;
         $project->user_id = Auth::user()->id;
         $project->organisation_id = $id;
@@ -249,11 +265,6 @@ class OrgadminProjectController extends Controller
                 unlink($image_path);
             }
         }
-
-
-
-
-
         // -- Image UPload
             if($request->hasFile('image')){
                 $image = $request->file('image');
@@ -269,41 +280,25 @@ class OrgadminProjectController extends Controller
         $project->save();
         // Project Category 
 
-if($request->projectcat_id){
-
-        foreach($request->projectcat_id as $item){
-            $cat = new Projecthavecategory;
-            $cat->organisation_id = $id;
-            $cat->user_id = Auth::user()->id;
-            $cat->project_id = $project->id;
-            $cat->projectcat_id = $item;
-            $cat->save();
+        if($request->projectcat_id){
+            foreach($request->projectcat_id as $item){
+                $cat = new Projecthavecategory;
+                $cat->organisation_id = $id;
+                $cat->user_id = Auth::user()->id;
+                $cat->project_id = $project->id;
+                $cat->projectcat_id = $item;
+                $cat->save();
+            }
         }
-}
-
-
-        return redirect()->route('orgadmin.organisation.project.index',$id)->with('success',' Congratulation! You Just Successfully Update  Project.');
-
-
+        return redirect()->route('orgadmin.organisation.project.index',$id)->with('success',' Successfully Updated');
     }
-
-
-
-
-
-
-
     // Change Application Status 
 
     public function application_status(Request $request, $id,$applicationid){
-
-
         $apply = Projectapply::where('id',$applicationid)->first(); 
         $apply->status = $request->status;
         $apply->save();
-
-
-        return redirect()->route('orgadmin.organisation.project.application',$id)->with('success',' Successfully Update Status.');
+        return redirect()->route('orgadmin.organisation.project.application',$id)->with('success',' Successfully Updated');
     }
 
 

@@ -41,7 +41,7 @@
 
 
 
-               @php $projectcat = App\Models\Projectcat::orderby('id','desc')->get(); @endphp
+               @php $projectcat = App\Models\Projectcat::orderby('id','desc')->where('status',1)->get(); @endphp
                 <!-- single Form Start-->
                 <div class="sigle-form-input-sddksldc0sd">
                   <div class="input-group mb-3">
@@ -205,9 +205,9 @@
               <th scope="row" width="20%" class="label-dksldc">Select Location</th>
               <td>
                 <div class="sigle-form-input-sddksldc0sd">
-                  <div class="input-group mb-3">
-                        <!--map div-->
                         <div id="map" style="width: 100%;height: 400px;"></div>
+                  <div class="input-group mb-3" style="display: none;">
+                        <!--map div-->
                           <input name="lat" type="text" id="lat" readonly="yes"><br>
                           <input name="long" type="text" id="lng" readonly="yes">
                    </div>

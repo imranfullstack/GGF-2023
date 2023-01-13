@@ -17,14 +17,14 @@
 
 <br>
 
-<h2>
+<h4>
     @if($org->logo)
       <img src="{{asset('img/upload/org/logo/'.$org->logo)}}" width="60px" height="60px" style="margin:0px 20px">
          <span>  PROJECT APPLICATION</span> 
     @else
         <span>  {{$org->org_name}} </span> 
     @endif                    
-</h2>
+</h4>
 <hr>
 
 
@@ -174,9 +174,9 @@
                 <th scope="row">Status</th>
                 <td>
                   <select class="form-select" name="status">
-                    <option value="0" {{ ($apply->status == 0) ? 'selected' : ''}}>Pendding</option>
+                    <option value="0" {{ ($apply->status == 0) ? 'selected' : ''}}>Pending</option>
                     <option value="2" {{ ($apply->status == 2) ? 'selected' : ''}}>Contacted</option>
-                    <option value="1" {{ ($apply->status == 1) ? 'selected' : ''}}>Approve</option>
+                    <option value="1" {{ ($apply->status == 1) ? 'selected' : ''}}>Approved</option>
                     <option value="3" {{ ($apply->status == 3) ? 'selected' : ''}}>Closed</option>
                   </select>
                 </td>

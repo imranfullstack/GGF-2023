@@ -9,6 +9,7 @@ use App\Models\Lookingfor;
 use App\Models\Orgfocusedhave;
 use App\Models\Orgtypehave;
 use App\Models\Orgprovidehave;
+use App\Models\Keyword;
 use Auth;
 use Image;
 use File;
@@ -114,6 +115,7 @@ class OrgadminOperationController extends Controller
         $org->facebook_url = $request->facebook_url;
         $org->linkedin_url = $request->linkedin_url;
         $org->twitter_url = $request->twitter_url;
+        $org->instagram_url = $request->instagram_url;
         $org->phone = $request->phone;
         $org->address = $request->address;
         $org->contact_person = $request->contact_person;
@@ -192,15 +194,11 @@ if($request->hasFile('banner_3')){
 }
 // update Banner 2 From Here End
 
-
-        $org->bank_account_name = $request->bank_account_name;
-        $org->bsb = $request->bsb;
-        $org->account_number = $request->account_number;
-        $org->bpay_id = $request->bpay_id;
-        $org->S1 = $request->S1;
-        $org->S2 = $request->S2;
+    if($request->lat){
         $org->lat = $request->lat;
         $org->long = $request->long;
+
+    }
         $org->save();
 
 
@@ -210,31 +208,7 @@ if($request->hasFile('banner_3')){
 
 
 
-           // Save org Type 
-        // if($request->looking_for){
 
-        //         foreach ($request->looking_for as $item) {
-        //             $lookingfor = new Lookingfor;
-        //             $lookingfor->name = $item;
-        //             $lookingfor->user_id = Auth::user()->id;
-        //             $lookingfor->organisation_id = $org->id;
-        //             $lookingfor->save();
-        //   }
-        // }
-        // Save org Type 
-
-
-        // Save Keywords 
-        if($request->keywords){
-           $keyword_to_array =   (explode(",",$request->keywords));
-                foreach ($keyword_to_array as $item) {
-                    $keyword = new Keyword;
-                    $keyword->organisation_id = $org->id;
-                    $keyword->keyword = $item;
-                    $keyword->save();
-          }
-        }
-        // Save Keywords End
         // Save org Type 
         if($request->orgtype){
                 foreach ($request->orgtype as $item) {
@@ -287,8 +261,67 @@ if($request->hasFile('banner_3')){
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function keyword_update(Request $request,$id)
     {
-        //
+
+        // Save Keywords 
+        if($request->keywords){
+                foreach ($request->keywords as $item) {
+                    $keyword = new Keyword;
+                    $keyword->organisation_id = $id;
+                    $keyword->keyword = $item;
+                    $keyword->save();
+          }
+        return redirect()->back()->with('success','successfully added new keyword');
+
+        }
+        // Save Keywords End
+    }
+    // Looking for Controller
+    public function lookingfor_update(Request $request,$id)
+    {
+      if($request->looking_for){
+                foreach ($request->looking_for as $item) {
+                    $lookingfor = new Lookingfor;
+                    $lookingfor->name = $item;
+                    $lookingfor->user_id = Auth::user()->id;
+                    $lookingfor->organisation_id = $id;
+                    $lookingfor->save();
+          }
+        return redirect()->back()->with('success','successfully added new Items');
+        }
+    
+    }
+
+
+    // Org types Cat Remove
+    public function orgtype_cat($id , $orgtypeid){
+        $type = Orgtypehave::where('id',$orgtypeid)->where('organisation_id',$id)->first();
+        $type->delete();
+        return redirect()->back()->with('success','successfully Removed');
+    }
+    // Org types Cat Remove
+    public function focus_cat_remove($id , $focuscatid){
+        $focus = Orgfocusedhave::where('id',$focuscatid)->where('organisation_id',$id)->first();
+        $focus->delete();
+        return redirect()->back()->with('success','successfully Removed');
+    }
+    // Provide Cat Remove
+    public function provide_cat_remove($id , $focuscatid){
+        $provide = Orgprovidehave::where('id',$focuscatid)->where('organisation_id',$id)->first();
+        $provide->delete();
+        return redirect()->back()->with('success','successfully Removed');
+    }
+    // Provide Cat Remove
+    public function keyword_remove($id , $keywordid){
+        $keyword = Keyword::where('id',$keywordid)->where('organisation_id',$id)->first();
+        $keyword->delete();
+        return redirect()->back()->with('success','successfully Removed');
+    }
+    // Provide Cat Remove
+    public function lookingfor_remove($id , $lookingforid){
+        $keyword = Lookingfor::where('id',$lookingforid)->where('organisation_id',$id)->first();
+        $keyword->delete();
+        return redirect()->back()->with('success','successfully Removed');
     }
 }

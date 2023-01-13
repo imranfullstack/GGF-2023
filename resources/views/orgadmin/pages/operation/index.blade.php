@@ -195,7 +195,7 @@ span#basic-addon2 {
 
 <br>
 
-
+@include('orgadmin.asset.message')
 
 
   
@@ -455,45 +455,6 @@ span#basic-addon2 {
                 </tr>
               <!-- ---- single Form Start --- -->
               <!-- ---- single Form Start --- -->
-
-            <tr>
-
-               <th scope="row" width="20%" class="label-dksldc">Keywords 
-
-               
-               </th>
-
-               <td>
-
-
-
-      <!-- Start -->
-         <!-- <div id="textboxDiv"></div>   -->
-         <div class="form-container sigle-form-input-sddksldc0sd  multiform-dlskdf03">
-
-
-
-
-    <div class="multi-field-wrapper">
-      <div class="multi-fields">
-        <div class="multi-field">
-          <input type="text" name="keywords[]" class="form-control">
-          <button type="button" class="remove-field btn btn-danger">REMOVE</button>
-        </div>
-      </div>
-    <button type="button" class="add-field btn btn-green">ADD NEW</button>
-
-<br>
-         </div>
-      
-
-      <!-- End -->
-
-               </td>
-
-            </tr>
-              <!-- ---- single Form Start --- -->
-              <!-- ---- single Form Start --- -->
                 <tr>
                   <th scope="row" width="20%" class="label-dksldc">Logo</th>
                   <td>
@@ -537,7 +498,7 @@ span#basic-addon2 {
   @foreach($orgtypehave as $item)
 
 
-        <a href="" class="badge badge-green">
+        <a href="{{route('orgadmin.organisation.operation.orgtype.cat',['orgtypeid'=>$item->id,'id'=>$org->id])}}" class="badge badge-green">
 {{$item->ogranisationtype->name}}
          <i class="fa fa-trash"></i></a>
 @endforeach
@@ -597,7 +558,7 @@ span#basic-addon2 {
   @foreach($focushave as $item)
 
 
-        <a href="" class="badge badge-green">
+        <a href="{{route('orgadmin.organisation.operation.focus.cat.remove',['focuscatid'=>$item->id,'id'=>$org->id])}}" class="badge badge-green">
 {{$item->focused->name}}
          <i class="fa fa-trash"></i></a>
 @endforeach
@@ -656,7 +617,7 @@ span#basic-addon2 {
   @foreach($providehave as $item)
 
 
-        <a href="" class="badge badge-green">
+        <a href="{{route('orgadmin.organisation.operation.provide.cat.remove',['providecatid'=>$item->id,'id'=>$org->id])}}" class="badge badge-green">
 {{$item->provide->name}}
          <i class="fa fa-trash"></i></a>
 @endforeach
@@ -688,37 +649,7 @@ span#basic-addon2 {
                </td>
             </tr>
             <!-- ---- single Form Start --- -->
-            <!-- ---- single Form Start --- -->
-            <tr>
-               <th scope="row" width="20%" class="label-dksldc">Looking For </th>
-               <td>
- 
 
-
-       <div class="form-container sigle-form-input-sddksldc0sd multiform-dlskdf03">
-                
-
-
-    <div class="multi-field-wrapper">
-      <div class="multi-fields">
-        <div class="multi-field">
-          <input type="text" name="looking_for[]" class="form-control">
-          <button type="button" class="remove-field btn btn-danger">REMOVE</button>
-        </div>
-      </div>
-    <button type="button" class="add-field btn btn-green">ADD NEW</button>
-  </div>
-  
-
-
-               <br>
-         </div>
-      
-
-
-               </td>
-            </tr>
-            <!-- ---- single Form Start --- -->
             <!-- ---- single Form Start --- -->
             <tr class="ksfdsaf0c2ds6f">
                <th scope="row" width="20%" class="label-dksldc ">banner Images</th>
@@ -814,11 +745,83 @@ span#basic-addon2 {
               <button type="submit" class="btn btn-green btn-block btn-color text-upper">Update organisation</button>
 </form>              
               <br>
-              <br>
-              <br>
-              <br>
 
-      </div>
+@php
+  $keyword = App\Models\Keyword::where('organisation_id',$org->id)->get();
+@endphp              
+<hr>
+  <div class="keyword-section">
+     <h3>New keywords</h3>
+     <hr>
+        <div class="category-kdlsdkc">
+          @foreach($keyword as $item)
+            <a href="{{route('orgadmin.organisation.operation.keyword.remove',['keywordid'=>$item->id,'id'=>$org->id])}}" class="badge badge-green">
+              {{$item->keyword}}
+                  <i class="fa fa-trash"></i>
+            </a>
+          @endforeach
+        </div>
+     <hr>
+
+<form action="{{route('orgadmin.organisation.operation.keyword.update',$org->id)}}" method="post">
+  @csrf
+     <!-- ---- single Form Start --- -->
+     <div class="form-container sigle-form-input-sddksldc0sd  multiform-dlskdf03">
+       <div class="multi-field-wrapper">
+         <div class="multi-fields">
+           <div class="multi-field">
+             <input type="text" name="keywords[]" class="form-control" required>
+             <button type="button" class="remove-field btn btn-danger">REMOVE</button>
+           </div>
+         </div>
+         <button type="button" class="add-field btn btn-green btn-block">ADD NEW</button>
+         <button class="btn btn-green btn-block">SAVE</button>
+         <br>
+       </div>
+       <!-- ---- single Form Start --- -->
+     </div>
+</form>     
+     <br>
+   </div>
+<hr>
+  <div class="keyword-section">
+     <br>
+     <h3>We're looking for</h3>
+     <!-- ---- single Form Start --- -->
+      <hr>
+@php
+  $lookingfor = App\Models\Lookingfor::where('organisation_id',$org->id)->get();
+@endphp    
+          <div class="category-kdlsdkc">
+            @foreach($lookingfor as $item)
+              <a href="{{route('orgadmin.organisation.operation.lookingfor.remove',['lookingforid'=>$item->id,'id'=>$org->id])}}" class="badge badge-green">
+                {{$item->name}}
+                    <i class="fa fa-trash"></i>
+              </a>
+            @endforeach
+          </div>
+       <hr>
+
+<form action="{{route('orgadmin.organisation.operation.lookingfor.update',$org->id)}}" method="post">
+  @csrf
+       <div class="form-container sigle-form-input-sddksldc0sd multiform-dlskdf03">
+            <div class="multi-field-wrapper">
+              <div class="multi-fields">
+                <div class="multi-field">
+                  <input type="text" name="looking_for[]" class="form-control" required>
+                  <button type="button" class="remove-field btn btn-danger">REMOVE</button>
+                </div>
+              </div>
+                 <button type="button" class="add-field btn btn-green">ADD NEW</button> <br>
+                 <button class="btn btn-green">SAVE</button>
+                </div>
+             <br>
+         </div>
+</form>         
+     <br>
+     <br>
+     <br>
+   </div>
 
               </div>
           </div>

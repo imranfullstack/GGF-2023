@@ -118,9 +118,8 @@ class OrgadminEventController extends Controller
 
 
 
-
-              // Project Category 
-        foreach($request->eventcat_id as $item){
+if($request->eventcat_id){
+           foreach($request->eventcat_id as $item){
             $cat = new Eventhavecategory;
             $cat->organisation_id = $id;
             $cat->user_id = Auth::user()->id;
@@ -128,6 +127,9 @@ class OrgadminEventController extends Controller
             $cat->eventcat_id = $item;
             $cat->save();
         }
+ 
+}
+              // Project Category 
 
 
 

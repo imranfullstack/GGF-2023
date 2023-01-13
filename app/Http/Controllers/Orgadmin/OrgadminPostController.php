@@ -152,7 +152,6 @@ class OrgadminPostController extends Controller
         $org = Organisation::where('id',$id)->where('user_id',Auth::user()->id)->first();
         $post = post::where('slug',$slug)->first();
         $post->title = $request->title;
-        $post->slug = Str::slug($request->title).'-'.uniqid().'-'.$id;
         $post->user_id = Auth::user()->id;
         $post->status = 1;
         $post->organisation_id = $id;
@@ -190,7 +189,7 @@ class OrgadminPostController extends Controller
                 $cat->save();
             }
         }
-        return redirect()->route('orgadmin.organisation.post.index',$id);
+        return redirect()->route('orgadmin.organisation.post.index',$id)->with('success','Successfully updated');
 
 
     }
@@ -213,24 +212,28 @@ class OrgadminPostController extends Controller
 
         $post = Post::where('slug',$slug)->first();
         // Remove Image From Directory
-        $image_path = public_path("/img/upload/post/{$post->image}");
-        if($image_path){
-            if (File::exists($image_path)) {
-                unlink($image_path);
-            }
-        }
-        // Remove Category For this Post
-        $cat = Posthavecategory::where('post_id',$post->id)->get();
+        if($post->status == 4){
+            return redirect()->back()->with('danger',"Sorry you don't have Access!");       
+        }else{
+          $image_path = public_path("/img/upload/post/{$post->image}");
+          if($image_path){
+              if (File::exists($image_path)) {
+                  unlink($image_path);
+              }
+          }
+          // Remove Category For this Post
+          $cat = Posthavecategory::where('post_id',$post->id)->get();
 
-        if($cat){
-            foreach($cat as $item){
-                $item = Posthavecategory::where('id',$item->id)->first();
-                $item->delete();
-            }
-        }  
-        // Delete Main Post 
-        $post->delete();
-        return redirect()->back();
+          if($cat){
+              foreach($cat as $item){
+                  $item = Posthavecategory::where('id',$item->id)->first();
+                  $item->delete();
+              }
+          }  
+          // Delete Main Post 
+          $post->delete();
+          return redirect()->back()->with('success','Successfully Deleted');
+        }
 
 
     }

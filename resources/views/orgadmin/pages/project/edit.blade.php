@@ -40,10 +40,7 @@
               <td>
 
 
-
-
-
-               @php $projectcat = App\Models\Projectcat::orderby('id','desc')->get(); @endphp
+               @php $projectcat = App\Models\Projectcat::orderby('id','desc')->where('status',1)->get(); @endphp
                 <!-- single Form Start-->
                 <div class="sigle-form-input-sddksldc0sd">
                   <div class="input-group mb-3">
@@ -216,7 +213,15 @@
               <td>
                 <div class="sigle-form-input-sddksldc0sd">
                   <div class="input-group mb-3">
-                    <img src="{{asset('img/upload/project/'.$project->image)}}" width="80px" style="margin-right: 30px;">
+
+
+        @if($project->image)
+        <img src="{{asset('img/upload/project/'.$project->image)}}" width="50px">
+        @else
+        <img  src="{{asset('img/default.jpg')}}" width="50px">
+        @endif
+
+
                     <input type="file" class="form-control" placeholder="Enter organization details" aria-label="Username" aria-describedby="basic-addon1" name="image">
                   </div>
                 </div>

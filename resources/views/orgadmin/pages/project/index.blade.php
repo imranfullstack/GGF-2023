@@ -89,8 +89,10 @@
             <span class="badge bg-success">Active</span>
         @elseif($item->status == 2)
             <span class="badge bg-warning">Paused</span>
+        @elseif($item->status == 4)
+            <span class="badge bg-danger">Suspended</span>
         @else
-            <span class="badge bg-danger">Close</span>
+            <span class="badge bg-danger">Closed</span>
         @endif
 
 
@@ -100,16 +102,44 @@
 
 
         @php
-          $application = App\Models\Projectapply::where('id',$item->id)->count();
+          $application = App\Models\Projectapply::where('project_id',$item->id)->count();
         @endphp
         <td>
-            <a href="{{route('orgadmin.organisation.project.application',$org->id)}}">
+            <a href="{{route('orgadmin.organisation.project.application.u.project',['projectslug'=>$item->slug,'id'=>$org->slug])}}">
                 <span class="badge bg-green">{{$application}} </span>
             </a>
         </td>
 
       <td class="actiontable-dksld">
-        <a href="{{route('org.project.single',['projectslug'=>$item->slug,'slug'=>$org->slug])}}" target="_blank" class="view-btn-table">View</a> <span>|</span> <a href="{{route('orgadmin.organisation.project.edit',['projectid'=>$item->id,'id'=>$org->id])}}" class="view-btn-table">Edit</a></span> 
+
+
+        @if($item->status == 4)
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop_{{$item->id}}">
+ WHY SUSPENDED
+</button>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop_{{$item->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel_{{$item->id}}" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel_{{$item->id}}">{{$item->name}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="text-align: left">
+        {{$item->suspended_note}}
+      </div>
+    </div>
+  </div>
+</div>
+        @else
+
+
+        <a href="{{route('org.project.single',['projectslug'=>$item->slug,'slug'=>$org->slug])}}" target="_blank" class="view-btn-table">View</a> <span>|</span> <a href="{{route('orgadmin.organisation.project.edit',['projectslug'=>$item->slug,'id'=>$org->id])}}" class="view-btn-table">Edit</a></span> 
+@endif        
       </td>
     </tr>
     @endforeach

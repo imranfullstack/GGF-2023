@@ -14,6 +14,7 @@ use App\Models\Orgprovidehave;
 use App\Models\Lookingfor;
 use Auth;
 use Image;
+use Str;
 class OrganisationController extends Controller
 {
     /**
@@ -57,8 +58,7 @@ class OrganisationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-      
+    {  
       $validated = $request->validate([
             'org_name' => 'required|max:255',
             'org_email' => 'unique:organisations',
@@ -72,7 +72,7 @@ class OrganisationController extends Controller
             'best_contact' => 'required|max:255',
             'logo' => 'required',
             'keywords' => 'required',
-            // 'looking_for' => 'required',
+            'looking_for' => 'required',
             'lat' => 'required',
             'long' => 'required',
         ]);
@@ -81,7 +81,7 @@ class OrganisationController extends Controller
         $org = new Organisation;
         $org->user_id = Auth::user()->id;
         $org->org_name = $request->org_name;
-        $org->slug = strtolower(str_replace(' ', '-', $request->org_name)).'-'.uniqid();
+        $org->slug = str::slug($request->org_name);
         $org->org_email = $request->org_email;
         $org->org_public_email = $request->org_public_email;
         $org->account_email = $request->account_email;

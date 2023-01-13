@@ -101,6 +101,7 @@
             <ul class="list-dksdfds">
                   <li class="nav-item dropdown">
                <a class="btn btn-success btn-green btn-top-style" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> <span class="icon-sldkf"><i class="fal fa-building"></i></span>  {{$org->org_name}} <i class="fas fa-sort-down"></i> </a>
+               <a class="btn btn-success btn-green btn-top-style"  href="{{route('org.index',$org->slug)}}" target="_blank"> <span class="icon-sldkf"><i class="fal fa-eye"></i></span>  VIEW ORGANISATION </a>
 
 
                <ul class="dropdown-menu width-dksldfc">

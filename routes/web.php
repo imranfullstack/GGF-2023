@@ -643,13 +643,15 @@ Route::group(['as'=> 'orgadmin.' , 'prefix' => 'orgadmin' , 'namespace' => 'orga
             // Project Application
             Route::get('application/', [OrgadminProjectController::class, 'application'])->name('application');
             // Project Application
-            Route::get('edit/{projectid}', [OrgadminProjectController::class, 'edit'])->name('edit');
+            Route::get('edit/{projectslug}', [OrgadminProjectController::class, 'edit'])->name('edit');
             // update Project
             Route::post('update/{projectid}', [OrgadminProjectController::class, 'update'])->name('update');
             // Project Application
             Route::get('{projectid}/remove-cat/{catid}/', [OrgadminProjectController::class, 'remove_cat'])->name('remove.cat');
+            // Project  Application || Under a Project Application
+            Route::get('application-project/{projectslug}', [OrgadminProjectController::class, 'project_application'])->name('application.u.project');
 
-            // Project Application
+            // Project Application || Global Project
             Route::get('application/{applicationid}', [OrgadminProjectController::class, 'single_application'])->name('single.application');
             // Project Application Change Status
             Route::post('application-status/{applicationid}', [OrgadminProjectController::class, 'application_status'])->name('status.application');
@@ -673,6 +675,22 @@ Route::group(['as'=> 'orgadmin.' , 'prefix' => 'orgadmin' , 'namespace' => 'orga
             Route::get('create/', [OrgadminOperationController::class, 'create'])->name('create');
             // create
             Route::post('update/', [OrgadminOperationController::class, 'update'])->name('update');
+            // create
+            Route::post('keyword-update/', [OrgadminOperationController::class, 'keyword_update'])->name('keyword.update');
+            // update looking for
+            Route::post('looking-for-update/', [OrgadminOperationController::class, 'lookingfor_update'])->name('lookingfor.update');
+
+            // All the Remove Aria For Diffrent Categorys
+            // create
+            Route::get('org-type/{orgtypeid}', [OrgadminOperationController::class, 'orgtype_cat'])->name('orgtype.cat');
+            // focus
+            Route::get('focus-remove/{focuscatid}', [OrgadminOperationController::class, 'focus_cat_remove'])->name('focus.cat.remove');
+            // Provider
+            Route::get('provide-remove/{providecatid}', [OrgadminOperationController::class, 'provide_cat_remove'])->name('provide.cat.remove');
+            // Provider
+            Route::get('keyword-remove/{keywordid}', [OrgadminOperationController::class, 'keyword_remove'])->name('keyword.remove');
+            // Provider
+            Route::get('looking-for-remove/{lookingforid}', [OrgadminOperationController::class, 'lookingfor_remove'])->name('lookingfor.remove');
 
         });
 

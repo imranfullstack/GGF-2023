@@ -100,13 +100,14 @@ div#ID_myMultiInput {
   $service = App\Models\Service::where('user_id',Auth::user()->id)->count();
   $product = App\Models\Product::where('user_id',Auth::user()->id)->count();
   $post = App\Models\Post::where('user_id',Auth::user()->id)->count();
+  $membercount = App\Models\User::all()->count();
 @endphp  
 
 
 
 
 <br>
-<h2>Dashboard</h2>
+<h4>DASHBOARD</h4>
 <hr>
 <br>
 <div class="row">
@@ -157,7 +158,7 @@ div#ID_myMultiInput {
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">MEMBERS</h5>
-            <p class="card-text">5 <a href="#">View</a></p>
+            <p class="card-text">{{$membercount}}</p>
           </div>
         </div>
       </div>

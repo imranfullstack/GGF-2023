@@ -256,6 +256,12 @@ span#basic-addon2 {
 .form-container.sigle-form-input-sddksldc0sd.multiform-dlskdf03 {
     margin-bottom: 20px;
 }
+h4.title-heading-dlsd {
+    font-weight: 700;
+    color: #000;
+    font-size: 24px;
+    margin: 0;
+}
 
 
 </style>
@@ -284,10 +290,9 @@ span#basic-addon2 {
 
 <br>
 
-<h2 class="title-heading-dlsd"> <a href="{{route('orgadmin.list')}}"> <i class="fas fa-angle-left"></i> </a>Create New Organisation - main</h2>
+<h4 class="title-heading-dlsd"> <a href="{{route('orgadmin.list')}}"> <i class="fas fa-angle-left"></i> </a>Create New Organisation </h4>
 
 
-<br>
 
 <form action="{{route('orgadmin.store')}}" method="POST" enctype="multipart/form-data">
 
@@ -790,7 +795,7 @@ span#basic-addon2 {
     <div class="multi-field-wrapper">
       <div class="multi-fields">
         <div class="multi-field">
-          <input type="text" name="keywords[]" class="form-control">
+          <input type="text" name="keywords[]" class="form-control" required>
           <button type="button" class="remove-field btn btn-danger">REMOVE</button>
         </div>
       </div>
@@ -1002,7 +1007,7 @@ span#basic-addon2 {
     <div class="multi-field-wrapper">
       <div class="multi-fields">
         <div class="multi-field">
-          <input type="text" name="looking_for[]" class="form-control">
+          <input type="text" name="looking_for[]" class="form-control" required>
           <button type="button" class="remove-field btn btn-danger">REMOVE</button>
         </div>
       </div>

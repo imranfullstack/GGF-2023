@@ -62,7 +62,7 @@
   <td>
 
     @if($item->status == 0)
-      <span class="badge bg-primary">Pendding</span>
+      <span class="badge bg-primary">Pending</span>
     @elseif($item->status == 1)
       <span class="badge bg-success">Approve</span>
 

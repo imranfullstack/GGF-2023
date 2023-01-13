@@ -258,3 +258,6 @@ span.badge-warn {
     font-size: 10px;
     text-transform: uppercase;
 }
+th.align-right.sorting {
+    text-align: right;
+}
