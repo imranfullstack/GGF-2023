@@ -56,16 +56,28 @@
 <tr>
   <td>{{$i++}}</td>
   <td>
-    <img src="{{asset('img/upload/Project/'.$item->project->image)}}" width="50px">
+
+    @if($item->project)
+       <img src="{{asset('img/upload/Project/'.$item->project->image)}}" width="50px">
+    @else
+       <img src="{{asset('img/default.jpg')}}" width="50px">
+    @endif
   </td>
-  <td>{{$item->project->name}}</td>
+  <td>
+    
+    @if($item->project)
+       {{$item->project->name}}
+    @else
+        <span class="text-danger">PRODUCT REMOVED</span>
+    @endif
+  
+  </td>
   <td>
 
     @if($item->status == 0)
       <span class="badge bg-primary">Pending</span>
     @elseif($item->status == 1)
       <span class="badge bg-success">Approve</span>
-
     @elseif($item->status == 2)
       <span class="badge bg-info">Contacted</span>
     @elseif($item->status == 3)

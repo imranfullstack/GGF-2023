@@ -5,7 +5,7 @@
     @include('frontend.asset.fonts')
     @include('frontend.asset.css')
     <!-- Site Title -->
-    <title>GGF || We Provide Best Service</title>
+    <title>GGF || Connecting Green People</title>
   </head>
   <body>
 

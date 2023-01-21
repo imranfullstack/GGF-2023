@@ -40,7 +40,8 @@ class AdminPostCategoryController extends Controller
     {
         $postcat = new Postcat;
         $postcat->name = $request->name;
-        $postcat->slug = Str::slug($request->name).'-'.uniqid().'-'.$id;
+        $postcat->status = 1;
+        $postcat->slug = Str::slug($request->name).'-'.uniqid();
         $postcat->save();
         return redirect()->route('admin.post.category.index')->with('success','Successfully Added New Category');
     }

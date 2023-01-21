@@ -43,6 +43,7 @@
                         <div class="input-group mb-3">
                           <input type="text" class="form-control" placeholder="Enter organization details" aria-label="Username" aria-describedby="basic-addon1" name="product_name">
                         </div>
+                        @error('product_name') <span class="text-danger">{{$message}}</span> @enderror
                       </div>
                     <!-- single Form Start-->
                   </td>
@@ -55,7 +56,7 @@
 
 
 
-               @php $projectcat = App\Models\Productcat::orderby('id','desc')->get(); @endphp
+               @php $projectcat = App\Models\Productcat::orderby('id','desc')->where('status',1)->get(); @endphp
                 <!-- single Form Start-->
                 <div class="sigle-form-input-sddksldc0sd">
                   <div class="input-group mb-3">
@@ -68,6 +69,7 @@
 
 
                   </div>
+                        @error('productcat_id') <span class="text-danger">{{$message}}</span> @enderror
                 </div>
                 <!-- single Form Start-->
 
@@ -148,6 +150,7 @@
                         <div class="input-group mb-3">
                           <input type="number" class="form-control" placeholder="Enter organization details" aria-label="Username" aria-describedby="basic-addon1" name="price">
                         </div>
+                        @error('price') <span class="text-danger">{{$message}}</span> @enderror
                       </div>
                   </td>
                 </tr>
@@ -189,6 +192,7 @@
                         <div class="input-group mb-3">
                           <input type="number" class="form-control" placeholder="Enter Number" aria-label="Username" aria-describedby="basic-addon1" name="stock">
                         </div>
+                        @error('stock') <span class="text-danger">{{$message}}</span> @enderror
                       </div>
                   </td>
                 </tr>
@@ -225,24 +229,11 @@
                         <div class="input-group mb-3">
                           <input type="file" class="form-control" placeholder="Enter organization details" aria-label="Username" aria-describedby="basic-addon1" name="thumbnail">
                         </div>
+                        @error('thumbnail') <span class="text-danger">{{$message}}</span> @enderror
                       </div>
                   </td>
                 </tr>
               <!-- ---- single Form Start --- -->
-
-              <!-- ---- single Form Start --- -->
-                <tr>
-                  <th scope="row" width="20%" class="label-dksldc">Upload Images</th>
-                  <td>
-                      <div class="sigle-form-input-sddksldc0sd">
-                        <div class="input-group mb-3">
-                          <input type="file" class="form-control" placeholder="Enter organization details" aria-label="Username" aria-describedby="basic-addon1" name="images[]">
-                        </div>
-                      </div>
-                  </td>
-                </tr>
-              <!-- ---- single Form Start --- -->
-
 
             <!-- ---- single Form Start --- -->
             <tr>

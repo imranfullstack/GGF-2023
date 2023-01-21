@@ -42,6 +42,9 @@
                         <div class="input-group mb-3">
                           <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="sponsor_title">
                         </div>
+                        @error('sponsor_title')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                       </div>
                     <!-- single Form Start-->
                   </td>
@@ -55,6 +58,9 @@
                         <div class="input-group mb-3">
                           <textarea class="form-control" rows="3"  name="sponsor_desc"></textarea>
                         </div>
+                        @error('sponsor_desc')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                       </div>
                   </td>
                 </tr>
@@ -67,6 +73,9 @@
                         <div class="input-group mb-3">
                           <input type="file" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="logo">
                         </div>
+                        @error('logo')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                       </div>
                   </td>
                 </tr>
@@ -81,6 +90,9 @@
                         <div class="input-group mb-3">
                               <input type="url" class="form-control" name="url" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
+                        @error('url')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                       </div>
                     <!-- single Form Start-->
                   </td>

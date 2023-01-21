@@ -774,8 +774,8 @@ span#basic-addon2 {
              <button type="button" class="remove-field btn btn-danger">REMOVE</button>
            </div>
          </div>
-         <button type="button" class="add-field btn btn-green btn-block">ADD NEW</button>
-         <button class="btn btn-green btn-block">SAVE</button>
+                 <button type="button" class="add-field btn btn-green width156dc">ADD NEW</button> <br>
+                 <button class="btn btn-green width156dc">SAVE</button>
          <br>
        </div>
        <!-- ---- single Form Start --- -->
@@ -812,8 +812,8 @@ span#basic-addon2 {
                   <button type="button" class="remove-field btn btn-danger">REMOVE</button>
                 </div>
               </div>
-                 <button type="button" class="add-field btn btn-green">ADD NEW</button> <br>
-                 <button class="btn btn-green">SAVE</button>
+                 <button type="button" class="add-field btn btn-green width156dc">ADD NEW</button> <br>
+                 <button class="btn btn-green width156dc">SAVE</button>
                 </div>
              <br>
          </div>

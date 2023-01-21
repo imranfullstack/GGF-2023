@@ -108,6 +108,8 @@ class FrontendProductController extends Controller
         $product = Product::where('slug',$productslug)->first();
         $org = Organisation::where('slug',$slug)->first();
         $productbuy = Productbuy::where('id',$productbuyid)->first();
+        $productbuy->payment_status = 1;
+        $productbuy->save();
         $balance = Productbalence::where('organisation_id',$org->id)->first();
         // Product ( - ) From DB
         if($productbuy->quantity){
@@ -115,6 +117,8 @@ class FrontendProductController extends Controller
             $product->save();
         }
 
+
+      
             
 
         if($balance){

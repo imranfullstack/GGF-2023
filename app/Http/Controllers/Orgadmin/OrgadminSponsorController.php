@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Organisation;
 use App\Models\Sponsor;
 use Auth;
+use Image;
+use File;
 
 class OrgadminSponsorController extends Controller
 {
@@ -41,6 +43,14 @@ class OrgadminSponsorController extends Controller
      */
     public function store(Request $request, $id)
     {
+        $validated = $request->validate([
+            'sponsor_title' => 'required',
+            'sponsor_desc' => 'required',
+            'logo' => 'required',
+            'url' => 'required',
+        ]);
+
+
         $sponsor = new Sponsor;
         $sponsor->sponsor_title = $request->sponsor_title;
         $sponsor->status = 1;
@@ -48,9 +58,17 @@ class OrgadminSponsorController extends Controller
         $sponsor->user_id = Auth::user()->id;
         $sponsor->sponsor_desc = $request->sponsor_desc;
         $sponsor->sponsor_url = $request->url;
-        $sponsor->sponsor_logo = $request->logo;
+
+        if($request->logo){
+            if($request->hasFile('logo')){
+                $image = $request->file('logo');
+                $img = $id.'-'.uniqid().'.'. $image->getClientOriginalExtension();
+                Image::make($image)->save(public_path('/img/upload/sponsor/'.$img));
+                $sponsor->sponsor_logo = $img;
+            } 
+         }
         $sponsor->save();
-        return redirect()->route('orgadmin.organisation.sponsor.index',$id)->with('success','Successfully Added a new Sponsor');
+        return redirect()->route('orgadmin.organisation.sponsor.index',$id)->with('success','Successfully Added');
         
     }
 
@@ -60,9 +78,11 @@ class OrgadminSponsorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function view($id ,$sponsorid)
     {
-        //
+        $sponsor  = Sponsor::find($sponsorid);
+        $org = Organisation::where('id',$id)->where('user_id',Auth::user()->id)->first();
+        return view('orgadmin.pages.sponsor.view', compact('org','sponsor'));
     }
 
     /**
@@ -71,9 +91,11 @@ class OrgadminSponsorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id ,$sponsorid)
     {
-        //
+        $sponsor  = Sponsor::find($sponsorid);
+        $org = Organisation::where('id',$id)->where('user_id',Auth::user()->id)->first();
+        return view('orgadmin.pages.sponsor.edit', compact('org','sponsor'));
     }
 
     /**
@@ -83,9 +105,46 @@ class OrgadminSponsorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id ,$sponsorid)
     {
-        //
+
+        $validated = $request->validate([
+            'sponsor_title' => 'required',
+            'sponsor_desc' => 'required',
+            'logo' => 'required',
+            'url' => 'required',
+        ]);
+
+
+        $org = Organisation::where('id',$id)->where('user_id',Auth::user()->id)->first();
+        $sponsor  = Sponsor::find($sponsorid);
+        $sponsor->sponsor_title = $request->sponsor_title;
+        $sponsor->sponsor_desc = $request->sponsor_desc;
+        $sponsor->sponsor_url = $request->url;
+
+        if($request->logo){
+
+            if($sponsor->sponsor_logo){
+
+                $image_path = public_path("img/upload/sponsor/{$sponsor->sponsor_logo}");
+                if (File::exists($image_path)) {
+                    //File::delete($image_path);
+                    unlink($image_path);
+                }
+            }
+
+
+            if($request->hasFile('logo')){
+                $image = $request->file('logo');
+                $img = $id.'-'.uniqid().'.'. $image->getClientOriginalExtension();
+                Image::make($image)->save(public_path('/img/upload/sponsor/'.$img));
+                $sponsor->sponsor_logo = $img;
+            } 
+         }
+        $sponsor->save();
+        return redirect()->route('orgadmin.organisation.sponsor.index',$id)->with('success','Successfully Updated');
+
+
     }
 
     /**
@@ -94,8 +153,21 @@ class OrgadminSponsorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id , $sponsorid)
     {
-        //
+        $sponsor  = Sponsor::where('id',$sponsorid)->where('organisation_id',$id)->first();
+       
+        if($sponsor->sponsor_logo){
+            $image_path = public_path("img/upload/sponsor/{$sponsor->sponsor_logo}");
+            if (File::exists($image_path)) {
+                //File::delete($image_path);
+                unlink($image_path);
+            }
+        }
+        $sponsor->delete();
+        return redirect()->route('orgadmin.organisation.sponsor.index',$id)->with('success','Successfully Deleted');
+
+
+        return $sponsor;
     }
 }

@@ -52,7 +52,14 @@
 @foreach($apply as $item)    
   <tr>
     <td>{{$i++}}</td>
-    <td>{{$item->job->title}}</td>
+    <td>
+      @if($item->job)      
+      {{$item->job->title}}
+      @else
+       <span class="text-danger">POST REMOVED</span>
+      @endif
+    
+    </td>
     <td>{{$item->name}}</td>
     <td>{{$item->email}}</td>
     <td>

@@ -220,7 +220,7 @@
 
 
             <!-- ---- single Form Start --- -->
-<form method="post" action="{{route('admin.product.update',$item->id)}}">
+<form method="post" action="{{route('admin.product.update',$product->id)}}">
 	@csrf
 
        

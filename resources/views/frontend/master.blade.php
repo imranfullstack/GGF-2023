@@ -1,15 +1,17 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <link rel="icon" type="image/x-icon" href="{{asset('img/fav.png')}}">
+
+<head>
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/fav.png') }}">
     @include('frontend.asset.meta')
     @include('frontend.asset.fonts')
     @include('frontend.asset.css')
 
     <!-- Site Title -->
-    <title>GGF || We Provide Best Service</title>
-  </head>
-  <body>
+    <title>GGF || Connecting Green People</title>
+</head>
+
+<body>
 
     @include('frontend.asset.header')
 
@@ -20,5 +22,6 @@
 
 
     @include('frontend.asset.scripts')
-  </body>
+</body>
+
 </html>

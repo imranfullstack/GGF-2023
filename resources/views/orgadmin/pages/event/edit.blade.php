@@ -53,7 +53,7 @@
 
 
 
-               @php $projectcat = App\Models\Eventcat::orderby('id','desc')->get(); @endphp
+               @php $projectcat = App\Models\Eventcat::orderby('id','desc')->where('status',1)->get(); @endphp
 
 
 
@@ -301,6 +301,48 @@
                 </tr>
               <!-- ---- single Form Start --- -->
               <!-- ---- single Form Start --- -->
+                <tr>
+                  <th scope="row" width="20%" class="label-dksldc">Update Location</th>
+                  <td>
+                      <div class="sigle-form-input-sddksldc0sd">
+                        <div class="input-group mb-3">
+                              <iframe src="//maps.google.com/maps?q={{$event->lat}},{{$event->long}}&z=10&output=embed" width="100%" height="400px"></iframe>
+                              <button type="button" class="btn btn-green margin-t-50" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Change Location
+                              </button>
+                         </div>
+                      </div>
+                  </td>
+                </tr>
+              <!-- ---- single Form Start --- -->
+              <!-- ---- single Form Start --- -->
+
+
+<!-- Modal -->
+  <div class="modal  fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Change Location</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+
+          <div id="map" style="width: 100%;height: 400px;"></div>
+          
+              <input name="lat" type="hidden" id="lat" readonly="yes"><br>
+              <input name="long" type="hidden" id="lng" readonly="yes">
+
+
+        </div>
+        <div class="modal-footer">
+                <button type="submit" class="btn btn-green btn-block btn-color text-upper">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>     
+<!-- ---- single Form Start --- -->
 
 
 
@@ -310,7 +352,15 @@
               <td>
                 <div class="sigle-form-input-sddksldc0sd">
                   <div class="input-group mb-3">
-                    <img src="{{asset('img/upload/event/'.$event->image)}}" width="80px" style="margin-right: 30px;">
+
+
+        @if($event->image)
+        <img src="{{asset('img/upload/event/'.$event->image)}}" width="50px">
+        @else
+        <img src="{{asset('img/default.jpg')}}" width="50px">
+        @endif
+
+
                     <input type="file" class="form-control" placeholder="Enter organization details" aria-label="Username" aria-describedby="basic-addon1" name="image">
                   </div>
                 </div>
@@ -355,4 +405,27 @@
       <br>
     </div>
   </div>
-</div> @endsection()
+</div> 
+@endsection()
+@section('scripts')
+@include('orgadmin.asset.map-select-js')
+
+
+<script type="text/javascript">
+  
+    //hide all tabs first
+$('.tab-content').hide();
+//show the first tab content
+$('#tab-2').show();
+
+$('#select-box').change(function () {
+   dropdown = $('#select-box').val();
+  //first hide all tabs again when a new option is selected
+  $('.tab-content').hide();
+  //then show the tab content of whatever option value was selected
+  $('#' + "tab-" + dropdown).show();                                    
+});
+
+
+</script>
+@endsection()

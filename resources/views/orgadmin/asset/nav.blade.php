@@ -113,15 +113,15 @@ a.subnav {
 
                 <li class="@yield('orgadmin_org_sprofile')"><a href="{{route('orgadmin.organisation.s_profile.index',$org->id)}}"> Search Profiles</a></li>
                 <li class="@yield('orgadmin_org_s_resource')"><a href="{{route('orgadmin.organisation.s_resource.index',$org->id)}}"> Search Resources</a></li>
-                <li class="@yield('orgadmin_org_contribute')"><a href="{{route('orgadmin.organisation.contribute.index',$org->id)}}"> Contribute</a></li>
+                <li class="@yield('orgadmin_org_contribute')"><a href="{{route('orgadmin.organisation.contribute.index',$org->id)}}"> Contributes</a></li>
                 <li class="@yield('orgadmin_org_sponsor')">
-                  <a href="{{route('orgadmin.organisation.sponsor.index',$org->id)}}"> Sponsor </a>
+                  <a href="{{route('orgadmin.organisation.sponsor.index',$org->id)}}"> Sponsors </a>
                 </li>
 
 
                 <li class="@yield('orgadmin_org_payment')">
                   <a href="{{route('orgadmin.organisation.payment.index',$org->id)}}">
-                    Payment 
+                    Payments
                   </a>
                 </li>
 

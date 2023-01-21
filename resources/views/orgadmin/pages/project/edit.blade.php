@@ -228,6 +228,26 @@
               </td>
             </tr>
             <!-- ---- single Form Start --- -->
+
+
+            <!-- ---- single Form Start --- -->
+            <tr>
+              <th scope="row" width="20%" class="label-dksldc">Select Location</th>
+              <td>
+                <div class="sigle-form-input-sddksldc0sd">
+                        <div id="map" style="width: 100%;height: 400px;"></div>
+                  <div class="input-group mb-3" style="display: none;">
+                        <!--map div-->
+                          <input name="lat" type="text" id="lat" readonly="yes"><br>
+                          <input name="long" type="text" id="lng" readonly="yes">
+                   </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <!-- ---- single Form Start --- -->
+
+
             <!-- ---- single Form Start --- -->
             <tr>
               <th scope="row" width="20%" class="label-dksldc">Status</th>
@@ -246,8 +266,8 @@
             <!-- ---- single Form Start --- -->
             <!-- ---- single Form Start --- -->
             <tr>
-              <td scope="row" width="20%" class="label-dksldc">
-                <button class="btn btn-success btn-green" value="submit">Save</button>
+              <td scope="row" width="20%" class="label-dksldc" colspan="2">
+                <button class="btn btn-success btn-green btn-block" value="submit"> UPDATE</button>
               </td>
             </tr>
             <!-- ---- single Form Start --- -->
@@ -258,4 +278,10 @@
       <br>
     </div>
   </div>
-</div> @endsection()
+</div> 
+@endsection()
+
+
+@section('scripts')
+@include('orgadmin.asset.map-select-js')
+@endsection()

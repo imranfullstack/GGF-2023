@@ -11,9 +11,10 @@ use App\Models\Productbuy;
 use Auth;
 use Image;
 use File;
+use Str;
 
 
-class OrgadminProductController extends Controller
+class OrgadminProductController extends Controller 
 {
     /**
      * Display a listing of the resource.
@@ -49,19 +50,20 @@ class OrgadminProductController extends Controller
     public function store(Request $request,$id)
     {
 
-
+        $validated = $request->validate([
+            'product_name' => 'required',
+            'price' => 'required',
+            'thumbnail' => 'required',
+            'stock' => 'required',
+            'productcat_id' => 'required',
+        ]);
 
 
         // orgganisation
         $org = Organisation::where('id',$id)->first();
-        $org->products = 1;
-        $org->save(); //  -> Event Active Code
-   
-
-
         $product = new Product;
         $product->name = $request->product_name;
-        $product->slug = strtolower(str_replace(' ', '-', $request->product_name)) .'-'.uniqid().''.$id;
+        $product->slug = Str::slug($request->product_name).'-'.uniqid();
         $product->status = 1;
         $product->user_id = Auth::user()->id;
         $product->organisation_id = $id;
@@ -86,18 +88,26 @@ class OrgadminProductController extends Controller
             }
         }
         $product->save();
-
-
-
-        // Project Category 
-        foreach($request->productcat_id as $item){
-            $cat = new Producthavecategory;
-            $cat->organisation_id = $id;
-            $cat->user_id = Auth::user()->id;
-            $cat->product_id = $product->id;
-            $cat->productcat_id = $item;
-            $cat->save();
+        // Organisation Update Controller
+        if(!$org->products){
+            $org->products = 1;
+            $org->save();
+            //  -> Event Active Code
         }
+
+
+        if($request->productcat_id){
+            // Project Category 
+                foreach($request->productcat_id as $item){
+                    $cat = new Producthavecategory;
+                    $cat->organisation_id = $id;
+                    $cat->user_id = Auth::user()->id;
+                    $cat->product_id = $product->id;
+                    $cat->productcat_id = $item;
+                    $cat->save();
+                }
+        }
+   
 
 
         return redirect()->route('orgadmin.organisation.product.index',$id)->with('success','Successfully added a new product!');
@@ -126,12 +136,16 @@ class OrgadminProductController extends Controller
      */
     public function edit($id , $productid)
     {
-
         $org = Organisation::where('id',$id)->where('user_id',Auth::user()->id)->first();
-
         $product = Product::where('organisation_id',$id)->where('id',$productid)->first(); 
+        // condition for Status Change
+        if($product->status == 4){
+            return redirect()->back()->with('danger',"Sorry you don't have Access!");
+        }else{            
+            return view('orgadmin.pages.product.edit', compact('org','product'));
+        }
 
-        return view('orgadmin.pages.product.edit', compact('org','product'));
+
 
 
 
@@ -148,6 +162,10 @@ class OrgadminProductController extends Controller
     {
 
 
+        $validated = $request->validate([
+            'product_name' => 'required',
+            'price' => 'required',
+        ]);
         // return $request->projectcat_id;
         $product = Product::where('id',$productid)->first();
         $product->name = $request->product_name;
@@ -166,9 +184,6 @@ class OrgadminProductController extends Controller
         $product->location = $request->location;
         // upload Product Image
         if($request->image){
-
-
-
    // -- Remove Image From DB --
             if($product->thumbnail){
                     $image_path = public_path("img/upload/product/{$product->thumbnail}");
@@ -224,6 +239,28 @@ if($request->productcat_id){
 
             return view('orgadmin.pages.product.orders', compact('org','orders'));
         }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function product_application($id , $productslug)
+    {
+        $org = Organisation::where('slug',$id)->where('user_id',Auth::user()->id)->first();
+        $product = Product::where('slug',$productslug)->first();
+        $orders = Productbuy::where('product_id',$product->id)->orderby('id','desc')->get();    
+        return view('orgadmin.pages.product.orders', compact('org','orders'));   
+
+    }
+   /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
 
     public function single_order($id, $orderid)

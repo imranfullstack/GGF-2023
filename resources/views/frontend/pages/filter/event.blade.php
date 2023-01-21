@@ -1741,9 +1741,12 @@ p.map-desc {
 @endphp
 
 
-
+@if($org)
                     {title: '{{$item->event_name}}', address: '{{$item->location}}', date: '{{ Carbon\Carbon::parse($item->date)->format('d M Y') }}', desc: '{{Str::limit($item->short_desc, 150, $end='...')}}', url: '{{route('org.event.single',['eventslug'=>$item->slug,'slug'=>$org->slug])}}', tags: ['tourism_01'], lat:{{$item->lat}}, lng: {{$item->long}}, img: '{{asset('img/upload/event/'.$item->image)}}', phone:'{{$item->contact_phone}}' ,  icon: 'http://127.0.0.1:8000/frontend/images/icons/map.png'},
+@else
 
+@endif
+                    
                 @endforeach
 
                 ],

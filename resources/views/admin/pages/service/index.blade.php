@@ -14,7 +14,7 @@
 <div class="col-md-10 right-aria-sldksd">
     <div class="content-body-dskd">
         <br>
-        <h4>List of Service  </h4>
+        <h4>List of Service </h4>
         <hr>
         <div class="table-aria-for-info-section">
             <div class="row">
@@ -52,8 +52,9 @@
                                     </td>
                                     <td>{{ $item->name }}</td>
                                     <td>
-                                        
-                                        <a href="{{route('org.index',$item->organisation->slug)}}" target="_blank" class="view-btn-table">      {{$item->organisation->org_name}}
+
+                                        <a href="{{ route('org.index', $item->organisation->slug) }}" target="_blank"
+                                            class="view-btn-table"> {{ $item->organisation->org_name }}
                                         </a>
                                     </td>
                                     <td>{{ Carbon\Carbon::parse($item->available_date)->format('d M Y') }}</td>
@@ -74,18 +75,20 @@
                                         $application = App\Models\Serviceapply::where('id', $item->id)->count();
                                     @endphp
                                     <td>
-                                        <a href="{{route('admin.service.application',$item->id)}}">
+                                        <a href="{{ route('admin.service.application', $item->id) }}">
                                             <span class="badge bg-green">{{ $application }} </span>
                                         </a>
                                     </td>
                                     <td class="actiontable-dksld">
-                                        <a href="{{route('org.service.index',$item->organisation->slug)}}" target="_blank" class="view-btn-table">      
+                                        <a href="{{ route('org.service.index', $item->organisation->slug) }}"
+                                            target="_blank" class="view-btn-table">
                                             View
                                         </a>
 
                                         <span>|</span>
 
-                                        <a href="{{route('admin.service.edit',$item->id)}}" class="view-btn-table">Edit</a></span>
+                                        <a href="{{ route('admin.service.edit', $item->id) }}"
+                                            class="view-btn-table">Edit</a></span>
                                     </td>
                                 </tr>
                             @endforeach

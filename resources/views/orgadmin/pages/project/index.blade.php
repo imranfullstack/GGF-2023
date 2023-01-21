@@ -114,8 +114,8 @@
 
 
         @if($item->status == 4)
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop_{{$item->id}}">
- WHY SUSPENDED
+<button type="button" class="btn btn-green viewbtn-dksld" data-bs-toggle="modal" data-bs-target="#staticBackdrop_{{$item->id}}">
+  Details
 </button>
 
 <!-- Button trigger modal -->

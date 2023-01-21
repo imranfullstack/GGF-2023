@@ -11,7 +11,7 @@
 @php
   $footer = App\Models\Footer::first();
 @endphp
-
+@if($footer)
       <footer class="footer">
 
          <div class="footer-top-aria" style="background: {{$footer->bg_color}}">
@@ -104,3 +104,4 @@
          </div>
 
       </footer>
+@endif      

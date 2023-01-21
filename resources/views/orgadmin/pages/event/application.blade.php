@@ -58,7 +58,13 @@
 <tr>
   <td>{{$i++}}</td>
   <td>
-    <img src="{{asset('img/upload/event/'.$item->event->image)}}" width="50px">
+    @if($item->event->image )
+      <img src="{{asset('img/upload/event/'.$item->event->image)}}" width="50px">
+
+    @else 
+        <img src="{{asset('img/default.jpg')}}" width="50px">
+
+    @endif
   </td>
   <td>{{$item->event->event_name}}</td>
   <td>

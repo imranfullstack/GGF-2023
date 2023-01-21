@@ -43,6 +43,7 @@
                         <div class="input-group mb-3">
                           <input type="text" class="form-control" placeholder="Enter organization details" aria-label="Username" aria-describedby="basic-addon1" name="product_name" value="{{$product->name}}">
                         </div>
+                        @error('product_name') <span class="text-danger">{{$message}}</span> @enderror
                       </div>
                     <!-- single Form Start-->
                   </td>
@@ -55,7 +56,7 @@
 
 
 
-               @php $projectcat = App\Models\Productcat::orderby('id','desc')->get(); @endphp
+               @php $projectcat = App\Models\Productcat::orderby('id','desc')->where('status',1)->get(); @endphp
                 <!-- single Form Start-->
                 <div class="sigle-form-input-sddksldc0sd">
                   <div class="input-group mb-3">
@@ -172,6 +173,7 @@
                         <div class="input-group mb-3">
                           <input type="number" class="form-control" placeholder="Enter organization details" aria-label="Username" aria-describedby="basic-addon1" name="price" value="{{$product->price}}">
                         </div>
+                        @error('price') <span class="text-danger">{{$message}}</span> @enderror
                       </div>
                   </td>
                 </tr>

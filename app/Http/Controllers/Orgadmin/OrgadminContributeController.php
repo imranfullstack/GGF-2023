@@ -9,6 +9,7 @@ use App\Models\Contribute;
 use App\Models\Contributehavecategorie;
 use App\Models\Contributekeyword;
 use Auth;
+use Str;
 use Image;
 
 
@@ -48,14 +49,18 @@ class OrgadminContributeController extends Controller
      */
     public function store(Request $request,$id)
     {
-        //
 
-
-
+        $validated = $request->validate([
+            'title' => 'required',
+            'location_availability' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'keywords' => 'required',
+        ]);
 
         $contribute = new Contribute;
         $contribute->title = $request->title;
-        $contribute->slug = strtolower(str_replace(' ', '-', $request->title)).'-'.uniqid().''.Auth::user()->id;
+        $contribute->slug = Str::slug($request->title).'-'.uniqid();
         $contribute->user_id = Auth::user()->id;
         $contribute->organisation_id = $id;
         $contribute->status = 1;
@@ -84,7 +89,7 @@ class OrgadminContributeController extends Controller
         $contribute->contact_parson = $request->contact_parson;
         $contribute->contact_email = $request->contact_email;
         $contribute->contact_phone = $request->contact_phone;
-        // $contribute->keywords = $request->keywords;
+        $contribute->keywords = $request->keywords;
         $contribute->save();
 
 
@@ -114,7 +119,7 @@ class OrgadminContributeController extends Controller
             }
         }
 
-        return redirect()->route('orgadmin.organisation.contribute.index',$id)->with('success','Successfully added a contribute.');
+        return redirect()->route('orgadmin.organisation.contribute.index',$id)->with('success','Successfully added');
 
 
     }

@@ -18,22 +18,22 @@
     @php
         $banner = App\Models\Homebanner::first();
     @endphp
-
-    <section class="banner-aira" style="background: {{$banner->banner_bg}}">
+@if($banner)
+    <section class="banner-aira" style="background: {{ $banner->banner_bg }}">
 
         <div class="container">
 
             <div class="baner-main-section">
 
-                <div class="row baner-main-aria" >
+                <div class="row baner-main-aria">
 
                     <div class="col-md-6">
 
                         <div class="left-content-aria-banner-1536dcsd">
 
-                            <h1>{{$banner->title}}</h1>
+                            <h1>{{ $banner->title }}</h1>
 
-                            <p>{{$banner->desc}}</p>
+                            <p>{{ $banner->desc }}</p>
 
                             <!-- <a href="#" class="banner-btn-069905dc">GET STARTED</a> -->
 
@@ -47,7 +47,7 @@
 
                             <div class="map-blog">
 
-                                <img src="{{ asset('/img/upload/home/banner/'.$banner->banner_image) }}">
+                                <img src="{{ asset('/img/upload/home/banner/' . $banner->banner_image) }}">
 
                             </div>
 
@@ -63,7 +63,8 @@
 
                         <div class="button-right-sldkd">
 
-                            <a href="{{ route('filter.index') }}" class="banner-btn-069905dc" style="background: {{$banner->banner_btn_bg}}">{{$banner->button_text}}</a>
+                            <a href="{{ route('filter.index') }}" class="banner-btn-069905dc"
+                                style="background: {{ $banner->banner_btn_bg }}">{{ $banner->button_text }}</a>
 
                         </div>
 
@@ -78,6 +79,10 @@
         </div>
 
     </section>
+@else
+
+
+@endif    
 
     <!-- ------ Banner Aria End------ -->
 
@@ -286,15 +291,30 @@
                                         {{ Carbon\Carbon::parse($item->start_date)->format('d M Y') }} <b>-</b>
                                         {{ Carbon\Carbon::parse($item->end_date)->format('d M Y') }} </td>
 
-                                    <td><a href="{{ route('org.index', $item->organisation->slug) }}"
-                                            class="link-table">{{ $item->organisation->org_name }}</a></td>
+                                    <td>
+                                        @if ($item->organisation)
+                                            <a href="{{ route('org.index', $item->organisation->slug) }}"
+                                                class="link-table">{{ $item->organisation->org_name }}
+                                            </a>
+                                        @else
+                                            <span class="text-danger">ORGANISATION REMOVED</span>
+                                        @endif
+                                    </td>
 
 
 
 
 
-                                    <td><a href="{{ route('org.event.single', ['eventslug' => $item->slug, 'slug' => $item->organisation->slug]) }}"
-                                            class="btn btn-green">More</a></td>
+                                    <td>
+
+                                        @if ($item->organisation)
+                                            <a href="{{ route('org.event.single', ['eventslug' => $item->slug, 'slug' => $item->organisation->slug]) }}"
+                                                class="btn btn-green">More</a>
+                                        @else
+                                            <span class="text-danger">ORGANISATION REMOVED</span>
+                                        @endif
+                                    </td>
+
 
                                 </tr>
                             @endforeach
@@ -323,111 +343,111 @@
 
     <!--   <section class="explore-ggf-section">
 
-        <div class="container">
+                        <div class="container">
 
 
 
-          <div class="section-title">
+                          <div class="section-title">
 
-            <div class="row">
+                            <div class="row">
 
-              <div class="col-md-12">
+                              <div class="col-md-12">
 
-                <div class="left-title-aria">
+                                <div class="left-title-aria">
 
-                    <h1> <span><i class="fas fa-circle"></i></span>Resources</h1>
+                                    <h1> <span><i class="fas fa-circle"></i></span>Resources</h1>
 
-                </div>
+                                </div>
 
-              </div>
+                              </div>
 
-            </div>
+                            </div>
 
-          </div>
+                          </div>
 
-          <div class="expiore-ggf-section-d5d6c">
+                          <div class="expiore-ggf-section-d5d6c">
 
-            <div class="ddd">
+                            <div class="ddd">
 
-              <table class="table table-striped text-center-dlsldkc0">
+                              <table class="table table-striped text-center-dlsldkc0">
 
-                <thead>
+                                <thead>
 
-                  <tr class="bg-dark custom-dd25s3d6cd">
+                                  <tr class="bg-dark custom-dd25s3d6cd">
 
-                    <th scope="col">Name</th>
+                                    <th scope="col">Name</th>
 
-                    <th scope="col">Deteils</th>
+                                    <th scope="col">Deteils</th>
 
-                    <th scope="col"></th>
+                                    <th scope="col"></th>
 
-                  </tr>
+                                  </tr>
 
-                </thead>
+                                </thead>
 
-                <tbody>
+                                <tbody>
 
-                  <tr>
+                                  <tr>
 
-                    <td>01/12/2032</td>
+                                    <td>01/12/2032</td>
 
-                    <td>Loram Ipsum dolor sit amet</td>
+                                    <td>Loram Ipsum dolor sit amet</td>
 
-                    <td>Business Name</td>
+                                    <td>Business Name</td>
 
-                  </tr>
+                                  </tr>
 
-                  <tr>
+                                  <tr>
 
-                    <td>01/12/2032</td>
+                                    <td>01/12/2032</td>
 
-                    <td>Loram Ipsum dolor sit amet</td>
+                                    <td>Loram Ipsum dolor sit amet</td>
 
-                    <td>Business Name</td>
+                                    <td>Business Name</td>
 
-                  </tr>
+                                  </tr>
 
-                  <tr>
+                                  <tr>
 
-                    <td>01/12/2032</td>
+                                    <td>01/12/2032</td>
 
-                    <td>Loram Ipsum dolor sit amet</td>
+                                    <td>Loram Ipsum dolor sit amet</td>
 
-                    <td>Business Name</td>
+                                    <td>Business Name</td>
 
-                  </tr>
+                                  </tr>
 
-                  <tr>
+                                  <tr>
 
-                    <td>01/12/2032</td>
+                                    <td>01/12/2032</td>
 
-                    <td>Loram Ipsum dolor sit amet</td>
+                                    <td>Loram Ipsum dolor sit amet</td>
 
-                    <td>Business Name</td>
+                                    <td>Business Name</td>
 
-                  </tr>
+                                  </tr>
 
-                  <tr>
+                                  <tr>
 
-                    <td>01/12/2032</td>
+                                    <td>01/12/2032</td>
 
-                    <td>Loram Ipsum dolor sit amet</td>
+                                    <td>Loram Ipsum dolor sit amet</td>
 
-                    <td>Business Name</td>
+                                    <td>Business Name</td>
 
-                  </tr>
+                                  </tr>
 
-                </tbody>
+                                </tbody>
 
-              </table>
+                              </table>
 
-            </div>
+                            </div>
 
-          </div>
+                          </div>
 
-        </div>
+                        </div>
 
-      </section> -->
+                      </section> -->
 
     <!-- --------------- Explore GGF End----------------- -->
 @endsection()

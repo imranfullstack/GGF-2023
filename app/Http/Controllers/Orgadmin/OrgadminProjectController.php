@@ -64,9 +64,7 @@ class OrgadminProjectController extends Controller
 
         // orgganisation
         $org = Organisation::where('id',$id)->first();
-        $org->project = 1;
-        $org->save(); //  -> Event Active Code
-        
+  
    
           $validated = $request->validate([
                 'name' => 'required',
@@ -80,6 +78,8 @@ class OrgadminProjectController extends Controller
                 'location' => 'required',
                 'Whats_needed' => 'required',
                 'registration_form' => 'required',
+                'lat' => 'required',
+                'long' => 'required',
             ]);
 
 
@@ -129,6 +129,13 @@ class OrgadminProjectController extends Controller
                 $cat->save();
             }
 
+        }
+
+        // Active Project on the business Page
+        if(!$org->project){
+            $org->project = 1;
+            $org->save(); 
+            //  -> Event Active Code
         }
      
         return redirect()->route('orgadmin.organisation.project.index',$id)->with('success','Successfully Added');
@@ -223,19 +230,19 @@ class OrgadminProjectController extends Controller
 
        
 
-          $validated = $request->validate([
-                'name' => 'required',
-                'short_desc' => 'required',
-                'long_version' => 'required',
-                'start_date' => 'required',
-                'end_date' => 'required',
-                'contact_person' => 'required',
-                'contact_email' => 'required',
-                'contact_phone' => 'required',
-                'location' => 'required',
-                'Whats_needed' => 'required',
-                'registration_form' => 'required',
-            ]);
+        $validated = $request->validate([
+            'name' => 'required',
+            'short_desc' => 'required',
+            'long_version' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'contact_person' => 'required',
+            'contact_email' => 'required',
+            'contact_phone' => 'required',
+            'location' => 'required',
+            'Whats_needed' => 'required',
+            'registration_form' => 'required',
+        ]);
 
 
 
@@ -253,6 +260,10 @@ class OrgadminProjectController extends Controller
         $project->contact_email = $request->contact_email;
         $project->contact_phone = $request->contact_phone;
         $project->location = $request->location;
+        if( $request->lat){
+            $project->lat = $request->lat;
+            $project->long = $request->long;
+        }
         $project->Whats_needed = $request->Whats_needed;
         $project->registration_form = $request->registration_form;
         // upload PDF FILE 

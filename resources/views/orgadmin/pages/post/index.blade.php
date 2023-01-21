@@ -113,14 +113,14 @@ div#ID_myMultiInput {
 
 
 <br>
-<h2>
+<h4>
     @if($org->logo)
       <img src="{{asset('img/upload/org/logo/'.$org->logo)}}" width="60px" height="60px" style="margin:0px 20px">
          <span>  {{$org->org_name}} </span> 
     @else
         <span>  {{$org->org_name}} </span> 
     @endif                    
-</h2>
+</h4>
 <hr>
 
 <div class="row">
@@ -146,9 +146,9 @@ div#ID_myMultiInput {
     <tr class="bg-green">
       <th scope="col">#</th>
       <th scope="col">Image</th>
-      <th scope="col">Project name</th>
-      <th scope="col">Status</th>
+      <th scope="col">Post Title</th>
       <th scope="col">Description</th>
+      <th scope="col">Status</th>
       <th scope="col" width="30%"></th>
     </tr>
   </thead>
@@ -166,6 +166,15 @@ div#ID_myMultiInput {
         @endif
       </td>
       <td>{{$item->title}}</td>
+
+      <td>
+
+        {{ Str::limit($item->short_desc, 35) }}
+
+
+      </td>
+
+      
       <td>
         @if($item->status == 1)
           <span class="badge-success">Active</span>
@@ -175,17 +184,10 @@ div#ID_myMultiInput {
           <span class="badge-danger">Suspended</span>
         @endif
       </td>
-
-      <td>
-
-        {{ Str::limit($item->short_desc, 35) }}
-
-
-      </td>
       <td class="actiontable-dksld">
         @if($item->status == 4)
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop_{{$item->id}}">
-  Why Suspended
+<button type="button" class="btn btn-green viewbtn-dksld" data-bs-toggle="modal" data-bs-target="#staticBackdrop_{{$item->id}}">
+  Details
 </button>
 
 <!-- Button trigger modal -->

@@ -9,6 +9,7 @@ use App\Models\Recruit;
 use App\Models\Jobapply;
 use App\Models\Recruithavecategory;
 use Auth;
+use Str;
 
 
 
@@ -47,6 +48,13 @@ class OrgadminRecruitController extends Controller
      */
     public function store(Request $request,$id)
     {
+        $validated = $request->validate([
+            'title' => 'required',
+            'short_desc' => 'required',
+            'location' => 'required',
+        ]);
+
+
         $recruit = new Recruit;
         $recruit->title = $request->title;
         $recruit->slug = Str::slug($request->title).'-'.uniqid().'-'.$id;
@@ -107,15 +115,28 @@ class OrgadminRecruitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+    public function recruit_application($id , $recruitslug)
+    {
+        $org = Organisation::where('slug',$id)->where('user_id',Auth::user()->id)->first();
+        $recruit = Recruit::where('slug',$recruitslug)->first();
+        $apply = Jobapply::where('recruit_id',$recruit->id)->get();    
+        return view('orgadmin.pages.recruit.application', compact('org','apply'));
+    }
+
+
+
+
     public function edit($id,$recruitid)
     {
 
-
         $org = Organisation::where('id',$id)->where('user_id',Auth::user()->id)->first();
-
-
         $recruit = Recruit::where('organisation_id',$id)->where('id',$recruitid)->first();
-        return view('orgadmin.pages.recruit.edit', compact('org','recruit'));
+        if($recruit->status == 4){
+            return redirect()->back()->with('danger',"Sorry you don't have Access!");            
+        }else{
+            return view('orgadmin.pages.recruit.edit', compact('org','recruit'));
+        }
     }
 
     /**
@@ -135,6 +156,13 @@ class OrgadminRecruitController extends Controller
      */
     public function update(Request $request, $id , $recruitid)
     {
+
+
+        $validated = $request->validate([
+            'title' => 'required',
+            'short_desc' => 'required',
+            'location' => 'required',
+        ]);
 
 
         $recruit = Recruit::where('organisation_id',$id)->where('id',$recruitid)->first();

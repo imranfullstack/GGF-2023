@@ -68,26 +68,26 @@ class OrgadminPostController extends Controller
                 $image = $request->file('image');
                 $img = $id.'-'.uniqid().'.'. $image->getClientOriginalExtension();
                 Image::make($image)->save(public_path('/img/upload/post/'.$img));
-
                 $post->image = $img;
             }
         }
-
 
         $post->save();
 
 
 
-
-          // Project Category 
-        foreach($request->postcat_id as $item){
-            $cat = new Posthavecategory;
-            $cat->organisation_id = $id;
-            $cat->user_id = Auth::user()->id;
-            $cat->post_id = $post->id;
-            $cat->postcat_id = $item;
-            $cat->save();
+        if($request->postcat_id){
+            // Project Category 
+            foreach($request->postcat_id as $item){
+                $cat = new Posthavecategory;
+                $cat->organisation_id = $id;
+                $cat->user_id = Auth::user()->id;
+                $cat->post_id = $post->id;
+                $cat->postcat_id = $item;
+                $cat->save();
+            }
         }
+     
 
 
 

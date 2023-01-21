@@ -23,7 +23,12 @@
 
 
       <style>
-
+.width156dc {
+    padding: 20px 0px;
+    width: 44%;
+    margin: 9px 0;
+    font-weight: 700;
+}
 span.badge-pending {
     background: #5c5c5c;
     color: #fff;

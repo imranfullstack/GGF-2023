@@ -65,18 +65,14 @@ class OrgadminEventController extends Controller
             'whats_needed' => 'required',
             'registration_form' => 'required',
         ]);
-
-
-
-
-
         // orgganisation
         $org = Organisation::where('id',$id)->first();
-        $org->event = 1;
-        $org->save(); //  -> Event Active Code
-
-
-
+        // Active Event
+        if(!$org->event){
+            $org->event = 1;
+            $org->save();           
+        }
+        //  -> Event Active Code
         $event = new Event;
         $event->event_name = $request->event_name;
         $event->slug = Str::slug($request->event_name).'-'.uniqid();
@@ -98,7 +94,6 @@ class OrgadminEventController extends Controller
         $event->what_to_bring = $request->what_to_bring;
         $event->whats_needed = $request->whats_needed;
         $event->registration_form = $request->registration_form;
-
           if($request->image){
         // -- Image UPload
             if($request->hasFile('image')){
@@ -108,32 +103,24 @@ class OrgadminEventController extends Controller
                 $event->image = $img;
             }
         }
-
-
-
-
         $event->save();
-
-
-
-
-
-if($request->eventcat_id){
-           foreach($request->eventcat_id as $item){
-            $cat = new Eventhavecategory;
-            $cat->organisation_id = $id;
-            $cat->user_id = Auth::user()->id;
-            $cat->event_id = $event->id;
-            $cat->eventcat_id = $item;
-            $cat->save();
+        // Save category Code
+        if($request->eventcat_id){
+                   foreach($request->eventcat_id as $item){
+                    $cat = new Eventhavecategory;
+                    $cat->organisation_id = $id;
+                    $cat->user_id = Auth::user()->id;
+                    $cat->event_id = $event->id;
+                    $cat->eventcat_id = $item;
+                    $cat->save();
+                }
+         
         }
- 
-}
-              // Project Category 
+    // Event Category 
 
 
 
-        return redirect()->route('orgadmin.organisation.event.index',$id)->with('success',' Congratulation! You Just Successfully added a Event.');
+        return redirect()->route('orgadmin.organisation.event.index',$id)->with('success',' Successfully added');
 
 
         
@@ -203,11 +190,6 @@ if($request->eventcat_id){
             'whats_needed' => 'required',
             'registration_form' => 'required',
         ]);
-
-
-
-
-
         $event = Event::where('organisation_id',$id)->where('id',$eventid)->first(); 
         $event->event_name = $request->event_name;
         $event->user_id = Auth::user()->id;
@@ -226,21 +208,24 @@ if($request->eventcat_id){
         $event->what_to_bring = $request->what_to_bring;
         $event->whats_needed = $request->whats_needed;
         $event->registration_form = $request->registration_form;
-
-          if($request->image){
-            if($event->event){
-                $image_path = public_path("img/upload/event/{$event->image}");
-                if (File::exists($image_path)) {
-                    unlink($image_path);
-                }
-            }
+        if($request->lat){
+          $event->lat = $request->lat;
+          $event->long = $request->long;
+        }
+        if($request->image){
+          if($event->event){
+              $image_path = public_path("img/upload/event/{$event->image}");
+              if (File::exists($image_path)) {
+                  unlink($image_path);
+              }
+          }
         // -- Image UPload
-            if($request->hasFile('image')){
-                $image = $request->file('image');
-                $img = $id.'-'.uniqid().'.'. $image->getClientOriginalExtension();
-                Image::make($image)->save(public_path('/img/upload/event/'.$img));
-                $event->image = $img;
-            }
+          if($request->hasFile('image')){
+              $image = $request->file('image');
+              $img = $id.'-'.uniqid().'.'. $image->getClientOriginalExtension();
+              Image::make($image)->save(public_path('/img/upload/event/'.$img));
+              $event->image = $img;
+          }
         }
         $event->save();
         if($request->eventcat_id){
@@ -254,7 +239,7 @@ if($request->eventcat_id){
                 }
         }
               // Project Category 
-        return redirect()->route('orgadmin.organisation.event.index',$id)->with('success',' Congratulation! You Just Successfully updated  Event.');
+        return redirect()->route('orgadmin.organisation.event.index',$id)->with('success','Successfully updated');
 
 
     }
@@ -304,9 +289,23 @@ if($request->eventcat_id){
         $apply->save();
 
 
-        return redirect()->route('orgadmin.organisation.event.application',$id)->with('success',' Successfully Update Status.');
+        return redirect()->route('orgadmin.organisation.event.application',$id)->with('success',' Successfully Updated');
     }
 
 
+
+    // Change Application Status 
+
+    public function event_application(Request $request, $id,$eventslug){
+
+
+
+        $org = Organisation::where('slug',$id)->where('user_id',Auth::user()->id)->first();
+        $event = Event::where('slug',$eventslug)->first();
+        $apply = Eventapply::where('event_id',$event->id)->get();    
+        return view('orgadmin.pages.event.application', compact('org','apply'));
+
+
+    }
 
 }

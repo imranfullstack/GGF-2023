@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->text('Whats_needed')->nullable();
             $table->string('registration_form')->nullable();
+            $table->integer('view_count')->nullable();
             $table->string('image')->nullable();
             $table->text('suspended_note')->nullable();
             $table->timestamps();

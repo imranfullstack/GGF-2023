@@ -5,11 +5,13 @@
 <div class="col-md-10 right-aria-sldksd">
   <div class="content-body-dskd">
     <br>
-    <h2>
-      <span class="org-name-title-dksld">
-        <img src="https://w7.pngwing.com/pngs/457/164/png-transparent-friends-of-the-urban-forest-urban-forestry-tree-tags-leaf-text-logo-thumbnail.png" class="top-logo-icon"> {{$org->org_name}}
-      </span>
-    </h2>
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">DASHBOARD</li>
+          <li class="breadcrumb-item active" aria-current="page">PROJECT</li>
+          <li class="breadcrumb-item active" aria-current="page"><b>Create</b></li>
+        </ol>
+      </nav>
     <hr>
     <div class="find-people">
       <div class="find-people">

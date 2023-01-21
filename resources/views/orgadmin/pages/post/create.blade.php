@@ -13,14 +13,14 @@
 
 
 <br>
-<h2>
+<h4>
     @if($org->logo)
       <img src="{{asset('img/upload/org/logo/'.$org->logo)}}" width="60px" height="60px" style="margin:0px 20px">
          <span>  {{$org->org_name}} </span> 
     @else
         <span>  {{$org->org_name}} </span> 
     @endif                    
-</h2>
+</h4>
 <hr>
 
 <form action="{{route('orgadmin.organisation.post.store',$org->id)}}" method="post" enctype="multipart/form-data">

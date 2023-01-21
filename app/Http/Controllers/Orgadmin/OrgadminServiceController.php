@@ -47,10 +47,6 @@ class OrgadminServiceController extends Controller
      */
     public function store(Request $request,$id)
     {
-
-
-
-
         $validated = $request->validate([
             'name' => 'required',
             'servicecat_id' => 'required',
@@ -63,10 +59,6 @@ class OrgadminServiceController extends Controller
             'location' => 'required',
             'enquiry_form' => 'required',
         ]);
-
-
-
-
         $service = new Service;
         $service->name = $request->name;
         $service->slug = strtolower(str_replace(' ', '-', $request->name));
@@ -93,15 +85,11 @@ class OrgadminServiceController extends Controller
             }
         }
         $service->save();
-
-
         // orgganisation
         $org = Organisation::where('id',$id)->first();
         $org->our_service = 1;
-        $org->save(); //  -> Event Active Code
-
-
-
+        $org->save(); 
+        //  -> Event Active Code
         // Project Category 
         foreach($request->servicecat_id as $item){
             $cat = new Servicehavecategory;
@@ -111,12 +99,7 @@ class OrgadminServiceController extends Controller
             $cat->servicecat_id = $item;
             $cat->save();
         }
-
-
-        return redirect()->route('orgadmin.organisation.service.index',$id)->with('success','Successfully Added a service.');
-
-
-
+        return redirect()->route('orgadmin.organisation.service.index',$id)->with('success','Successfully Added');
     }
 
     /**
@@ -141,12 +124,13 @@ class OrgadminServiceController extends Controller
 
 
         $org = Organisation::where('id',$id)->where('user_id',Auth::user()->id)->first();
-
         $service = Service::where('organisation_id',$id)->where('id',$serviceid)->first(); 
 
-        return view('orgadmin.pages.service.edit', compact('org','service'));
-
-
+        if($service->status == 4){
+            return redirect()->back()->with('danger',"Sorry you don't have Access!");
+        }else{
+            return view('orgadmin.pages.service.edit', compact('org','service'));
+        }
     }
 
     /**
@@ -156,6 +140,9 @@ class OrgadminServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+
 
     public function update(Request $request,$id , $serviceid)
     {
@@ -220,7 +207,7 @@ class OrgadminServiceController extends Controller
                 $cat->save();
             }
         }
-        return redirect()->route('orgadmin.organisation.service.index',$id)->with('success','Successfully Added a service.');
+        return redirect()->route('orgadmin.organisation.service.index',$id)->with('success','Successfully Updated.');
     }
     /**
      * Remove the specified resource from storage.
@@ -247,6 +234,23 @@ class OrgadminServiceController extends Controller
       return view('orgadmin.pages.service.orders', compact('org','service'));
 
     }
+
+
+    
+
+// Single Service Application
+    public function service_application($id , $serviceslug)
+    {
+        $org = Organisation::where('slug',$id)->where('user_id',Auth::user()->id)->first();
+
+        $service = Service::where('slug',$serviceslug)->first();
+        $service = Serviceapply::where('service_id',$service->id)->get();  
+        
+        return view('orgadmin.pages.service.orders', compact('org','service'));
+    }
+
+    
+
 
 
     public function single_order($id , $orderid)

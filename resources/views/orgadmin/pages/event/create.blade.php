@@ -13,14 +13,13 @@
 
 
 <br>
-<h2>
-    @if($org->logo)
-      <img src="{{asset('img/upload/org/logo/'.$org->logo)}}" width="60px" height="60px" style="margin:0px 20px">
-         <span>  {{$org->org_name}} </span> 
-    @else
-        <span>  {{$org->org_name}} </span> 
-    @endif                    
-</h2>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">DASHBOARD</li>
+    <li class="breadcrumb-item">PROJECT</li>
+    <li class="breadcrumb-item active" aria-current="page"><b>Create</b></li>
+  </ol>
+</nav>
 <hr>
 
 

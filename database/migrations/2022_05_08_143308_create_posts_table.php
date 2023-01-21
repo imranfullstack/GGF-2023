@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('status');
             $table->integer('organisation_id');
+            $table->integer('view_count')->nullable();
             $table->text('short_desc')->nullable();
             $table->string('image')->nullable();
             $table->string('suspended_note')->nullable();

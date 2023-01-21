@@ -38,10 +38,9 @@
                       <!-- single Form Start-->
                       <div class="sigle-form-input-sddksldc0sd">
                         <div class="input-group mb-3">
-
                           <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="title">
-
                         </div>
+                        @error('title')<span style="width: 100%" class="text-danger">{{$message}}</span>@enderror
                       </div>
                 <!-- single Form Start-->
                   </td>
@@ -51,7 +50,7 @@
                 <tr>
                   <th scope="row" width="20%" class="label-dksldc">Categorys</th>
                   <td>
-                     @php $recruitcat = App\Models\Recruitcat::orderby('id','desc')->get(); @endphp
+                    @php $recruitcat = App\Models\Recruitcat::orderby('id','desc')->where('status',1)->get(); @endphp
                       <!-- single Form Start-->
                       <div class="sigle-form-input-sddksldc0sd">
                         <div class="input-group mb-3">
@@ -93,6 +92,7 @@
                         <div class="input-group mb-3">
                           <textarea class="form-control" rows="3" name="short_desc"></textarea>
                         </div>
+                        @error('short_desc')<span style="width: 100%" class="text-danger">{{$message}}</span>@enderror
                       </div>
                   </td>
                 </tr>
@@ -187,6 +187,7 @@
                         <div class="input-group mb-3">
                           <input type="text" class="form-control" placeholder="Enter organization details" aria-label="Username" aria-describedby="basic-addon1" name="location">
                         </div>
+                        @error('location')<span style="width: 100%" class="text-danger">{{$message}}</span>@enderror
                       </div>
                   </td>
                 </tr>

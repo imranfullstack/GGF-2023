@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->text('suspend_message')->nullable();
             $table->integer('limit')->nullable();
+            $table->integer('view_count')->nullable();
             $table->timestamps();
 
 

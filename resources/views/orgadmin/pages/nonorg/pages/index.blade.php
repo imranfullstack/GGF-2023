@@ -116,7 +116,7 @@ div#ID_myMultiInput {
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="https://mbanotesworld.com/wp-content/uploads/2021/07/forms-of-business-organization-1.png" class="img-fluid rounded-start" alt="...">
+          <img src="{{asset('img/icon/org.png')}}" alt="...">
         </div>
         <div class="col-md-8">
           <div class="card-body">
@@ -132,7 +132,7 @@ div#ID_myMultiInput {
   </div>
 
   <!-- /// Single Count Item  -->
-  <div class="col-md-4">
+  {{-- <div class="col-md-4">
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
       <div class="row g-0">
         <div class="col-md-4">
@@ -146,9 +146,9 @@ div#ID_myMultiInput {
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!-- /// Single Count Item  -->
-  <div class="col-md-4">
+  {{-- <div class="col-md-4">
 
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
       <div class="row g-0">
@@ -163,7 +163,7 @@ div#ID_myMultiInput {
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!-- /// Single Count Item  -->
   <div class="col-md-4">
 
@@ -249,7 +249,7 @@ div#ID_myMultiInput {
     </div>
   </div>
   <!-- /// Single Count Item  -->
-  <div class="col-md-4">
+  {{-- <div class="col-md-4">
 
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
       <div class="row g-0">
@@ -264,7 +264,7 @@ div#ID_myMultiInput {
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
 
   <!-- /// Single Count Item  -->
@@ -286,7 +286,7 @@ div#ID_myMultiInput {
   </div>
   <!-- /// Single Count Item  -->
 
-
+{{-- 
   <div class="col-md-4">
 
     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
@@ -302,7 +302,7 @@ div#ID_myMultiInput {
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 </div>
 
 

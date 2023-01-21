@@ -55,12 +55,12 @@
     <tr class="bg-green">
       <th scope="col">#</th>
       <th scope="col">Image</th>
-      <th scope="col">Project name</th>
-      <th scope="col">Status</th>
+      <th scope="col">Event Name</th>
       <th scope="col">Date</th>
       <th scope="col">Application</th>
-      <th scope="col">Sit Available</th>
+      <th scope="col">Capacity</th>
       <th scope="col">Cost Status</th>
+      <th scope="col">Status</th>
       <th scope="col" ></th>
     </tr>
   </thead>
@@ -80,26 +80,14 @@
 
       </td>
       <td>{{$item->event_name}}</td>
-      <td>
-        @if($item->status == 1)
-            <span class="badge bg-success">Active</span>
-        @elseif($item->status == 2)
-            <span class="badge bg-warning">Paused</span>
-        @elseif($item->status == 4)
-            <span class="badge bg-danger">Suspended</span>
-        @else
-            <span class="badge bg-danger">Close</span>
-        @endif
-
-
-
-      </td>
         <td>{{ Carbon\Carbon::parse($item->start_date)->format('d M Y') }}</td>
         @php
           $application = App\Models\Eventapply::where('event_id',$item->id)->count();
         @endphp
       <td>
-        <span class="badge bg-green">{{$application}} </span>
+        <a href="{{route('orgadmin.organisation.event.application.u.event',['eventslug'=>$item->slug,'id'=>$org->slug])}}">
+            <span class="badge bg-green">{{$application}} </span>
+        </a>
       </td>
 
       <td>
@@ -113,11 +101,25 @@
         @endif
       </td>
 
+      <td>
+        @if($item->status == 1)
+            <span class="badge bg-success">Active</span>
+        @elseif($item->status == 2)
+            <span class="badge bg-warning">Paused</span>
+        @elseif($item->status == 4)
+            <span class="badge bg-danger">Suspended</span>
+        @else
+            <span class="badge bg-danger">Closed</span>
+        @endif
+
+
+
+      </td>
 
       <td class="actiontable-dksld">
         @if($item->status == 4)
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop_{{$item->id}}">
-  Why Suspended
+<button type="button" class="btn btn-green viewbtn-dksld" data-bs-toggle="modal" data-bs-target="#staticBackdrop_{{$item->id}}">
+  Details
 </button>
 
 <!-- Button trigger modal -->

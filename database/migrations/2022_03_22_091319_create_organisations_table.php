@@ -39,12 +39,6 @@ return new class extends Migration
             $table->string('banner_1')->nullable();
             $table->string('banner_2')->nullable();
             $table->string('banner_3')->nullable();
-            $table->string('bank_account_name');
-            $table->string('bsb');
-            $table->string('account_number');
-            $table->string('bpay_id');
-            $table->string('S1')->nullable();
-            $table->string('S2')->nullable();
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
             $table->integer('project')->nullable();
@@ -53,6 +47,7 @@ return new class extends Migration
             $table->integer('our_service')->nullable();
             $table->integer('hiring')->nullable();
             $table->integer('events_planned')->nullable();
+            $table->integer('view_count')->nullable();
             $table->timestamps();
         });
     }

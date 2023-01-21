@@ -261,3 +261,7 @@ span.badge-warn {
 th.align-right.sorting {
     text-align: right;
 }
+.viewbtn-dksld {
+    font-weight: 600;
+    text-transform: uppercase;
+}

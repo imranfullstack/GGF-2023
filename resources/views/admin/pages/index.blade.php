@@ -126,8 +126,8 @@
                     <div class="card mb-3 box-style-dksld" style="max-width: 100%;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="{{ asset('img/icon/membersicon.png') }}" class="img-fluid rounded-start"
-                                    alt="...">
+                                <img src="{{ asset('img/icon/org.png') }}" alt="..."
+                                    class="img-fluid rounded-start">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -184,9 +184,9 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title">EVENTS / EXP..</h5>
-                                    <p class="card-text">{{ $eventnumber }} 
+                                    <p class="card-text">{{ $eventnumber }}
 
-                                        <a href="{{route('admin.event.index')}}">View</a>
+                                        <a href="{{ route('admin.event.index') }}">View</a>
                                     </p>
                                 </div>
                             </div>
@@ -210,8 +210,8 @@
                                 <div class="card-body">
                                     <h5 class="card-title">PROJECTS</h5>
                                     <p class="card-text">{{ $projectnumber }}
-                                        <a href="{{route('admin.project.index')}}">View</a>
-                                 </p>
+                                        <a href="{{ route('admin.project.index') }}">View</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -235,8 +235,8 @@
                                 <div class="card-body">
                                     <h5 class="card-title">SERVICES</h5>
                                     <p class="card-text">{{ $servicenumber }}
-                                        <a href="{{route('admin.service.index')}}">View</a>
-                                 </p>
+                                        <a href="{{ route('admin.service.index') }}">View</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -262,7 +262,7 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title">PRODUCTS</h5>
-                                        <a href="{{route('admin.product.index')}}">View</a>
+                                    <a href="{{ route('admin.product.index') }}">View</a>
                                 </div>
                             </div>
                         </div>
@@ -300,8 +300,8 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title">POSTS</h5>
-                                    <p class="card-text">{{$postnumber}} 
-                                        <a href="{{route('admin.post.index')}}">View</a>
+                                    <p class="card-text">{{ $postnumber }}
+                                        <a href="{{ route('admin.post.index') }}">View</a>
                                     </p>
                                 </div>
                             </div>

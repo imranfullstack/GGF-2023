@@ -22,9 +22,9 @@ return new class extends Migration
             $table->integer('organisation_id');
             $table->text('short_desc')->nullable();
             $table->text('long_version')->nullable();
-            $table->string('contact_person');
-            $table->string('contact_email');
-            $table->string('contact_phone');
+            $table->string('contact_person')->nullable();
+            $table->string('contact_email')->nullable();
+            $table->string('contact_phone')->nullable();
             $table->integer('price');
             $table->string('delivery')->nullable();
             $table->string('id_number')->nullable();
@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('suspended_note')->nullable();
+            $table->integer('view_count')->nullable();
             $table->timestamps();
         });
     }

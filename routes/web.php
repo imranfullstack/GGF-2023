@@ -737,6 +737,8 @@ Route::group(['as'=> 'orgadmin.' , 'prefix' => 'orgadmin' , 'namespace' => 'orga
             Route::get('{eventid}/remove-cat/{catid}/', [OrgadminEventController::class, 'remove_cat'])->name('remove.cat');
             // update Event
             Route::post('update/{eventid}', [OrgadminEventController::class, 'update'])->name('update');
+            // Project  Application || Under a Project Application
+            Route::get('application-event/{eventslug}', [OrgadminEventController::class, 'event_application'])->name('application.u.event');
             // Event Application
             Route::get('application/', [OrgadminEventController::class, 'application'])->name('application');
   
@@ -763,6 +765,10 @@ Route::group(['as'=> 'orgadmin.' , 'prefix' => 'orgadmin' , 'namespace' => 'orga
             Route::post('update/{productid}', [OrgadminProductController::class, 'update'])->name('update');
             // Project Application
             Route::get('orders/', [OrgadminProductController::class, 'orders'])->name('orders');
+
+            // Product  Application || Under a Product Application
+            Route::get('application-product/{productslug}', [OrgadminProductController::class, 'product_application'])->name('application.u.product');
+
             // product Single Order
             Route::get('order/{orderid}', [OrgadminProductController::class, 'single_order'])->name('single.order');
             // product Application Change Status
@@ -787,6 +793,11 @@ Route::group(['as'=> 'orgadmin.' , 'prefix' => 'orgadmin' , 'namespace' => 'orga
             Route::get('{serviceid}/remove-cat/{catid}/', [OrgadminServiceController::class, 'remove_cat'])->name('remove.cat');
             // update Service
             Route::post('update/{serviceid}', [OrgadminServiceController::class, 'update'])->name('update');
+            // Product  Application || Under a Product Application
+            Route::get('application-service/{serviceslug}', [OrgadminServiceController::class, 'service_application'])->name('application.u.service');
+
+
+
             // Service
             Route::get('orders/', [OrgadminServiceController::class, 'orders'])->name('orders');
             // Service Single Order
@@ -812,6 +823,12 @@ Route::group(['as'=> 'orgadmin.' , 'prefix' => 'orgadmin' , 'namespace' => 'orga
             Route::get('{recruitid}/remove-cat/{catid}/', [OrgadminRecruitController::class, 'remove_cat'])->name('remove.cat');
             // Jobs Application
             Route::get('application/', [OrgadminRecruitController::class, 'application'])->name('application');
+
+            
+            // recruit  Application || Under a Project Application
+            Route::get('application-recruit/{recruitslug}', [OrgadminRecruitController::class, 'recruit_application'])->name('application.u.recruit');
+
+
 
 
             // Event Single Application
@@ -867,6 +884,14 @@ Route::group(['as'=> 'orgadmin.' , 'prefix' => 'orgadmin' , 'namespace' => 'orga
             Route::get('create/', [OrgadminSponsorController::class, 'create'])->name('create');
             // Create Sponsor
             Route::post('store/', [OrgadminSponsorController::class, 'store'])->name('store');
+            // Create Sponsor
+            Route::get('view/{sponsorid}', [OrgadminSponsorController::class, 'view'])->name('view');
+            // Create Sponsor
+            Route::get('edit/{sponsorid}', [OrgadminSponsorController::class, 'edit'])->name('edit');
+            // Create Sponsor
+            Route::post('update/{sponsorid}', [OrgadminSponsorController::class, 'update'])->name('update');
+            // Create Sponsor
+            Route::get('destroy/{sponsorid}', [OrgadminSponsorController::class, 'destroy'])->name('destroy');
 
         });
 
