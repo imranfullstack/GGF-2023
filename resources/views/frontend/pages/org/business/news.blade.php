@@ -13,7 +13,7 @@
 @if($post)  
                         <hr>                   
                      <div class="right-blog-skdlskld">
-                        <h5>Latest News</h5>
+                        <h5>Latest Post</h5>
 
 @php 
 	$blog = App\Models\Post::orderby('id','desc')->where('organisation_id',$org->id)->where('status',1)->limit(1)->get();
@@ -47,7 +47,7 @@
 
 <div class="col-md-12">
 	<div class="read-more-section blog left">
-		<a href="{{route('org.post.index',$org->slug)}}" class="btn-green apply-btn-style-dksld">All News</a>
+		<a href="{{route('org.post.index',$org->slug)}}" class="btn-green apply-btn-style-dksld">More</a>
 	</div>
 </div>   
 

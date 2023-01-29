@@ -54,6 +54,14 @@
               <!-- single Form End-->
               <!-- single Form -->
               <tr>
+                <th scope="row">Phone</th>
+                <td>
+                  {{$apply->phone}}
+                </td>
+              </tr>
+              <!-- single Form End-->
+              <!-- single Form -->
+              <tr>
                 <th scope="row">Address</th>
                 <td>
                   {{$apply->address}}
@@ -70,25 +78,9 @@
               <!-- single Form End-->
               <!-- single Form -->
               <tr>
-                <th scope="row">Number of adults</th>
+                <th scope="row">Age / Details</th>
                 <td>
-                  {{$apply->number_of_adults}}
-                </td>
-              </tr>
-              <!-- single Form End-->
-              <!-- single Form -->
-              <tr>
-                <th scope="row">Children 2 - 12</th>
-                <td>
-                  {{$apply->children2_12}}
-                </td>
-              </tr>
-              <!-- single Form End-->
-              <!-- single Form -->
-              <tr>
-                <th scope="row">Infants 0 - 2</th>
-                <td>
-                  {{$apply->children0_2}}
+                  {{$apply->age}}
                 </td>
               </tr>
               <!-- single Form End-->
@@ -97,14 +89,6 @@
                 <th scope="row">Can bring these resources</th>
                 <td>
                   {{$apply->bring_resources}}
-                </td>
-              </tr>
-              <!-- single Form End-->
-              <!-- single Form -->
-              <tr>
-                <th scope="row">Area of focus</th>
-                <td>
-                  {{$apply->Area_of_focus}}
                 </td>
               </tr>
               <!-- single Form End-->

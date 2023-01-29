@@ -17,6 +17,10 @@ li.rightarrow-dksldc0c {
     display: none !important;
 
 }
+.title-dkdksldkfdf2.bg-dksld:before {
+    background: #6e933e;
+    width: 80%;
+}
 
 .banner-btn-dkdls span.readmore__content {
 
@@ -27,7 +31,10 @@ li.rightarrow-dksldc0c {
     display: contents;
 
 }
-
+.title-dkdksldkfdf2 {
+    position: relative;
+    margin: 50px 0px;
+}
 </style>
 
 @endsection

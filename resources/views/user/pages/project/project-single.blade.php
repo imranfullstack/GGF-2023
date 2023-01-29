@@ -380,7 +380,13 @@ span.badge-approve {
               <tr>
                 <th scope="row">Phone</th>
                 <td>
-                	{{$project->Area_of_focus}}
+                	{{$project->phone}}
+                </td>
+              </tr> 
+              <tr>
+                <th scope="row">Age / Details </th>
+                <td>
+                	{{$project->age}}
                 </td>
               </tr>               
               <tr>

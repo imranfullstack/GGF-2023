@@ -36,9 +36,10 @@
          <div class="container">
             <div class="business-name-title-dksld">
                <div class="row">
-                  <div class="col-md-7">
+                  <div class="col-md-12">
                      <div class="title-top-dksldlc">
-                        <h2>{{$org->org_name}}</h2>
+                        <h3>{{$org->org_name}}</h3>
+                        <hr>
                      </div>
                   </div>
 

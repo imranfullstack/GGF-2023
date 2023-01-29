@@ -89,7 +89,7 @@
 
 @endphp                                
                               <div class="category-product">
-                                <h5>CATEGORY:
+                                <h5 class="locationandemail-skdlsd">Labels:
                                     @foreach($category as $item)
                                       @foreach($item->productcat as $data)
                                   <span class="cat-single-dlsdk">
@@ -203,7 +203,7 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">Question</th>
+                <th scope="row">Questions</th>
                 <td>
                   <textarea class="form-control" rows="3" name="question"></textarea>
                 </td>

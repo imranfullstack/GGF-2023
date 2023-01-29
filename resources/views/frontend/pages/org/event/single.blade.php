@@ -132,11 +132,11 @@
 						      <td>{{$event->contact_phone}}</td>
 						    </tr>
 						    <tr>
-						      <th scope="row" class="left-tab-dksld">Want to Bring</th>
+						      <th scope="row" class="left-tab-dksld">What to Bring</th>
 						      <td>{{$event->what_to_bring}}</td>
 						    </tr>
 						    <tr>
-						      <th scope="row" class="left-tab-dksld">What is Needed</th>
+						      <th scope="row" class="left-tab-dksld">We need  ( can you help with this? )</th>
 						      <td>{{$event->whats_needed}}</td>
 						    </tr>
 						  </tbody>
@@ -210,17 +210,9 @@
               <!-- single Form End-->
               <!-- single Form -->
               <tr>
-                <th scope="row">Age</th>
+                <th scope="row">Age / details</th>
                 <td>
                   <input type="number" class="form-control" name="age">
-                </td>
-              </tr>
-              <!-- single Form End-->
-              <!-- single Form -->
-              <tr>
-                <th scope="row">Number of People</th>
-                <td>
-                  <input type="number" class="form-control" name="number_of_adults">
                 </td>
               </tr>
               <!-- single Form End-->
@@ -314,7 +306,7 @@
               <!-- single Form End-->
               <!-- single Form -->
               <tr>
-                <th scope="row">Question</th>
+                <th scope="row">Questions</th>
                 <td>
                   <textarea class="form-control" rows="3" name="question"></textarea>
                 </td>

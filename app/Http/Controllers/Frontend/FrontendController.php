@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Organisation;
 use App\Models\Event;
+use App\Models\Project;
+use Carbon\Carbon;
 
 
 
@@ -18,13 +20,28 @@ class FrontendController extends Controller
      */
     public function index()
     {
-        $organisation = Organisation::orderby('id','desc')->where('status',1)->take(6)->get();
+        // Organisation Code Start
+        $organisation = Organisation::orderby('created_at','desc')->where('status',1)->take(3)->get();
+        // Organisation Code End        
+        // Event Code
+        $nextfewdays = Carbon::today()->addDay(365)->format('Y-m-d');
+        $today = Carbon::today()->format('Y-m-d');
+        $event = Event::orderby('date','asc')
+                ->where('status',1)
+                ->whereBetween('date', [$today, $nextfewdays])
+                ->limit(5)
+                ->get();
+        // Event Code End
+
+        $project = Project::orderby('id','desc')
+                    ->where('status',1)
+                    ->limit(3)
+                    ->take(3)
+                    ->get();
+        
 
 
-        $event = Event::orderby('id','desc')->where('status',1)->limit(5)->get();
-
-
-        return view('frontend.pages.index',compact('organisation','event'));
+        return view('frontend.pages.index',compact('organisation','event','project'));
     }
 
     /**

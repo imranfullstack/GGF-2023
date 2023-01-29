@@ -581,9 +581,11 @@ ul.dropdown-menu.item-skdld.show li a {
     margin: 35px 0;
 }
 
-.content-box-ddks a , .right-blog-skdlskld a {
-    color: #b04a51;
+.content-box-ddks a,
+.right-blog-skdlskld a {
+    color: #000;
     font-weight: 700;
+    text-decoration: none;
 }
 
 .single-sponsor-item {
@@ -608,7 +610,6 @@ a.btn-dksld03d {
     text-decoration: none;
     font-weight: 700;
     border-radius: 50px;
-    float: right;
     margin: 35px 0px;
 }
 
@@ -692,7 +693,6 @@ a.btn-dksld03l {
     text-decoration: none;
     font-weight: 700;
     border-radius: 50px;
-    float: left;
     margin: 35px 0px;
     text-transform: uppercase;
 }
@@ -989,9 +989,10 @@ a.secendery-auth-btn {
              background: #6e933e;
          }
          .title-dkdksldkfdf2.bg-dksld a.first-title-dksld0c {
-             width: 48% !important;
-             display: inline-block;
-         }
+            width: 48% !important;
+            display: inline-block;
+            text-transform: uppercase;
+        }
          .title-dkdksldkfdf2.bg-dksld a.first-title-dksld0c span {
              float: right;
          }
@@ -1101,8 +1102,8 @@ section.page-nav-aria {
     margin: 50px 0 25px 0;
 }
 .read-more-section.right {
-    text-align: right;
-    margin: 50px 0 25px 0;
+    text-align: left;
+    margin: 25px 0 25px 0;
 }
 img.card-img-top {
     padding: 10px 35px;

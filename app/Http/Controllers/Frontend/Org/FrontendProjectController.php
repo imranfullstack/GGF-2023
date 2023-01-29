@@ -49,10 +49,14 @@ class FrontendProjectController extends Controller
      */
     public function project_apply(Request $request,$slug , $postslug)
     {   
+        
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
 
         $org = Organisation::where('slug',$slug)->first();
         $projectid = Project::where('slug',$postslug)->first();
-
         $project = new Projectapply;
         $project->status = 0;
         $project->user_id = Auth::user()->id;
@@ -60,13 +64,11 @@ class FrontendProjectController extends Controller
         $project->organisation_id = $org->id;
         $project->name = $request->name;
         $project->email = $request->email;
+        $project->phone = $request->phone;
         $project->address = $request->address;
-        $project->number_of_people = $request->number_of_people;
-        $project->number_of_adults = $request->number_of_adults;
-        $project->children0_2 = $request->children0_2;
-        $project->children2_12 = $request->children2_12;
+        $project->number_of_people = $request->number_of_people;        
+        $project->age = $request->age;
         $project->bring_resources = $request->bring_resources;
-        $project->Area_of_focus = $request->Area_of_focus;
         $project->being_involved = $request->being_involved;
         $project->special_requests = $request->special_requests;
         $project->requirements = $request->requirements;

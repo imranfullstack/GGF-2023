@@ -1,32 +1,32 @@
+<header class="header desktop">
 
+    <div class="container">
 
-      <header class="header desktop">
+        <nav class="navbar navbar-expand-lg navbar-light">
 
-         <div class="container">
+            <div class="container-fluid">
 
-            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand header-logo" href="{{ URL('/') }}">
 
-               <div class="container-fluid">
+                    <img src="{{ asset('frontend/img/logo/logo.png') }}">
 
-                  <a class="navbar-brand header-logo" href="{{URL('/')}}">
+                </a>
 
-                    <img src="{{asset('frontend/img/logo/logo.png')}}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
 
-                  </a>
+                    <span class="navbar-toggler-icon"></span>
 
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                </button>
 
-                  <span class="navbar-toggler-icon"></span>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                  </button>
-
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 form-top-style">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 form-top-style">
 
                         <li class="nav-item search-form">
 
-                   <!--         <form class="d-flex top-search-aria">
+                            <!--         <form class="d-flex top-search-aria">
 
                               <button class="search-btn-top-1560cdc" type="submit">Search</button>
 
@@ -36,203 +36,180 @@
 
                         </li>
 
-                     </ul>
+                    </ul>
 
-            @if(Auth::user())
+                    @if (Auth::user())
 
-             <ul class="navbar-nav mb-2 mb-lg-0 right-btn-top-026dc">
+                        <ul class="navbar-nav mb-2 mb-lg-0 right-btn-top-026dc">
 
-                <li class="nav-item dropdown">
+                            <li class="nav-item dropdown">
 
-                   <a class="nav-link dropdown-toggle profile2599" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle profile2599" href="#" id="navbarDropdown"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
 
-@if(Auth::user()->image)
+                                    @if (Auth::user()->image)
+                                        <img src="{{ asset('img/upload/pic/' . Auth::user()->image) }}">
+                                    @else
+                                        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+                                    @endif
+                                </a>
 
-                           <img src="{{asset('img/upload/pic/'.Auth::user()->image)}}">
+                                <ul class="dropdown-menu item-skdld" aria-labelledby="navbarDropdown">
 
-@else
+                                    <li>
 
+                                        <a class="dropdown-item" href="{{ route('login') }}">Dashboard</a>
 
+                                    </li>
 
-                          <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+                                    <li>
 
-@endif                          
+                                        <hr class="dropdown-divider">
 
+                                    </li>
 
+                                    <li>
 
-                      
-
-                   </a>
-
-                   <ul class="dropdown-menu item-skdld" aria-labelledby="navbarDropdown">
-
-                      <li>
-
-                         <a class="dropdown-item" href="{{route('login')}}">Dashboard</a>
-
-                      </li>
-
-                      <li>
-
-                         <hr class="dropdown-divider">
-
-                      </li>
-
-                      <li>
-
-                         <a class="dropdown-item" href="{{ route('logout') }}" 
-
-                                       onclick="event.preventDefault();
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
 
                                        document.getElementById('logout-form').submit();">
 
-                                                 Logout
+                                            Logout
 
-                          </a>
+                                        </a>
 
-                      </li>
+                                    </li>
 
-                   </ul>
+                                </ul>
 
-                </li>
+                            </li>
 
-             </ul> 
+                        </ul>
 
 
 
 
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 
-                                        @csrf
+                            @csrf
 
-                                    </form>
+                        </form>
+                    @else
+                        <ul class="navbar-nav mb-2 mb-lg-0 right-btn-top-026dc">
 
+                            <li class="nav-item">
 
+                                <a class="nav-link login-d0c3d6sd" href="{{ route('login') }}">Login</a>
 
+                            </li>
 
+                            <li class="nav-item">
 
-            @else
+                                <a class="nav-link login-d0c3d6sd" href="{{ route('register') }}">Register</a>
 
-              <ul class="navbar-nav mb-2 mb-lg-0 right-btn-top-026dc">
+                            </li>
 
-                <li class="nav-item">
+                        </ul>
 
-                  <a class="nav-link login-d0c3d6sd" href="{{route('login')}}">Login</a>
+                    @endif
 
-                </li>
+                </div>
 
-                <li class="nav-item">
+            </div>
 
-                  <a class="nav-link login-d0c3d6sd" href="{{route('register')}}">Register</a>
+        </nav>
 
-                </li>
+    </div>
 
-              </ul>
+</header>
 
-            @endif               
 
-                  </div>
 
-               </div>
+<header class="header mobile">
 
-            </nav>
+    <div class="container">
 
-         </div>
+        <nav class="navbar navbar-expand-lg navbar-light">
 
-      </header>
+            <div class="container-fluid">
 
+                <a class="navbar-brand header-logo" href="#">
 
+                    <img src="{{ asset('frontend/img/logo/logo.png') }}">
 
-      <header class="header mobile">
+                </a>
 
-         <div class="container">
 
-            <nav class="navbar navbar-expand-lg navbar-light">
 
-               <div class="container-fluid">
 
-                  <a class="navbar-brand header-logo" href="#">
 
-                    <img src="{{asset('frontend/img/logo/logo.png')}}">
 
-                  </a>
 
+                <ul class="navbar-nav mb-2 mb-lg-0 right-btn-top-026dc">
 
+                    <li class="nav-item dropdown">
 
+                        <a class="nav-link dropdown-toggle profile2599" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
 
+                            @if (Auth::user())
 
+                                @if (Auth::user()->image)
+                                    <img src="{{ asset('img/upload/pic/' . Auth::user()->image) }}">
+                                @endif
 
+                            @endif
 
-                     <ul class="navbar-nav mb-2 mb-lg-0 right-btn-top-026dc">
 
-                        <li class="nav-item dropdown">
 
-                           <a class="nav-link dropdown-toggle profile2599" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 
-@if(Auth::user())
 
-  @if(Auth::user()->image)
+                        </a>
 
-       <img src="{{asset('img/upload/pic/'.Auth::user()->image)}}">
+                        <ul class="dropdown-menu item-skdld" aria-labelledby="navbarDropdown">
 
-  @endif
+                            <li>
 
-@endif      
+                                <a class="dropdown-item" href="#">Dashboard</a>
 
+                            </li>
 
+                            <li>
 
+                                <a class="dropdown-item" href="#">Profile</a>
 
+                            </li>
 
-                           </a>
+                            <li>
 
-                           <ul class="dropdown-menu item-skdld" aria-labelledby="navbarDropdown">
+                                <hr class="dropdown-divider">
 
-                              <li>
+                            </li>
 
-                                 <a class="dropdown-item" href="#">Dashboard</a>
+                            <li>
 
-                              </li>
+                                <a class="dropdown-item" href="#">Logout</a>
 
-                              <li>
+                            </li>
 
-                                 <a class="dropdown-item" href="#">Profile</a>
+                        </ul>
 
-                              </li>
+                    </li>
 
-                              <li>
+                </ul>
 
-                                 <hr class="dropdown-divider">
 
-                              </li>
 
-                              <li>
 
-                                 <a class="dropdown-item" href="#">Logout</a>
 
-                              </li>
 
-                           </ul>
 
-                        </li>
+            </div>
 
-                     </ul>
+        </nav>
 
+    </div>
 
-
-
-
-                     
-
-               </div>
-
-            </nav>
-
-         </div>
-
-      </header>
-
-
-
-
-
+</header>
