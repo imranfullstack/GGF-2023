@@ -9,7 +9,7 @@
     <div class="job-position-dksld0c">
 
 
-        <div class="title-dkdksldkfdf2 bg-dksld">
+        <div class="title-dkdksldkfdf2 removepd bg-dksld">
             <a data-bs-toggle="collapse" href="#jobsddsd" role="button" aria-expanded="false" aria-controls="jobsddsd"
                 class="first-title-dksld0c collapsed">POSITIONS <span>
                     <i class="fas fa-caret-down"></i>
@@ -22,7 +22,7 @@
                     <div class="job-position-items">
                         @foreach ($recruits as $item)
                             <!-- Single Position Item Start -->
-                            <div class="single-position-item">
+                            <div class="single-position-item itemgridstyle">
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="left-job-sd">
@@ -61,8 +61,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <hr>
                             <!-- Single Position Item End -->
                             <!-- -------- Job Model Start------------- -->
                             <div class="modal fade  " id="staticBackdrop_{{ $item->id }}" data-bs-backdrop="static"

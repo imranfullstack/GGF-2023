@@ -32,7 +32,6 @@ class FrontendController extends Controller
                 ->limit(5)
                 ->get();
         // Event Code End
-
         $project = Project::orderby('id','desc')
                     ->where('status',1)
                     ->limit(3)

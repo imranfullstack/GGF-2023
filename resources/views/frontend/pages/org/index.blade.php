@@ -137,9 +137,10 @@ li.rightarrow-dksldc0c {
 
                       @include('frontend.pages.org.business.project')
 
-                      @include('frontend.pages.org.business.job')
 
                       @include('frontend.pages.org.business.event')
+                      
+                      @include('frontend.pages.org.business.job')
 
                       @include('frontend.pages.org.business.product')
 

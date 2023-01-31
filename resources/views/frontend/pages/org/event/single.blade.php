@@ -30,16 +30,11 @@
                   	<div class="div-aria-dksld">
                       <div class="row">
                         <div class="col-md-6">   
-                          <h5>Exprience/ Event Name: </h5>
-                          <b>
-                          <p>{{$event->event_name}}</p></b>
+                          <h5>{{$event->event_name}} </h5>
                         </div>
                         <div class="col-md-6">   
-                      <h5>DATE: </h5>
-                      <p>
-                        <b>
-                    {{ Carbon\Carbon::parse($event->date)->format('d M Y') }}</b>
-                      </p>
+                      <h5>{{ Carbon\Carbon::parse($event->date)->format('d M Y') }}</h5>
+                  
                         </div>
                       </div>
                   	</div>
@@ -72,10 +67,7 @@
                   <div class="right-aria">
                   	<div class="location-dksldc">
 
-                     	<h5>Location: </h5>
-                      <p>
-                        <b>{{$event->location}}</b>
-                      </p>
+                     	<h5>{{$event->location}} </h5>
                   	</div>
                      <div class="map-right-ariaddfd">
                  

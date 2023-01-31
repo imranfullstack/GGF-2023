@@ -118,118 +118,117 @@
 
 
 
-@if($organisation)
-            <div class="expiore-ggf-section-d5d6c">
-                <div class="row">
-                    @foreach ($organisation as $org)
-                        <!-- ----- Single Post ------- -->
-                        <div class="col-md-4 orgmainhomes">
-                            <div class="card mb-3" style="max-width: 540px;">
+            @if ($organisation)
+                <div class="expiore-ggf-section-d5d6c">
+                    <div class="row">
+                        @foreach ($organisation as $org)
+                            <!-- ----- Single Post ------- -->
+                            <div class="col-md-4 orgmainhomes">
+                                <div class="card mb-3" style="max-width: 540px;">
 
-                                <div class="row g-0">
+                                    <div class="row g-0">
 
-                                    <div class="col-md-4">
-                                        @if ($org->banner_1)
-                                            <div class="imageorghome"
-                                                style="
+                                        <div class="col-md-4">
+                                            @if ($org->banner_1)
+                                                <div class="imageorghome"
+                                                    style="
                                                 background: url({{ asset('img/upload/org/images/' . $org->banner_1) }}) no-repeat center center/cover;
                                                 height: 100%;
                                                 width: 100%;">
-                                            </div>
-                                        @else
-                                            <div class="imageorghome"
-                                                style="
+                                                </div>
+                                            @else
+                                                <div class="imageorghome"
+                                                    style="
                                                     background: url({{ asset('img/default.jpg') }}) no-repeat center center/cover;
                                                     height: 185px;
                                                     width: 100%;
                                                 ">
+                                                </div>
+                                            @endif
+
+                                        </div>
+
+                                        <div class="col-md-8 border-sldf">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><a href="{{ route('org.index', $org->slug) }}">
+                                                        {{ Str::limit($org->org_name, 12, $end = '...') }}
+                                                    </a></h5>
+
+                                                <p class="card-text">
+
+                                                    {{ Str::limit($org->summary, 20, $end = '...') }}
+                                                </p>
+                                                <a href="{{ route('org.index', $org->slug) }}" class="homeorg"> more</a>
                                             </div>
-                                        @endif
-
-                                    </div>
-
-                                    <div class="col-md-8 border-sldf">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><a href="{{ route('org.index', $org->slug) }}">
-                                                    {{ Str::limit($org->org_name, 12, $end = '...') }}
-                                                </a></h5>
-
-                                            <p class="card-text">
-
-                                                {{ Str::limit($org->summary, 20, $end = '...') }}
-                                            </p>
-                                            <a href="{{ route('org.index', $org->slug) }}" class="homeorg"> more</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- ----- Single Post ------- -->
-                    @endforeach
+                            <!-- ----- Single Post ------- -->
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-@endif            
+            @endif
 
-{{-- Projet Section Start --}}
-@if($project)
+            {{-- Projet Section Start --}}
+            @if ($project)
+                <div class="expiore-ggf-section-d5d6c">
+                    <div class="row">
+                        @foreach ($project as $item)
+                            @php
+                                
+                                $org = App\Models\Organisation::where('id', $item->organisation->id)->first();
+                            @endphp
+                            <!-- ----- Single Post ------- -->
+                            <div class="col-md-4 orgmainhomes">
+                                <div class="card mb-3" style="max-width: 540px;">
 
-            <div class="expiore-ggf-section-d5d6c">
-                <div class="row">
-                    @foreach ($project as $item)
+                                    <div class="row g-0">
 
-@php
-
-$org = App\Models\Organisation::where('id',$item->organisation->id)->first();
-@endphp
-                        <!-- ----- Single Post ------- -->
-                        <div class="col-md-4 orgmainhomes">
-                            <div class="card mb-3" style="max-width: 540px;">
-
-                                <div class="row g-0">
-
-                                    <div class="col-md-4">
-                                        @if ($item->image)
-                                            <div class="imageorghome"
-                                                style="
+                                        <div class="col-md-4">
+                                            @if ($item->image)
+                                                <div class="imageorghome"
+                                                    style="
                                                 background: url({{ asset('img/upload/project/' . $item->image) }}) no-repeat center center/cover;
                                                 height: 100%;
                                                 width: 100%;">
-                                            </div>
-                                        @else
-                                            <div class="imageorghome"
-                                                style="
+                                                </div>
+                                            @else
+                                                <div class="imageorghome"
+                                                    style="
                                                     background: url({{ asset('img/default.jpg') }}) no-repeat center center/cover;
                                                     height: 185px;
                                                     width: 100%;
                                                 ">
+                                                </div>
+                                            @endif
+
+                                        </div>
+
+                                        <div class="col-md-8 border-sldf">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><a href="#">
+                                                        {{ Str::limit($item->name, 12, $end = '...') }}
+                                                    </a></h5>
+                                                <p class="card-text">
+                                                    @if ($item->short_desc)
+                                                        {{ Str::limit($item->short_desc, 20, $end = '...') }}
+                                                    @endif
+                                                </p>
+                                                <a href="{{ route('org.project.single', ['projectslug' => $item->slug, 'slug' => $org->slug]) }}"
+                                                    class="homeorg">more</a>
                                             </div>
-                                        @endif
-
-                                    </div>
-
-                                    <div class="col-md-8 border-sldf">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><a href="#">
-                                                    {{ Str::limit($item->name, 12, $end = '...') }}
-                                                </a></h5>
-                                            <p class="card-text">
-                                                @if($item->short_desc)
-                                                 {{ Str::limit($item->short_desc, 20, $end = '...') }}
-                                                @endif
-                                            </p>
-                                            <a href="{{route('org.project.single',['projectslug'=>$item->slug,'slug'=>$org->slug])}}" class="homeorg">more</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- ----- Single Post ------- -->
-                    @endforeach
+                            <!-- ----- Single Post ------- -->
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-@endif
+            @endif
 
-{{-- Projet Section End --}}
+            {{-- Projet Section End --}}
 
 
         </div>
@@ -275,7 +274,6 @@ $org = App\Models\Organisation::where('id',$item->organisation->id)->first();
 
                             <tr class="bg-dark custom-dd25s3d6cd">
 
-
                                 <th scope="col"></th>
 
                                 <th scope="col">Event</th>
@@ -293,28 +291,17 @@ $org = App\Models\Organisation::where('id',$item->organisation->id)->first();
                         <tbody>
 
                             @php
-                                
                                 $i = 1;
-                                
                             @endphp
-
                             @foreach ($event as $item)
                                 <tr>
-
-
                                     <td>
-
                                         <img src="{{ asset('img/upload/event/' . $item->image) }}" width="50px">
-
                                     </td>
-
                                     <td class="eventname"><b>{{ $item->event_name }}</b></td>
-
                                     <td>
-
-                                        {{ Carbon\Carbon::parse($item->start_date)->format('d M Y') }} <b>-</b>
+                                        {{ Carbon\Carbon::parse($item->date)->format('d M Y') }} <b>-</b>
                                         {{ Carbon\Carbon::parse($item->end_date)->format('d M Y') }} </td>
-
                                     <td>
                                         @if ($item->organisation)
                                             <a href="{{ route('org.index', $item->organisation->slug) }}"
@@ -324,13 +311,7 @@ $org = App\Models\Organisation::where('id',$item->organisation->id)->first();
                                             <span class="text-danger">ORGANISATION REMOVED</span>
                                         @endif
                                     </td>
-
-
-
-
-
                                     <td>
-
                                         @if ($item->organisation)
                                             <a href="{{ route('org.event.single', ['eventslug' => $item->slug, 'slug' => $item->organisation->slug]) }}"
                                                 class="btn btn-green">More</a>
@@ -338,16 +319,8 @@ $org = App\Models\Organisation::where('id',$item->organisation->id)->first();
                                             <span class="text-danger">ORGANISATION REMOVED</span>
                                         @endif
                                     </td>
-
-
                                 </tr>
                             @endforeach
-
-
-
-
-
-
 
                         </tbody>
 
@@ -367,111 +340,111 @@ $org = App\Models\Organisation::where('id',$item->organisation->id)->first();
 
     <!--   <section class="explore-ggf-section">
 
-                                <div class="container">
+                                            <div class="container">
 
 
 
-                                  <div class="section-title">
+                                              <div class="section-title">
 
-                                    <div class="row">
+                                                <div class="row">
 
-                                      <div class="col-md-12">
+                                                  <div class="col-md-12">
 
-                                        <div class="left-title-aria">
+                                                    <div class="left-title-aria">
 
-                                            <h1> <span><i class="fas fa-circle"></i></span>Resources</h1>
+                                                        <h1> <span><i class="fas fa-circle"></i></span>Resources</h1>
 
-                                        </div>
+                                                    </div>
 
-                                      </div>
+                                                  </div>
 
-                                    </div>
+                                                </div>
 
-                                  </div>
+                                              </div>
 
-                                  <div class="expiore-ggf-section-d5d6c">
+                                              <div class="expiore-ggf-section-d5d6c">
 
-                                    <div class="ddd">
+                                                <div class="ddd">
 
-                                      <table class="table table-striped text-center-dlsldkc0">
+                                                  <table class="table table-striped text-center-dlsldkc0">
 
-                                        <thead>
+                                                    <thead>
 
-                                          <tr class="bg-dark custom-dd25s3d6cd">
+                                                      <tr class="bg-dark custom-dd25s3d6cd">
 
-                                            <th scope="col">Name</th>
+                                                        <th scope="col">Name</th>
 
-                                            <th scope="col">Deteils</th>
+                                                        <th scope="col">Deteils</th>
 
-                                            <th scope="col"></th>
+                                                        <th scope="col"></th>
 
-                                          </tr>
+                                                      </tr>
 
-                                        </thead>
+                                                    </thead>
 
-                                        <tbody>
+                                                    <tbody>
 
-                                          <tr>
+                                                      <tr>
 
-                                            <td>01/12/2032</td>
+                                                        <td>01/12/2032</td>
 
-                                            <td>Loram Ipsum dolor sit amet</td>
+                                                        <td>Loram Ipsum dolor sit amet</td>
 
-                                            <td>Business Name</td>
+                                                        <td>Business Name</td>
 
-                                          </tr>
+                                                      </tr>
 
-                                          <tr>
+                                                      <tr>
 
-                                            <td>01/12/2032</td>
+                                                        <td>01/12/2032</td>
 
-                                            <td>Loram Ipsum dolor sit amet</td>
+                                                        <td>Loram Ipsum dolor sit amet</td>
 
-                                            <td>Business Name</td>
+                                                        <td>Business Name</td>
 
-                                          </tr>
+                                                      </tr>
 
-                                          <tr>
+                                                      <tr>
 
-                                            <td>01/12/2032</td>
+                                                        <td>01/12/2032</td>
 
-                                            <td>Loram Ipsum dolor sit amet</td>
+                                                        <td>Loram Ipsum dolor sit amet</td>
 
-                                            <td>Business Name</td>
+                                                        <td>Business Name</td>
 
-                                          </tr>
+                                                      </tr>
 
-                                          <tr>
+                                                      <tr>
 
-                                            <td>01/12/2032</td>
+                                                        <td>01/12/2032</td>
 
-                                            <td>Loram Ipsum dolor sit amet</td>
+                                                        <td>Loram Ipsum dolor sit amet</td>
 
-                                            <td>Business Name</td>
+                                                        <td>Business Name</td>
 
-                                          </tr>
+                                                      </tr>
 
-                                          <tr>
+                                                      <tr>
 
-                                            <td>01/12/2032</td>
+                                                        <td>01/12/2032</td>
 
-                                            <td>Loram Ipsum dolor sit amet</td>
+                                                        <td>Loram Ipsum dolor sit amet</td>
 
-                                            <td>Business Name</td>
+                                                        <td>Business Name</td>
 
-                                          </tr>
+                                                      </tr>
 
-                                        </tbody>
+                                                    </tbody>
 
-                                      </table>
+                                                  </table>
 
-                                    </div>
+                                                </div>
 
-                                  </div>
+                                              </div>
 
-                                </div>
+                                            </div>
 
-                              </section> -->
+                                          </section> -->
 
     <!-- --------------- Explore GGF End----------------- -->
 @endsection()

@@ -23,7 +23,7 @@
                         <div class="col-md-12">
 
                             @foreach ($org->projects as $item)
-                                <div class="project-item">
+                                <div class="project-item itemgridstyle">
                                     <div class="row">
                                         <div class="col-md-2">
                                             <div class="project-image-dksldkfd">
@@ -43,14 +43,11 @@
                                                 </div>
 
                                                 <p>{{ Str::limit($item->short_desc, 110, $end = ' ...') }} </p>
-                                                <a
-                                                    href="{{ route('org.project.single', ['projectslug' => $item->slug, 'slug' => $org->slug]) }}">Read
-                                                    More</a>
+                                                <a href="{{ route('org.project.single', ['projectslug' => $item->slug, 'slug' => $org->slug]) }}">more</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <hr>
                             @endforeach
                         </div>
                     </div>
