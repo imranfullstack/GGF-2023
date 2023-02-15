@@ -22,7 +22,7 @@
 
                         @foreach ($product as $item)
                             <!-- -------- Single Item Start-------- -->
-                            <div class="project-item">
+                            <div class="project-item itemgridstyle">
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="project-image-dksldkfd">
@@ -95,8 +95,7 @@
                     <div class="col-md-12">
                         <div class="read-more-section right">
                             <a href="{{ route('org.product.index', $org->slug) }}"
-                                class="btn-green apply-btn-style-dksld">Read
-                                More</a>
+                                class="btn-green apply-btn-style-dksld">MORE PRODUCT</a>
                         </div>
                     </div>
 

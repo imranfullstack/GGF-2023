@@ -62,9 +62,7 @@
     <li class="@yield('dashboard-active')">
       <a href="{{route('user.index')}}">Dashboard</a>
    </li>
-    <li class="@yield('profile-active')">
-         <a href="{{route('user.profile')}}">Profile</a>
-    </li>
+
     <li class="@yield('setting-active')">
       <a href="{{route('user.setting')}}">Settings</a>
     </li>

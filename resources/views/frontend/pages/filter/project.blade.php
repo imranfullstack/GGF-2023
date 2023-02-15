@@ -801,28 +801,24 @@
 
 
     @php
-        
-        $focus = App\Models\Focused::orderby('id', 'desc')
-            ->where('status', 1)
-            ->get();
-        
-        $structure = App\Models\Ogranisationtype::orderby('id', 'desc')
-            ->where('status', 1)
-            ->get();
-        
-        $provide = App\Models\Provide::orderby('id', 'desc')
-            ->where('status', 1)
-            ->get();
-        
-        $lookingfor = App\Models\Lookingfor::orderby('id', 'desc')
-            ->where('status', 1)
-            ->get();
-        
-        $product = App\Models\Productcat::orderby('id', 'desc')->get();
-        
-        $eventcat = App\Models\Eventcat::orderby('id', 'desc')->get();
-        
-        $projectcat = App\Models\Projectcat::orderby('id', 'desc')->get();
+  
+
+
+        $focus = App\Models\Focused::orderby('name','asc')->where('status',1)->get();
+
+    $structure = App\Models\Ogranisationtype::orderby('name','asc')->where('status',1)->get();
+
+    $provide = App\Models\Provide::orderby('name','asc')->where('status',1)->get();
+
+    $lookingfor = App\Models\Lookingfor::orderby('name','asc')->where('status',1)->get();
+
+    $product = App\Models\Productcat::orderby('name','asc')->get();
+
+    $eventcat =  App\Models\Eventcat::orderby('name','asc')->get();
+
+    $projectcat =  App\Models\Projectcat::orderby('name','asc')->get();
+
+
         
         $service = App\Models\Servicecat::orderby('id', 'desc')->get();
         
@@ -850,7 +846,7 @@
 
                     <div class="modal-header">
 
-                        <h5 class="modal-title" id="exampleModalLabel">Organisation Filter</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><span>Search:</span> Organisation</h5>
 
                     </div>
 
@@ -858,7 +854,7 @@
 
                         <div class="row">
 
-                            <div class="col-md-4">
+                            <div class="col-md-4 boxfixed-dksd">
 
                                 <div class="title-model-style">
 
@@ -901,7 +897,7 @@
 
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-4 boxfixed-dksd">
 
                                 <div class="title-model-style">
 
@@ -938,52 +934,7 @@
 
                             </div>
 
-                            <div class="col-md-4 location-dksld">
-
-                                <div class="title-model-style">
-
-                                    <h5>Looking For </h5>
-
-                                </div>
-
-                                <hr>
-
-
-
-                                <div class="box456d">
-
-                                    @foreach ($lookingfor as $item)
-                                        <!-- -------- Single Form Group -->
-
-                                        <div class="single-from-group">
-
-                                            <div class="form-check">
-
-                                                <input class="form-check-input" type="checkbox" name="lookingfor[]"
-                                                    value="{{ $item->id }}" id="lookingfor{{ $item->id }}">
-
-                                                <label class="form-check-label" for="lookingfor{{ $item->id }}">
-
-                                                    {{ $item->name }}
-
-                                                </label>
-
-                                            </div>
-
-                                        </div>
-
-                                        <!-- -------- Single Form Group End-->
-                                    @endforeach
-
-                                </div>
-
-
-
-
-
-                            </div>
-
-                            <div class="col-md-4 location-dksld">
+                            <div class="col-md-4  location-dksld boxfixed-dksd">
 
                                 <hr>
 
@@ -1060,7 +1011,53 @@
 
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-4 location-dksld boxfixed-dksd">
+
+                                <div class="title-model-style">
+
+                                    <h5>Looking For </h5>
+
+                                </div>
+
+                                <hr>
+
+
+
+                                <div class="box456d">
+
+                                    @foreach ($lookingfor as $item)
+                                        <!-- -------- Single Form Group -->
+
+                                        <div class="single-from-group">
+
+                                            <div class="form-check">
+
+                                                <input class="form-check-input" type="checkbox" name="lookingfor[]"
+                                                    value="{{ $item->id }}" id="lookingfor{{ $item->id }}">
+
+                                                <label class="form-check-label" for="lookingfor{{ $item->id }}">
+
+                                                    {{ $item->name }}
+
+                                                </label>
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- -------- Single Form Group End-->
+                                    @endforeach
+
+                                </div>
+
+
+
+
+
+                            </div>
+
+
+                            <div class="col-md-4 boxfixed-dksd">
 
                                 <hr>
 
@@ -1204,8 +1201,8 @@
 
                     <div class="modal-header">
 
-                        <h5 class="modal-title" id="exampleModalLabel">Exprience / Event Filter</h5>
 
+                        <h5 class="modal-title" id="exampleModalLabel"><span>Search:</span> Exprience & Event</h5>
 
                     </div>
 
@@ -1213,21 +1210,20 @@
 
                         <div class="row">
 
-                            <div class="col-md-12 focus-event">
+                            <div class="col-md-12 focus-event boxfixed-dksd fullwidth">
 
 
 
-                                <label>Search Keyword</label>
+                                <label><b>Search Keyword</b></label>
+                                <br>
 
                                 <br />
 
                                 <input type="text" name="keyword" class="form-control">
 
-                                <br />
+                                <br >
 
-                                <label>Category</label>
 
-                                <br />
 
                                 @foreach ($eventcat as $item)
                                     <!-- -------- Single Form Group -->
@@ -1310,12 +1306,13 @@
 
             <div class="modal-dialog modal-dialog modal-xl">
 
-                <div class="modal-content">
+                <div class="modal-content ">
 
                     <div class="modal-header">
 
-                        <h5 class="modal-title" id="exampleModalLabel"> PROJECT FILTER</h5>
 
+                        <h5 class="modal-title" id="exampleModalLabel"><span class="bdl-skdlc">Search: </span>   PROJECT</h5>
+                                <br >
 
                     </div>
 
@@ -1323,7 +1320,7 @@
 
                         <div class="row">
 
-                            <div class="col-md-12 focus-event">
+                            <div class="col-md-12 focus-event boxfixed-dksd fullwidth">
 
 
 
@@ -1331,21 +1328,15 @@
 
 
 
-                                <label>Search</label>
+                                <label><b>Search</b></label>
 
                                 <br />
 
                                 <input type="text" name="keyword" class="form-control">
 
-                                <br />
 
 
-
-                                <label>Category</label>
-
-
-
-                                <br />
+                                <br>
 
                                 @foreach ($projectcat as $item)
                                     @php
@@ -1551,11 +1542,21 @@
 
                     <!-- Places panel (auto removable) -->
 
-                    <div id="activmap-places" class="hidden-xs">
 
-                        <h2 class="result-cound-skdsdf">Results - {{ $project->count() }}</h2>
+                    
+                    @if ($project->count() >= 1)
+                        <div id="activmap-places" class="hidden-xs">
 
-                    </div>
+                            <h2 class="result-cound-skdsdf">Results -
+                                {{ $project->count() }}
+                            </h2>
+                        </div>
+                    @else
+                        <div class="no-found-message">
+
+                            <h1 class="text-danger">Sorry No Project Found</h1>
+                        </div>
+                    @endif
 
                 </div>
 

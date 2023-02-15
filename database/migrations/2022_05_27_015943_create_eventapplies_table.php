@@ -26,13 +26,8 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->integer('age')->nullable();
             $table->integer('number_of_people')->nullable();
-            $table->integer('number_of_adults')->nullable();
-            $table->string('children2_12')->nullable();
-            $table->string('children0_2')->nullable();
             $table->string('arrival_date')->nullable();
-            $table->string('arrival_time')->nullable();
             $table->string('departure_date')->nullable();
-            $table->string('departure_time')->nullable();
             $table->string('require_pickup')->nullable();
             $table->string('special_requests')->nullable();
             $table->string('requirements')->nullable();

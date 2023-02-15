@@ -49,16 +49,12 @@ class FrontendServiceController extends Controller
         $service->email = $request->email;
         $service->phone = $request->phone;
         $service->address = $request->address;
-        $service->indvidual_or_group = $request->indvidual_or_group;
-        $service->number_people = $request->number_people;
         $service->preferred_start_date = $request->preferred_start_date;
         $service->preferred_start_time = $request->preferred_start_time;
         $service->preferred_completion_date = $request->preferred_completion_date;
         $service->preferred_completion_time = $request->preferred_completion_time;
         $service->special_requests = $request->special_requests;
-        $service->requirements = $request->requirements;
-        $service->comments = $request->comments;
-        $service->question = $request->question;
+        $service->comments_question = $request->comments_question;
         $service->save();
 
 

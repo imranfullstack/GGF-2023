@@ -210,30 +210,6 @@
               <!-- single Form End-->
               <!-- single Form -->
               <tr>
-                <th scope="row">Number of adults</th>
-                <td>
-                  <input type="number" class="form-control" name="number_of_adults">
-                </td>
-              </tr>
-              <!-- single Form End-->
-              <!-- single Form -->
-              <tr>
-                <th scope="row">Children 2 - 12</th>
-                <td>
-                  <input type="text" class="form-control" name="children2_12">
-                </td>
-              </tr>
-              <!-- single Form End-->
-              <!-- single Form -->
-              <tr>
-                <th scope="row">Infants 0 - 2</th>
-                <td>
-                  <input type="text" class="form-control" name="children0_2">
-                </td>
-              </tr>
-              <!-- single Form End-->
-              <!-- single Form -->
-              <tr>
                 <th scope="row">Arrival date</th>
                 <td>
                   <input type="date" class="form-control" name="arrival_date">
@@ -242,25 +218,9 @@
               <!-- single Form End-->
               <!-- single Form -->
               <tr>
-                <th scope="row">Arrival time</th>
-                <td>
-                  <input type="time" class="form-control" name="arrival_time">
-                </td>
-              </tr>
-              <!-- single Form End-->
-              <!-- single Form -->
-              <tr>
                 <th scope="row">Departure Date</th>
                 <td>
                   <input type="date" class="form-control" name="departure_date">
-                </td>
-              </tr>
-              <!-- single Form End-->
-              <!-- single Form -->
-              <tr>
-                <th scope="row">Departure time</th>
-                <td>
-                  <input type="time" class="form-control" name="departure_time">
                 </td>
               </tr>
               <!-- single Form End-->

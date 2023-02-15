@@ -53,7 +53,7 @@ class FrontendRecruitController extends Controller
 
 
         $job = new Jobapply;
-        $job->status = 1;
+        $job->status = 0;
         $job->user_id = Auth::user()->id;
         $job->organisation_id = $org->id;
         $job->recruit_id = $recruit->id;
@@ -63,31 +63,22 @@ class FrontendRecruitController extends Controller
         $job->address = $request->address;
         $job->age = $request->age;
         $job->indivisual_or_group = $request->indivisual_or_group;
-
-       
-
        if($request->hasFile('upload_resume')){
             $resume = $request->file('upload_resume');
             $resume_name = $slug.'-'.uniqid().'.'. $resume->getClientOriginalExtension();
             $request->upload_resume->move(public_path('/img/upload/org/resume/'), $resume_name);
             $job->upload_resume = $resume_name;
         }
-
-
         $job->about_yourself = $request->about_yourself;
-        $job->arrival_date = $request->arrival_date;
-        $job->arrival_time = $request->arrival_time;
-        $job->depature_date = $request->depature_date;
-        $job->depature_time = $request->depature_time;
-        $job->require_pikup = $request->require_pikup;
-        $job->equpment_or_resources = $request->equpment_or_resources;
-        $job->requerments = $request->requerments;
+
+        $job->available_from = $request->available_from;
+        $job->available_until = $request->available_until;
+        $job->require_transport = $request->require_transport;
+
+
         $job->comment = $request->comment;
         $job->question = $request->question;
         $job->save();
-
-
-
         return redirect()->route('payment.success');
 
 

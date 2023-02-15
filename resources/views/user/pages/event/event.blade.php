@@ -374,41 +374,9 @@ a.first-title-dksld0c span {
               <!-- single Form End-->
               <!-- single Form -->
               <tr>
-                <th scope="row">Number of adults</th>
-                <td>
-                  {{$event->number_of_adults}}
-                </td>
-              </tr>
-              <!-- single Form End-->
-              <!-- single Form -->
-              <tr>
-                <th scope="row">Children 2 - 12</th>
-                <td>
-                  {{$event->children2_12}}
-                </td>
-              </tr>
-              <!-- single Form End-->
-              <!-- single Form -->
-              <tr>
-                <th scope="row">Infants 0 - 2</th>
-                <td>
-                  {{$event->children0_2}}
-                </td>
-              </tr>
-              <!-- single Form End-->
-              <!-- single Form -->
-              <tr>
                 <th scope="row">Arrival date</th>
                 <td>
-                  {{$event->arrival_date}}
-                </td>
-              </tr>
-              <!-- single Form End-->
-              <!-- single Form -->
-              <tr>
-                <th scope="row">Arrival time</th>
-                <td>
-                  {{$event->arrival_time}}
+                  {{ Carbon\Carbon::parse($event->arrival_date)->format('d M Y') }}
                 </td>
               </tr>
               <!-- single Form End-->
@@ -416,15 +384,7 @@ a.first-title-dksld0c span {
               <tr>
                 <th scope="row">Departure Date</th>
                 <td>
-                  {{$event->departure_date}}
-                </td>
-              </tr>
-              <!-- single Form End-->
-              <!-- single Form -->
-              <tr>
-                <th scope="row">Departure time</th>
-                <td>
-                  {{$event->departure_time}}
+                  {{ Carbon\Carbon::parse($event->departure_date)->format('d M Y') }}
                 </td>
               </tr>
               <!-- single Form End-->

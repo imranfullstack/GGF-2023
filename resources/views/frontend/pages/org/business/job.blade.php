@@ -37,7 +37,7 @@
 
                                             <a type="button" data-bs-toggle="modal"
                                                 data-bs-target="#staticBackdrop_{{ $item->id }}">
-                                                Read More
+                                                more
                                             </a>
 
                                             <span></span>
@@ -49,7 +49,7 @@
                                                 {{ Carbon\Carbon::parse($item->end_date)->format('d M Y') }}
                                             </p>
                                             <p><b>Location:</b> {{ $item->location }}</p>
-                                            <p><b>Payment:</b> 20020 BDT</p>
+                                            <p><b>Payment:</b> {{ $item->rate_of_pay }} AUD</p>
                                             <!-- Button trigger modal -->
                                             <a type="button" class="btn-green apply-btn-style-dksld"
                                                 data-bs-toggle="modal"
@@ -85,10 +85,10 @@
                                                         <div class="col-md-9">
                                                             <h4>{{ $org->org_name }}</h4>
                                                             <hr>
-                                                            <b>Job Open:</b>
-                                                            {{ Carbon\Carbon::parse($item->start_date)->format('d M Y') }}
-                                                            || <b>Dateline</b>
-                                                            {{ Carbon\Carbon::parse($item->end_date)->format('d M Y') }}
+                                                            <b>Available from</b>
+                                                            {{ Carbon\Carbon::parse($item->available_from)->format('d M Y') }}
+                                                            || <b>Available until</b>
+                                                            {{ Carbon\Carbon::parse($item->available_until)->format('d M Y') }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -100,7 +100,7 @@
                                                     <tbody>
                                                         <tr>
                                                             <th scope="row">Rate of Pay</th>
-                                                            <td>{{ $item->rate_of_pay }}</td>
+                                                            <td>{{ $item->rate_of_pay }} AUD</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Job Opened</th>
@@ -170,7 +170,7 @@
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="job_popup_apply_{{ $item->id }}">Application:
+                                            <h5 class="modal-title" id="job_popup_apply_{{ $item->id }}">
                                                 {{ $item->title }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -183,13 +183,14 @@
                                                             <img src="{{ asset('img/upload/org/logo/' . $org->logo) }}"
                                                                 width="100px">
                                                         </div>
+                                                       
                                                         <div class="col-md-9">
                                                             <h4>{{ $org->org_name }}</h4>
-                                                            {{-- <hr>
-                                                            <b>Job Open:</b>
-                                                            {{ Carbon\Carbon::parse($item->start_date)->format('d M Y') }}
-                                                            || <b>Dateline</b>
-                                                            {{ Carbon\Carbon::parse($item->end_date)->format('d M Y') }} --}}
+                                                            <hr>
+                                                            <b>Available from</b>
+                                                            {{ Carbon\Carbon::parse($item->available_from)->format('d M Y') }}
+                                                            || <b>Available until</b>
+                                                            {{ Carbon\Carbon::parse($item->available_until)->format('d M Y') }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -277,49 +278,31 @@
                                                             <!-- single Form End-->
                                                             <!-- single Form -->
                                                             <tr>
-                                                                <th scope="row">Arrival date</th>
+                                                                <th scope="row">Available from</th>
                                                                 <td>
                                                                     <input type="date" class="form-control"
-                                                                        name="arrival_date">
+                                                                        name="available_from">
                                                                 </td>
                                                             </tr>
                                                             <!-- single Form End-->
                                                             <!-- single Form -->
                                                             <tr>
-                                                                <th scope="row">Arrival Time</th>
-                                                                <td>
-                                                                    <input type="time" class="form-control"
-                                                                        name="arrival_time">
-                                                                </td>
-                                                            </tr>
-                                                            <!-- single Form End-->
-                                                            <!-- single Form -->
-                                                            <tr>
-                                                                <th scope="row">Depature date</th>
+                                                                <th scope="row">Available until</th>
                                                                 <td>
                                                                     <input type="date" class="form-control"
-                                                                        name="depature_date">
+                                                                        name="available_until">
                                                                 </td>
                                                             </tr>
                                                             <!-- single Form End-->
                                                             <!-- single Form -->
                                                             <tr>
-                                                                <th scope="row">Depature date</th>
-                                                                <td>
-                                                                    <input type="time" class="form-control"
-                                                                        name="depature_time">
-                                                                </td>
-                                                            </tr>
-                                                            <!-- single Form End-->
-                                                            <!-- single Form -->
-                                                            <tr>
-                                                                <th scope="row">Require pikup</th>
+                                                                <th scope="row">Require transport</th>
                                                                 <td>
 
 
                                                                     <div class="form-check">
                                                                         <input class="form-check-input" type="radio"
-                                                                            name="require_pikup" id="yes"
+                                                                            name="require_transport" id="yes"
                                                                             checked value="1">
                                                                         <label class="form-check-label"
                                                                             for="yes">
@@ -328,7 +311,7 @@
                                                                     </div>
                                                                     <div class="form-check">
                                                                         <input class="form-check-input" type="radio"
-                                                                            name="require_pikup" id="no"
+                                                                            name="require_transport" id="no"
                                                                             value="0">
                                                                         <label class="form-check-label"
                                                                             for="no">
@@ -342,7 +325,7 @@
                                                             <!-- single Form End-->
                                                             <!-- single Form -->
                                                             <tr>
-                                                                <th scope="row">Equpment Or Resources you need</th>
+                                                                <th scope="row">Equpment or resources you need</th>
                                                                 <td>
                                                                     <input type="text" class="form-control"
                                                                         name="equpment_or_resources">
@@ -351,7 +334,7 @@
                                                             <!-- single Form End-->
                                                             <!-- single Form -->
                                                             <tr>
-                                                                <th scope="row">requerments</th>
+                                                                <th scope="row">Requerments</th>
                                                                 <td>
                                                                     <input type="text" class="form-control"
                                                                         name="requerments">
@@ -410,7 +393,7 @@
                         <div class="col-md-12">
                             <div class="read-more-section right">
                                 <a href="{{ route('org.recruit.index', $org->slug) }}"
-                                    class="btn-green apply-btn-style-dksld">More Jobs</a>
+                                    class="btn-green apply-btn-style-dksld">MORE POSITIONS</a>
                             </div>
                         </div>
                     </div>

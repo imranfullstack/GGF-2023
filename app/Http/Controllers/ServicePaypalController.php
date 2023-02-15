@@ -26,8 +26,7 @@ class ServicePaypalController extends Controller
         $serviceapply = Serviceapply::where('id',$serviceapplyid)->first();
         $balance = Servicebalance::where('organisation_id',$org->id)->first();
     
-        $total = $service->price * $serviceapply->number_people;
-
+        $total = $service->price;
          $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();

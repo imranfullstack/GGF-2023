@@ -24,16 +24,12 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
-            $table->string('indvidual_or_group')->nullable();
-            $table->integer('number_people')->nullable();
             $table->string('preferred_start_date')->nullable();
             $table->string('preferred_start_time')->nullable();
             $table->string('preferred_completion_date')->nullable();
             $table->string('preferred_completion_time')->nullable();
             $table->string('special_requests')->nullable();
-            $table->string('requirements')->nullable();
-            $table->string('comments')->nullable();
-            $table->string('question')->nullable();
+            $table->string('comments_question')->nullable();
             $table->timestamps();
         });
     }

@@ -363,27 +363,9 @@ a.first-title-dksld0c span {
                 </td>
               </tr>         
               <tr>
-                <th scope="row">Special Requests</th>
+                <th scope="row">Comment/ Question</th>
                 <td>
-                	{{$product->special_request}}
-                </td>
-              </tr>   
-              <tr>
-                <th scope="row">Requirements</th>
-                <td>
-                	{{$product->requirement}}
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Comments</th>
-                <td>
-                	{{$product->comment}}
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Question</th>
-                <td>
-                	{{$product->question}}
+                	{{$product->comment_question}}
                 </td>
               </tr>
               <tr>

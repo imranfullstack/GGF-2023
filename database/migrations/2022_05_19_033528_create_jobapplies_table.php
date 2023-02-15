@@ -27,13 +27,11 @@ return new class extends Migration
             $table->string('indivisual_or_group')->nullable();
             $table->string('upload_resume')->nullable();
             $table->text('about_yourself')->nullable();
-            $table->string('arrival_date')->nullable();
-            $table->string('arrival_time')->nullable();
-            $table->string('depature_date')->nullable();
-            $table->string('depature_time')->nullable();
-            $table->string('require_pikup')->nullable();
-            $table->string('equpment_or_resources')->nullable();
-            $table->string('requerments')->nullable();
+
+            $table->string('available_from')->nullable();
+            $table->string('available_until')->nullable();            
+            $table->string('require_transport')->nullable();
+            
             $table->text('comment')->nullable();
             $table->text('question')->nullable();
             $table->timestamps();

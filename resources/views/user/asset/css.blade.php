@@ -41,6 +41,11 @@
     font-weight: 700;
     font-size: 41px;
 }
+.input-body-fieldddd select.form-select , .input-body-fieldddd .default.text {
+    font-size: 16px;
+    padding: 8px 21px;
+}
+
 
 .btnd.navbtn.click {
     margin-left: 11px;
@@ -195,7 +200,50 @@ span.far.fa-times {
 .btnd.navbtn.click {
     margin-top: 11px;
 }
+.title-dkdksldkfdf2:before {
+    position: absolute;
+    background: #faebb6;
+    content: "";
+    left: -45px;
+    right: 0;
+    width: 62%;
+    height: 56px;
+    z-index: -2;
+    top: -8px;
+    border-radius: 0 20px 20px 0;
+}
+.manuleftuser {
+    background: #84b04a;
+    padding: 50px 0;
+    height: 100%;
+    border: 1px solid #ffffff52;
+}
+footer.footer {
+    margin-top: 0px;
+}
 
+.title-dkdksldkfdf2:before {
+    left: -90px;
+}
+.main_content {
+    overflow: hidden;
+}
+.manuleftuser ul li {
+    display: block;
+    margin: 0;
+}
+manuleftuser ul {
+    margin: 0;
+    padding: 0;
+}
+.manuleftuser ul li a {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 17px;
+}
 </style>
 
 

@@ -40,7 +40,7 @@
                   <div class="project-items-section">
 @foreach($product as $item)                  	
                      <!-- -------- Single Item Start-------- -->
-                     <div class="project-item">
+                     <div class="project-item itemgridstyle">
                         <div class="row">
                            <div class="col-md-3">
                               <div class="project-image-dksldkfd">

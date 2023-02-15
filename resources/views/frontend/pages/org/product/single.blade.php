@@ -185,27 +185,9 @@
                 </td>
               </tr>         
               <tr>
-                <th scope="row">Special Requests</th>
+                <th scope="row">Comments / Questions </th>
                 <td>
-                  <input type="text" class="form-control" name="special_request">
-                </td>
-              </tr>   
-              <tr>
-                <th scope="row">Requirements</th>
-                <td>
-                  <input type="number" class="form-control" name="requirement">
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Comments</th>
-                <td>
-                  <textarea class="form-control" rows="3" name="comment"></textarea>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Questions</th>
-                <td>
-                  <textarea class="form-control" rows="3" name="question"></textarea>
+                  <textarea class="form-control" rows="3" name="comment_question"></textarea>
                 </td>
               </tr>
               <tr>

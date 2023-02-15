@@ -26,7 +26,7 @@
                 @endphp
                 <!-- -------- Single Item Start-------- -->
                 @foreach ($service as $item)
-                    <div class="project-item">
+                    <div class="project-item itemgridstyle">
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="project-image-dksldkfd">
@@ -49,7 +49,7 @@
                                             <a type="button" class="btn-green apply-btn-style-dksld"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#service_info_popup_{{ $item->id }}">
-                                                More Information
+                                                more
                                             </a>
                                         </div>
                                         <div class="col-md-6">
@@ -236,73 +236,45 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Indvidual or Group</th>
-                                                        <td>
-                                                            <input type="text" class="form-control"
-                                                                name="indvidual_or_group">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Number of People</th>
-                                                        <td>
-                                                            <input type="text" class="form-control"
-                                                                name="number_people">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Preferred start Date</th>
+                                                        <th>Preferred start date</th>
                                                         <td>
                                                             <input type="date" class="form-control"
                                                                 name="preferred_start_date">
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Preferred Start Time</th>
+                                                        <th>Preferred start time</th>
                                                         <td>
                                                             <input type="time" class="form-control"
                                                                 name="preferred_start_time">
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Preferred Completion Date</th>
+                                                        <th>Preferred completion date</th>
                                                         <td>
                                                             <input type="date" class="form-control"
                                                                 name="preferred_completion_date">
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Preferred Completion time</th>
+                                                        <th>Preferred completion time</th>
                                                         <td>
                                                             <input type="time" class="form-control"
                                                                 name="preferred_completion_time">
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Social Requests</th>
+                                                        <th>Special requests</th>
                                                         <td>
                                                             <input type="text" class="form-control"
                                                                 name="special_requests">
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Requierments</th>
+                                                        <th>comments / questions</th>
                                                         <td>
                                                             <input type="text" class="form-control"
-                                                                name="requirements">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Comments</th>
-                                                        <td>
-                                                            <input type="text" class="form-control"
-                                                                name="comments">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Questions</th>
-                                                        <td>
-                                                            <input type="text" class="form-control"
-                                                                name="question">
+                                                                name="comments_question">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -336,7 +308,6 @@
                     </form>
 
 
-                    <hr>
                 @endforeach()
                 <!-- -------- Single Item end-------- -->
 
@@ -345,8 +316,7 @@
                 <div class="col-md-12">
                     <div class="read-more-section right">
                         <a href="{{ route('org.service.index', $org->slug) }}"
-                            class="btn-green apply-btn-style-dksld">Read
-                            More</a>
+                            class="btn-green apply-btn-style-dksld">MORE</a>
                     </div>
                 </div>
             </div>

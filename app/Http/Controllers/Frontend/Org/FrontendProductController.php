@@ -60,10 +60,7 @@ class FrontendProductController extends Controller
                 $product->phone = $request->phone;
                 $product->quantity = $request->quantity;
                 $product->delivery_address = $request->delivery_address;
-                $product->special_request = $request->special_request;
-                $product->requirement = $request->requirement;
-                $product->comment = $request->comment;
-                $product->question = $request->question;
+                $product->comment_question = $request->comment_question;
                 $product->save();
                  
                     

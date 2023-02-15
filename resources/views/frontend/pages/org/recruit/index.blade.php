@@ -77,7 +77,7 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Job Title: {{ $item->title }}</h5>
+                                        <h5 class="modal-title" id="staticBackdropLabel"> {{ $item->title }}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -177,7 +177,7 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="job_popup_apply_{{ $item->id }}">Job Title:
+                                        <h5 class="modal-title" id="job_popup_apply_{{ $item->id }}">
                                             {{ $item->title }}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
@@ -212,13 +212,15 @@
                                                 action="{{ route('org.recruit.store', ['jobslug' => $item->slug, 'slug' => $org->slug]) }}"
                                                 method="post" enctype="multipart/form-data">
                                                 @csrf
+                                                
                                                 <table class="table">
                                                     <tbody>
                                                         <!-- single Form -->
                                                         <tr>
                                                             <th scope="row">Name</th>
                                                             <td>
-                                                                <input type="text" class="form-control" name="name">
+                                                                <input type="text" class="form-control"
+                                                                    name="name">
                                                             </td>
                                                         </tr>
                                                         <!-- single Form End-->
@@ -226,7 +228,8 @@
                                                         <tr>
                                                             <th scope="row">Email</th>
                                                             <td>
-                                                                <input type="email" class="form-control" name="email">
+                                                                <input type="email" class="form-control"
+                                                                    name="email">
                                                             </td>
                                                         </tr>
                                                         <!-- single Form End-->
@@ -259,7 +262,7 @@
                                                         <!-- single Form End-->
                                                         <!-- single Form -->
                                                         <tr>
-                                                            <th scope="row">Indivisual Or Group</th>
+                                                            <th scope="row">Individual or Group</th>
                                                             <td>
                                                                 <input type="text" class="form-control"
                                                                     name="indivisual_or_group">
@@ -277,7 +280,8 @@
                                                         <!-- single Form End-->
                                                         <!-- single Form -->
                                                         <tr>
-                                                            <th scope="row">Summary Information About Yourself</th>
+                                                            <th scope="row">Summary information about yourself
+                                                            </th>
                                                             <td>
                                                                 <textarea class="form-control" rows="3" name="about_yourself"></textarea>
                                                             </td>
@@ -285,59 +289,43 @@
                                                         <!-- single Form End-->
                                                         <!-- single Form -->
                                                         <tr>
-                                                            <th scope="row">Arrival date</th>
+                                                            <th scope="row">Available from</th>
                                                             <td>
                                                                 <input type="date" class="form-control"
-                                                                    name="arrival_date">
+                                                                    name="available_from">
                                                             </td>
                                                         </tr>
                                                         <!-- single Form End-->
                                                         <!-- single Form -->
                                                         <tr>
-                                                            <th scope="row">Arrival Time</th>
-                                                            <td>
-                                                                <input type="time" class="form-control"
-                                                                    name="arrival_time">
-                                                            </td>
-                                                        </tr>
-                                                        <!-- single Form End-->
-                                                        <!-- single Form -->
-                                                        <tr>
-                                                            <th scope="row">Depature date</th>
+                                                            <th scope="row">Available until</th>
                                                             <td>
                                                                 <input type="date" class="form-control"
-                                                                    name="depature_date">
+                                                                    name="available_until">
                                                             </td>
                                                         </tr>
                                                         <!-- single Form End-->
                                                         <!-- single Form -->
                                                         <tr>
-                                                            <th scope="row">Depature date</th>
-                                                            <td>
-                                                                <input type="time" class="form-control"
-                                                                    name="depature_time">
-                                                            </td>
-                                                        </tr>
-                                                        <!-- single Form End-->
-                                                        <!-- single Form -->
-                                                        <tr>
-                                                            <th scope="row">Require pikup</th>
+                                                            <th scope="row">Require transport</th>
                                                             <td>
 
 
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="radio"
-                                                                        name="require_pikup" id="yes" checked
-                                                                        value="1">
-                                                                    <label class="form-check-label" for="yes">
+                                                                        name="require_transport" id="yes"
+                                                                        checked value="1">
+                                                                    <label class="form-check-label"
+                                                                        for="yes">
                                                                         Yes
                                                                     </label>
                                                                 </div>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="radio"
-                                                                        name="require_pikup" id="no"
+                                                                        name="require_transport" id="no"
                                                                         value="0">
-                                                                    <label class="form-check-label" for="no">
+                                                                    <label class="form-check-label"
+                                                                        for="no">
                                                                         No
                                                                     </label>
                                                                 </div>
@@ -348,7 +336,7 @@
                                                         <!-- single Form End-->
                                                         <!-- single Form -->
                                                         <tr>
-                                                            <th scope="row">Equpment Or Resources you need</th>
+                                                            <th scope="row">Equpment or resources you need</th>
                                                             <td>
                                                                 <input type="text" class="form-control"
                                                                     name="equpment_or_resources">
@@ -357,7 +345,7 @@
                                                         <!-- single Form End-->
                                                         <!-- single Form -->
                                                         <tr>
-                                                            <th scope="row">requerments</th>
+                                                            <th scope="row">Requerments</th>
                                                             <td>
                                                                 <input type="text" class="form-control"
                                                                     name="requerments">

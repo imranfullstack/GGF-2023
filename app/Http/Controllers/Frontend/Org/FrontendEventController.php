@@ -62,13 +62,8 @@ class FrontendEventController extends Controller
         $event->address = $request->address;
         $event->special_requests = $request->special_requests;
         $event->number_of_people = $request->number_of_people;
-        $event->number_of_adults = $request->number_of_adults;
-        $event->children2_12 = $request->children2_12;
-        $event->children0_2 = $request->children0_2;
         $event->arrival_date = $request->arrival_date;
-        $event->arrival_time = $request->arrival_time;
         $event->departure_date = $request->departure_date;
-        $event->departure_time = $request->departure_time;
         $event->require_pickup = $request->require_pickup;
         $event->requirements = $request->requirements;
         $event->comments = $request->comments;

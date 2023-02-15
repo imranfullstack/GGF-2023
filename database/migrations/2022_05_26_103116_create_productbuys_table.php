@@ -25,10 +25,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('quantity')->nullable();
             $table->string('delivery_address')->nullable();
-            $table->string('special_request')->nullable();
-            $table->text('requirement')->nullable();
-            $table->text('comment')->nullable();
-            $table->text('question')->nullable();
+            $table->text('comment_question')->nullable();
             $table->timestamps();
         });
     }

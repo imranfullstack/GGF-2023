@@ -1,784 +1,761 @@
 @extends('frontend.master')
 
 @section('style')
+    <style>
+        footer.footer {
 
+            display: none;
 
+        }
 
-    
+        .col-md-3.col-lg-2.very-left-map {
 
-        <style>
+            height: 82vh !important;
 
-footer.footer {
+            overflow: auto;
 
-    display: none;
+        }
 
-}
+        #menu-toggle {
 
-.col-md-3.col-lg-2.very-left-map {
+            color: white;
 
-    height: 82vh !important;
+            position: absolute;
 
-    overflow: auto;
+            top: 46px;
 
-}
+            left: -45.75px;
 
-#menu-toggle{
+            transform: rotate(90deg);
 
-color:white;
+            background: #84b04a;
 
-position: absolute;
+        }
 
-top: 46px;
+        #wrapper {
 
-left: -45.75px;
+            padding-left: 50%;
 
-transform: rotate(90deg);
+            -webkit-transition: all 0.5s ease;
 
-background: #84b04a;
+            -moz-transition: all 0.5s ease;
 
-}
+            -o-transition: all 0.5s ease;
 
-#wrapper {
+            transition: all 0.5s ease;
 
-  padding-left: 50%;
+        }
 
-  -webkit-transition: all 0.5s ease;
+        #wrapper.toggled {
 
-  -moz-transition: all 0.5s ease;
+            padding-left: 0px;
 
-  -o-transition: all 0.5s ease;
+        }
 
-  transition: all 0.5s ease;
+        #sidebar-wrapper {
 
-}
+            position: fixed;
 
-#wrapper.toggled {
+            left: 250px;
 
-  padding-left: 0px;
+            width: 50%;
 
-}
+            height: 86.5%;
 
-#sidebar-wrapper {
+            margin-left: -250px;
 
-    position: fixed;
+            overflow-y: hidden;
 
-    left: 250px;
+            overflow-x: hidden;
 
-    width: 50%;
+            -webkit-transition: all 0.5s ease;
 
-    height: 86.5%;
+            -moz-transition: all 0.5s ease;
 
-    margin-left: -250px;
+            -o-transition: all 0.5s ease;
 
-    overflow-y: hidden;
+            transition: all 0.5s ease;
 
-    overflow-x: hidden;
+        }
 
-    -webkit-transition: all 0.5s ease;
+        #wrapper.toggled #sidebar-wrapper {
 
-    -moz-transition: all 0.5s ease;
+            width: 0px;
 
-    -o-transition: all 0.5s ease;
+        }
 
-    transition: all 0.5s ease;
+        #page-content-wrapper {
 
-}
+            position: absolute;
 
-#wrapper.toggled #sidebar-wrapper {
+            width: 50%;
 
-    width: 0px;
+        }
 
-}
+        #wrapper.toggled #page-content-wrapper {
 
-#page-content-wrapper {  
+            position: absolute;
 
-    position: absolute;
+            margin-right: -250px;
 
-    width: 50%;
+            width: 100%;
 
-}
+        }
 
-#wrapper.toggled #page-content-wrapper {
+        /* Sidebar Styles */
 
-  position: absolute;
+        .sidebar-nav {
 
-  margin-right: -250px;
+            position: absolute;
 
-  width:100%;
+            top: 0;
 
-}
+            width: 250px;
 
-/* Sidebar Styles */
+            margin: 0;
 
-.sidebar-nav {
+            padding: 0;
 
-  position: absolute;
+            list-style: none;
 
-  top: 0;
+        }
 
-  width: 250px;
+        .sidebar-nav li {
 
-  margin: 0;
+            text-indent: 20px;
 
-  padding: 0;
+            line-height: 40px;
 
-  list-style: none;
+        }
 
-}
+        .sidebar-nav li a {
 
-.sidebar-nav li {
+            display: block;
 
-  text-indent: 20px;
+            text-decoration: none;
 
-  line-height: 40px;
+            color: #999999;
 
-}
+        }
 
-.sidebar-nav li a {
+        .sidebar-nav li a:hover {
 
-  display: block;
+            text-decoration: none;
 
-  text-decoration: none;
+            color: #fff;
 
-  color: #999999;
+            background: rgba(255, 255, 255, 0.2);
 
-}
+        }
 
-.sidebar-nav li a:hover {
+        .sidebar-nav li a:active,
+        .sidebar-nav li a:focus {
 
-  text-decoration: none;
+            text-decoration: none;
 
-  color: #fff;
+        }
 
-  background: rgba(255, 255, 255, 0.2);
+        .sidebar-nav>.sidebar-brand {
 
-}
+            height: 65px;
 
-.sidebar-nav li a:active, .sidebar-nav li a:focus {
+            font-size: 18px;
 
-  text-decoration: none;
+            line-height: 60px;
 
-}
+        }
 
-.sidebar-nav>.sidebar-brand {
+        .sidebar-nav>.sidebar-brand a {
 
-  height: 65px;
+            color: #999999;
 
-  font-size: 18px;
+        }
 
-  line-height: 60px;
+        .sidebar-nav>.sidebar-brand a:hover {
 
-}
+            color: #fff;
 
-.sidebar-nav>.sidebar-brand a {
+            background: none;
 
-  color: #999999;
+        }
 
-}
+        .footer {
 
-.sidebar-nav>.sidebar-brand a:hover {
+            position: fixed;
 
-  color: #fff;
+            left: 0;
 
-  background: none;
+            bottom: 0;
 
-}
+            width: 100%;
 
-.footer {
+            background-color: black;
 
-    position: fixed;
+            color: white;
 
-    left: 0;
+            text-align: center;
 
-    bottom: 0;
+        }
 
-    width: 100%;
+        .row {
 
-    background-color: black;
+            margin-right: 0px;
 
-    color: white;
+            margin-left: 0px;
 
-    text-align: center;
+        }
 
-}
+        h4.map-address-dksld {
 
-.row {
+            font-size: 18px;
 
-    margin-right: 0px;
+            line-height: 30px;
 
-    margin-left: 0px;
+            font-weight: 500;
 
-}
+            margin-bottom: 7px;
 
-h4.map-address-dksld {
+        }
 
-    font-size: 18px;
+        .right-side-content-aria-map h2 {
 
-    line-height: 30px;
+            font-size: 28px;
 
-    font-weight: 500;
+        }
 
-    margin-bottom: 7px;
+        h4.map-phone {
 
-}
+            font-size: 16px;
 
-.right-side-content-aria-map h2 {
+        }
 
-    font-size: 28px;
+        a.btn.btn-map-btn {
 
-}
+            margin: 0;
 
-h4.map-phone {
+            padding: 0;
 
-    font-size: 16px;
+            border-radius: unset;
 
-}
+            text-transform: uppercase;
 
-a.btn.btn-map-btn {
+            font-size: 14px;
 
-    margin: 0;
+        }
 
-    padding: 0;
+        ul.top-search-nav {
 
-    border-radius: unset;
+            margin: 0;
 
-    text-transform: uppercase;
+            padding: 0;
 
-    font-size: 14px;
+        }
 
-}
+        ul.top-search-nav li {
 
-ul.top-search-nav {
+            display: inline-block;
 
-    margin: 0;
+            margin: 12px 5px;
 
-    padding: 0;
+            padding: 0;
 
-}
+        }
 
-ul.top-search-nav li {
+        /*-- Button*/
 
-    display: inline-block;
+        .btn-check:checked+.btn-outline-primary,
+        .btn-outline-primary.active {
 
-    margin: 12px 5px;
+            color: #fff;
 
-    padding: 0;
+            background-color: #84b04a;
 
-}
+            border-color: #84b04a;
 
-/*-- Button*/
+        }
 
- .btn-check:checked+.btn-outline-primary, .btn-outline-primary.active{
+        .btn-outline-primary {
 
-    color: #fff;
+            color: #838383;
 
-    background-color: #84b04a;
+            border-color: #c5c5c59e;
 
-    border-color: #84b04a;
+            box-shadow: 1px 2px 8px 0px #84b04a;
 
-}
+            text-transform: uppercase;
 
-.btn-outline-primary {
+            font-weight: 700;
 
-    color: #838383;
+            border-radius: 50px;
 
-    border-color: #c5c5c59e;
+        }
 
-    box-shadow: 1px 2px 8px 0px #84b04a;
+        div#activmap-results-num {
 
-    text-transform: uppercase;
+            padding: 0px 31px;
 
-    font-weight: 700;
+            font-size: 31px;
 
-    border-radius: 50px;
+        }
 
-}
+        .input-group {
 
-div#activmap-results-num {
+            margin: 14px 0;
 
-    padding: 0px 31px;
+        }
 
-    font-size: 31px;
+        .button-top-search .btn-group {
 
-}
+            width: 100%;
 
-.input-group {
+        }
 
-    margin: 14px 0;
+        .button-top-search .btn-danger:hover {
 
-}
+            color: #fff;
 
-.button-top-search .btn-group {
+            background-color: #84b04a;
 
-    width: 100%;
+            border-color: #84b04a;
 
-}
+        }
 
-.button-top-search .btn-danger:hover {
+        .button-top-search .btn-danger {
 
-    color: #fff;
+            color: #84b04a;
 
-    background-color: #84b04a;
+            background-color: #ffffff;
 
-    border-color: #84b04a;
+            border-color: #84b04a;
 
-}
+            font-weight: 700;
 
-.button-top-search .btn-danger {
+            text-transform: uppercase;
 
-    color: #84b04a;
+        }
 
-    background-color: #ffffff;
+        .button-top-search {
 
-    border-color: #84b04a;
+            margin-top: 10px;
 
-    font-weight: 700;
+        }
 
-    text-transform: uppercase;
+        .button-top-search .btn-check:checked+.btn-danger:focus,
+        .btn-danger.active:focus {
 
-}
+            box-shadow: 0 0 0 0.25rem rgb(132 176 74);
 
-.button-top-search {
+        }
 
-    margin-top: 10px;
+        .single-from-group label.form-check-label {
 
-}
+            font-weight: 700;
 
-.button-top-search .btn-check:checked+.btn-danger:focus, .btn-danger.active:focus {
+        }
 
-    box-shadow: 0 0 0 0.25rem rgb(132 176 74);
+        .single-from-group {
 
-}
+            padding: 10px 0px;
 
-.single-from-group label.form-check-label {
+        }
 
-    font-weight: 700;
+        .btn-green {
 
-}
+            background: #fff !important;
 
-.single-from-group {
+            border: solid 1px #84b04a !important;
 
-    padding: 10px 0px;
+            color: #84b04a !important;
 
-}
+        }
 
-.btn-green {
+        .btn-green:hover {
 
-    background: #fff !important;
+            background: #84b04a;
 
-    border: solid 1px #84b04a !important;
+            border: solid 1px #84b04a;
 
-    color: #84b04a !important;
+            color: #fff;
 
-}
+        }
 
-.btn-green:hover {
+        .single-from-group .form-check-input:checked {
 
-    background: #84b04a;
+            background-color: #84b04a;
 
-    border: solid 1px #84b04a;
+            border-color: #84b04a;
 
-    color: #fff;
+            color: #000;
 
-}
+        }
 
-.single-from-group .form-check-input:checked {
+        div#activmap-places {
 
-    background-color: #84b04a;
+            padding-top: 35px;
 
-    border-color: #84b04a;
+        }
 
-    color: #000;
+        h5#exampleModalLabel {
 
-}
+            text-transform: uppercase;
 
-div#activmap-places {
+            font-weight: 700;
 
-    padding-top: 35px;
+            font-size: 25px;
 
-}
+        }
 
-h5#exampleModalLabel {
+        .modal-footer.style-dksld {
 
-    text-transform: uppercase;
+            justify-content: flex-start !important;
 
-    font-weight: 700;
+        }
 
-    font-size: 25px;
+        button.btn.btn-primary.btn-green-dd {
 
-}
+            font-size: 14px;
 
-.modal-footer.style-dksld {
+            background: #84b04a;
 
-    justify-content: flex-start !important;
+            font-weight: 700;
 
-}
+            text-transform: uppercase;
 
-button.btn.btn-primary.btn-green-dd {
+            border: none;
 
-    font-size: 14px;
+            padding: 15px 50px;
 
-    background: #84b04a;
+            border-radius: 20px;
 
-    font-weight: 700;
+        }
 
-    text-transform: uppercase;
+        button.btn-dark-dd {
 
-    border: none;
+            font-size: 14px;
 
-    padding: 15px 50px;
+            background: #3B3B3B;
 
-    border-radius: 20px;
+            font-weight: 600;
 
-}
+            text-transform: uppercase;
 
-button.btn-dark-dd {
+            border: none;
 
-    font-size: 14px;
+            padding: 15px 50px;
 
-    background: #3B3B3B;
+            border-radius: 20px;
 
-    font-weight: 600;
+        }
 
-    text-transform: uppercase;
+        a.btn-dark-dd {
 
-    border: none;
+            font-size: 14px;
 
-    padding: 15px 50px;
+            background: #3B3B3B;
 
-    border-radius: 20px;
+            font-weight: 600;
 
-}
+            text-transform: uppercase;
 
-a.btn-dark-dd {
+            border: none;
 
-    font-size: 14px;
+            padding: 15px 50px;
 
-    background: #3B3B3B;
+            border-radius: 20px;
 
-    font-weight: 600;
+        }
 
-    text-transform: uppercase;
+        button.btn-style-ddd {
 
-    border: none;
+            background: none;
 
-    padding: 15px 50px;
+            border: none;
 
-    border-radius: 20px;
+            font-weight: 700;
 
-}
+            font-size: 32px;
 
-button.btn-style-ddd {
+        }
 
-    background: none;
+        .btn-check:active+.btn-danger:focus,
+        .btn-check:checked+.btn-danger:focus,
+        .btn-danger.active:focus,
+        .btn-danger:active:focus,
+        .show>.btn-danger.dropdown-toggle:focus {
 
-    border: none;
+            box-shadow: 0 0 0 0.25rem rgb(132 176 74 / 53%) !important;
 
-    font-weight: 700;
+        }
 
-    font-size: 32px;
+        .btn-check:focus+.btn-danger,
+        .btn-danger:focus {
 
-}
+            box-shadow: 0 0 0 0.25rem rgb(132 176 74 / 53%) !important;
 
-.btn-check:active+.btn-danger:focus, .btn-check:checked+.btn-danger:focus, .btn-danger.active:focus, .btn-danger:active:focus, .show>.btn-danger.dropdown-toggle:focus {
+        }
 
-    box-shadow: 0 0 0 0.25rem rgb(132 176 74 / 53%) !important;
+        h2.result-cound-skdsdf {
 
-}
+            text-transform: uppercase;
 
-.btn-check:focus+.btn-danger, .btn-danger:focus {
+            color: #84b04a;
 
-    box-shadow: 0 0 0 0.25rem rgb(132 176 74 / 53%) !important;
+            font-size: 25px;
 
-}
+            margin-left: 40px;
 
-h2.result-cound-skdsdf {
+        }
 
-    text-transform: uppercase;
+        button.btn.btn-danger.dropdown-toggle.dropdown-toggle-split:hover {
 
-    color: #84b04a;
+            background: none;
 
-    font-size: 25px;
+        }
 
-    margin-left: 40px;
+        img.filtter-order {
 
-}
+            height: 26px;
 
-button.btn.btn-danger.dropdown-toggle.dropdown-toggle-split:hover {
+            max-width: 33px;
 
-    background: none;
+        }
 
-}
+        .btn-group.search-dark {
 
-img.filtter-order {
+            border: 1px solid #ffffff;
 
-    height: 26px;
+        }
 
-    max-width: 33px;
+        .btn-group.search-dark button.btn.btn-danger.btn-block {
 
-}
+            background: #dff5c0;
 
-.btn-group.search-dark {
+            border-right: none;
 
-    border: 1px solid #ffffff;
+        }
 
-}
+        .btn-group.search-dark button.btn.btn-danger.dropdown-toggle.dropdown-toggle-split {
 
-.btn-group.search-dark button.btn.btn-danger.btn-block {
+            border-left: #ffdead00;
 
-    background: #dff5c0;
+            background: #dff5c0;
 
-    border-right: none;
+        }
 
-}
 
-.btn-group.search-dark button.btn.btn-danger.dropdown-toggle.dropdown-toggle-split {
 
-    border-left: #ffdead00;
+        .image-map img {
 
-    background: #dff5c0;
+            width: 152px;
 
-}
+            height: 142px;
 
+            float: left;
 
+        }
 
-.image-map img {
 
-    width: 152px;
 
-    height: 142px;
+        .box456d {
 
-    float: left;
+            height: 235px;
 
-}
+            overflow: auto;
 
+        }
 
+        .focus-event .single-from-group {
 
-.box456d {
+            width: 33%;
 
-    height: 235px;
+            display: inline-block;
 
-    overflow: auto;
+        }
 
-}
 
-.focus-event .single-from-group {
 
-    width: 33%;
 
-    display: inline-block;
 
-}
+        .col-md-4.location-dksld {
 
+            position: relative;
 
+        }
 
+        .col-md-4.location-dksld:before {
 
+            position: absolute;
 
-.col-md-4.location-dksld {
+            content: "comming Soon";
 
-    position: relative;
+            background: #ffffffe3;
 
-}
+            width: 98%;
 
-.col-md-4.location-dksld:before {
+            height: 97%;
 
-    position: absolute;
+            top: 0;
 
-    content: "comming Soon";
+            bottom: 0;
 
-    background: #ffffffe3;
+            left: 0;
 
-    width: 98%;
+            color: #000;
 
-    height: 97%;
+            display: flex;
 
-    top: 0;
+            flex-direction: column;
 
-    bottom: 0;
+            justify-content: center;
 
-    left: 0;
+            text-align: center;
 
-    color: #000;
+            font-size: 28px;
 
-    display: flex;
+            text-transform: uppercase;
 
-    flex-direction: column;
-
-    justify-content: center;
-
-    text-align: center;
-
-    font-size: 28px;
-
-    text-transform: uppercase;
-
-}
-
-
-
-
-
-</style>
-
-
-
-
-
+        }
+    </style>
 @endsection
 
 @section('main_content')
+    <!-- --- Hide For Now  --- -->
+
+    <div class="col-md-3 col-lg-2 very-left-map" style="display: none">
 
 
 
+        <hr>
+
+        <h4><i class="fa fa-search"></i> Search </h4>
+
+        <hr>
 
 
 
+        <!-- Activ'Map categories and tags -->
 
+        <div class="panel-group" id="activmap-accordion">
 
+            <div class="panel panel-default">
 
+                <div class="panel-heading">
 
+                    <h4 class="panel-title">
 
+                        <a data-toggle="collapse" href="#collapse-tourism">
 
+                            <i class="fa fa-suitcase"></i> Tourism
 
-<!-- --- Hide For Now  --- -->
+                        </a>
 
-        <div class="col-md-3 col-lg-2 very-left-map" style="display: none">
+                    </h4>
 
-            
+                </div>
 
-            <hr>
+                <div id="collapse-tourism" class="panel-collapse collapse in">
 
-                <h4><i class="fa fa-search"></i> Search </h4>
+                    <div class="panel-body">
 
-            <hr>
+                        <!-- Add checked="checked" to show the markers of this filter on page loading -->
 
+                        <input type="checkbox" name="marker_type[]" value="tourism_01" checked="checked"> Hotels<br>
 
+                        <input type="checkbox" name="marker_type[]" value="tourism_02"> Monuments
 
-            <!-- Activ'Map categories and tags -->
+                        <select name="marker_type[]">
 
-            <div class="panel-group" id="activmap-accordion">
+                            <option value="">- Monument type -</option>
 
-                <div class="panel panel-default">
+                            <option value="tourism_02_01" selected="selected">Places of worship</option>
 
-                    <div class="panel-heading">
+                            <option value="tourism_02_02">Bridge</option>
 
-                        <h4 class="panel-title">
+                            <option value="tourism_02_03">Institution</option>
 
-                            <a data-toggle="collapse" href="#collapse-tourism">
+                        </select><br>
 
-                                <i class="fa fa-suitcase"></i> Tourism
-
-                            </a>
-
-                        </h4>
-
-                    </div>
-
-                    <div id="collapse-tourism" class="panel-collapse collapse in">
-
-                        <div class="panel-body">
-
-                            <!-- Add checked="checked" to show the markers of this filter on page loading -->
-
-                            <input type="checkbox" name="marker_type[]" value="tourism_01" checked="checked"> Hotels<br>
-
-                            <input type="checkbox" name="marker_type[]" value="tourism_02"> Monuments
-
-                            <select name="marker_type[]">
-
-                                <option value="">- Monument type -</option>
-
-                                <option value="tourism_02_01" selected="selected">Places of worship</option>
-
-                                <option value="tourism_02_02">Bridge</option>
-
-                                <option value="tourism_02_03">Institution</option>
-
-                            </select><br>
-
-                            <input type="checkbox" name="marker_type[]" value="tourism_03" checked="checked"> Museums
-
-                        </div>
+                        <input type="checkbox" name="marker_type[]" value="tourism_03" checked="checked"> Museums
 
                     </div>
 
                 </div>
 
-                <div class="panel panel-default">
+            </div>
 
-                    <div class="panel-heading">
+            <div class="panel panel-default">
 
-                        <h4 class="panel-title">
+                <div class="panel-heading">
 
-                            <!-- Replace class "collapse" with "collapsed" to close this panel on page loading --> 
+                    <h4 class="panel-title">
 
-                            <a class="collapse" data-toggle="collapse" href="#collapse-services">
+                        <!-- Replace class "collapse" with "collapsed" to close this panel on page loading -->
 
-                                <i class="fa fa-bank"></i> Services
+                        <a class="collapse" data-toggle="collapse" href="#collapse-services">
 
-                            </a>
+                            <i class="fa fa-bank"></i> Services
 
-                        </h4>
+                        </a>
 
-                    </div>
+                    </h4>
 
-                    <!-- Remove "in" from this class to close the panel on page loading --> 
+                </div>
 
-                    <div id="collapse-services" class="panel-collapse collapse in">
+                <!-- Remove "in" from this class to close the panel on page loading -->
 
-                        <div class="panel-body">
+                <div id="collapse-services" class="panel-collapse collapse in">
 
-                            <input type="checkbox" name="marker_type[]" value="services_01"> Culture<br>
+                    <div class="panel-body">
 
-                            <input type="checkbox" name="marker_type[]" value="services_02"> Health<br>
+                        <input type="checkbox" name="marker_type[]" value="services_01"> Culture<br>
 
-                            <input type="checkbox" name="marker_type[]" value="services_03"> Places of worship<br>
+                        <input type="checkbox" name="marker_type[]" value="services_02"> Health<br>
 
-                            <input type="checkbox" name="marker_type[]" value="services_04"> Safety<br>
+                        <input type="checkbox" name="marker_type[]" value="services_03"> Places of worship<br>
 
-                            <input type="checkbox" name="marker_type[]" value="services_05"> Schools<br>
+                        <input type="checkbox" name="marker_type[]" value="services_04"> Safety<br>
 
-                            <input type="checkbox" name="marker_type[]" value="services_06"> Sports
+                        <input type="checkbox" name="marker_type[]" value="services_05"> Schools<br>
 
-                        </div>
+                        <input type="checkbox" name="marker_type[]" value="services_06"> Sports
 
                     </div>
 
                 </div>
 
-                <div class="panel panel-default">
+            </div>
 
-                    <div class="panel-heading">
+            <div class="panel panel-default">
 
-                        <h4 class="panel-title">
+                <div class="panel-heading">
 
-                            <!-- Replace class "collapse" with "collapsed" to close this panel on page loading --> 
+                    <h4 class="panel-title">
 
-                            <a class="collapse" data-toggle="collapse" href="#collapse-shops">
+                        <!-- Replace class "collapse" with "collapsed" to close this panel on page loading -->
 
-                                <i class="fa fa-shopping-cart"></i> Shops
+                        <a class="collapse" data-toggle="collapse" href="#collapse-shops">
 
-                            </a>
+                            <i class="fa fa-shopping-cart"></i> Shops
 
-                        </h4>
+                        </a>
 
-                    </div>
+                    </h4>
 
-                    <!-- Remove "in" from the class to close this panel on page loading --> 
+                </div>
 
-                    <div id="collapse-shops" class="panel-collapse collapse in">
+                <!-- Remove "in" from the class to close this panel on page loading -->
 
-                        <div class="panel-body">
+                <div id="collapse-shops" class="panel-collapse collapse in">
 
-                            <input type="checkbox" name="marker_type[]" value="shops_01"> Beauty<br>
+                    <div class="panel-body">
 
-                            <input type="checkbox" name="marker_type[]" value="shops_02"> Clothes &amp; Jewels<br>
+                        <input type="checkbox" name="marker_type[]" value="shops_01"> Beauty<br>
 
-                            <input type="checkbox" name="marker_type[]" value="shops_03"> Food<br>
+                        <input type="checkbox" name="marker_type[]" value="shops_02"> Clothes &amp; Jewels<br>
 
-                            <input type="checkbox" name="marker_type[]" value="shops_04"> Services
+                        <input type="checkbox" name="marker_type[]" value="shops_03"> Food<br>
 
-                        </div>
+                        <input type="checkbox" name="marker_type[]" value="shops_04"> Services
 
                     </div>
 
@@ -788,804 +765,790 @@ img.filtter-order {
 
         </div>
 
-<!-- --- Hide For Now  --- -->
-
-<!-- -------------------- -->
-
-
-
-@php 
-
-    $focus = App\Models\Focused::orderby('id','desc')->where('status',1)->get();
-
-    $structuredata = App\Models\Ogranisationtype::orderby('id','desc')->where('status',1)->get();
-
-    $provide = App\Models\Provide::orderby('id','desc')->where('status',1)->get();
-
-    $lookingfor = App\Models\Lookingfor::orderby('id','desc')->where('status',1)->get();
-
-    $product = App\Models\Productcat::orderby('id','desc')->get();
-
-    $eventcat =  App\Models\Eventcat::orderby('id','desc')->get();
-
-    $projectcat =  App\Models\Projectcat::orderby('id','desc')->get();
-
-    $project =  App\Models\Project::orderby('id','desc')->where('status',1)->get();
-
-    $service =  App\Models\Servicecat::orderby('id','desc')->get();
-
-@endphp
-
-
-
-<form method="get" action="{{route('filter.org.filtter')}}" class="checkboxes">
-
-    @csrf
-
-<!--Exprience / Event Model -->
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-  <div class="modal-dialog modal-dialog modal-xl">
-
-    <div class="modal-content">
-
-      <div class="modal-header">
-
-        <h5 class="modal-title" id="exampleModalLabel">Organisation Filter</h5>
-
-      </div>
-
-      <div class="modal-body">
-
-            <div class="row">
-
-                <div class="col-md-4">
-
-                    <div class="title-model-style">
-
-                         <h5>Focus</h5>
-
-                    </div>
-
-                    <hr>
-
-@foreach($focus as $item)  
-
-@php 
-
-
-
-    $checked = [];
-
-    if(isset($_GET['focus'])){   
-
-       $checked = $_GET['focus'];
-
-    }
-
-@endphp                  
-
-                    <!-- -------- Single Form Group -->
-
-                    <div class="single-from-group">                           
-
-                        <div class="form-check">
-
-                          <input class="form-check-input" type="checkbox" name="focus[]" value="{{$item->id}}" id="focus{{$item->id}}"
-
-                          @if(in_array($item->id, $checked )) checked @endif
-
-                          >
-
-                          <label class="form-check-label" for="focus{{$item->id}}" >
-
-                            {{$item->name}}
-
-                          </label>
-
-                        </div>     
-
-                    </div>
-
-                    <!-- -------- Single Form Group -->
-
-@endforeach
-
-
-
-
-
-
-
-
-
-                </div>
-
-                <div class="col-md-4">
-
-                    <div class="title-model-style">
-
-                        <h5>Structure</h5>
-
-
-
-                    </div>
-
-                    <hr>
-
-
-
-    @foreach($structuredata as $item) 
-
-
-
-    @php 
-
-
-
-    $checked = [];
-
-    if(isset($_GET['structure'])){   
-
-       $checked = $_GET['structure'];
-
-    }
-
+    </div>
+
+    <!-- --- Hide For Now  --- -->
+
+    <!-- -------------------- -->
+
+
+
+    @php
+        
+        $focus = App\Models\Focused::orderby('name', 'asc')
+            ->where('status', 1)
+            ->get();
+        
+        $structure = App\Models\Ogranisationtype::orderby('name', 'asc')
+            ->where('status', 1)
+            ->get();
+        
+        $provide = App\Models\Provide::orderby('name', 'asc')
+            ->where('status', 1)
+            ->get();
+        
+        $lookingfor = App\Models\Lookingfor::orderby('name', 'asc')
+            ->where('status', 1)
+            ->get();
+        
+        $product = App\Models\Productcat::orderby('name', 'asc')->get();
+        
+        $eventcat = App\Models\Eventcat::orderby('name', 'asc')->get();
+        
+        $projectcat = App\Models\Projectcat::orderby('name', 'asc')->get();
+        
+        $project = App\Models\Project::orderby('id', 'desc')
+            ->where('status', 1)
+            ->get();
+        
+        $service = App\Models\Servicecat::orderby('id', 'desc')->get();
+        
     @endphp
 
 
 
+    <form method="get" action="{{ route('filter.org.filtter') }}" class="checkboxes">
 
+        @csrf
 
+        <!--Exprience / Event Model -->
 
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
+            <div class="modal-dialog modal-dialog modal-xl">
 
+                <div class="modal-content">
 
-        <!-- -------- Single Form Group -->
+                    <div class="modal-header">
 
-        <div class="single-from-group">
-
-            <div class="form-check">
-
-              <input class="form-check-input" name="structure[]" type="checkbox" value="{{$item->id}}" id="stracture{{$item->id}}"  
-
-                @if(in_array($item->id, $checked )) checked @endif
-
-              >
-
-              <label class="form-check-label" for="stracture{{$item->id}}">
-
-                   {{$item->name}}
-
-              </label>
-
-            </div>
-
-        </div>
-
-        <!-- -------- Single Form Group End-->
-
-
-
-            @endforeach
-
-        </div>
-
-                <div class="col-md-4 location-dksld">
-
-                    <div class="title-model-style">
-
-                        <h5>Looking For </h5>
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            <span>SEARCH: </span>ORGANISATIONS
+                            </h5>
 
                     </div>
 
-                    <hr>
+                    <div class="modal-body">
 
+                        <div class="row">
 
+                            <div class="col-md-4 boxfixed-dksd">
 
-<div class="box456d">
+                                <div class="title-model-style">
 
-@foreach($lookingfor as $item)
+                                    <h5>Focus</h5>
 
-                <!-- -------- Single Form Group -->
+                                </div>
 
-                <div class="single-from-group">
+                                <hr>
 
-                    <div class="form-check">
+                                @foreach ($focus as $item)
+                                    @php
+                                        
+                                        $checked = [];
+                                        
+                                        if (isset($_GET['focus'])) {
+                                            $checked = $_GET['focus'];
+                                        }
+                                        
+                                    @endphp
 
-                      <input class="form-check-input" type="checkbox" name="lookingfor[]" value="{{$item->id}}" id="lookingfor{{$item->id}}">
+                                    <!-- -------- Single Form Group -->
 
-                      <label class="form-check-label" for="lookingfor{{$item->id}}">
+                                    <div class="single-from-group">
 
-                         {{$item->name}}
+                                        <div class="form-check">
 
-                      </label>
+                                            <input class="form-check-input" type="checkbox" name="focus[]"
+                                                value="{{ $item->id }}" id="focus{{ $item->id }}"
+                                                @if (in_array($item->id, $checked)) checked @endif>
 
-                    </div>
+                                            <label class="form-check-label" for="focus{{ $item->id }}">
 
-                </div>
+                                                {{ $item->name }}
 
-                <!-- -------- Single Form Group End-->
+                                            </label>
 
-@endforeach                
+                                        </div>
 
-</div>
+                                    </div>
 
+                                    <!-- -------- Single Form Group -->
+                                @endforeach
 
 
 
 
-             </div>
 
-                <div class="col-md-4 location-dksld">
 
-                    <hr>
 
-                    <div class="title-model-style">
 
-                        <h5>Location </h5>
 
-                    </div>
+                            </div>
 
-                    <hr>
+                            <div class="col-md-4 boxfixed-dksd">
 
-                <!-- -------- Single Form Group -->
+                                <div class="title-model-style">
 
-                <div class="single-from-group">
+                                    <h5>Structure</h5>
 
-                    <div class="form-check">
 
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault22">
 
-                      <label class="form-check-label" for="flexCheckDefault22">
+                                </div>
 
-                         Single Base / Location
+                                <hr>
 
-                      </label>
 
-                    </div>
 
-                </div>
+                                @foreach ($structure as $item)
+                                    @php
+                                        
+                                        $checked = [];
+                                        
+                                        if (isset($_GET['structure'])) {
+                                            $checked = $_GET['structure'];
+                                        }
+                                        
+                                    @endphp
 
-                <!-- -------- Single Form Group End-->
 
-                <!-- -------- Single Form Group -->
 
-                <div class="single-from-group">
 
-                    <div class="form-check">
 
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
 
-                      <label class="form-check-label" for="flexCheckDefault3">
 
-                         Multiple Location
 
-                      </label>
 
-                    </div>
+                                    <!-- -------- Single Form Group -->
 
-                </div>
+                                    <div class="single-from-group">
 
-                <!-- -------- Single Form Group End-->
+                                        <div class="form-check">
 
-                <!-- -------- Single Form Group -->
+                                            <input class="form-check-input" name="structure[]" type="checkbox"
+                                                value="{{ $item->id }}" id="stracture{{ $item->id }}"
+                                                @if (in_array($item->id, $checked)) checked @endif>
 
-                <div class="single-from-group">
+                                            <label class="form-check-label" for="stracture{{ $item->id }}">
 
-                    <div class="form-check">
+                                                {{ $item->name }}
 
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault23">
+                                            </label>
 
-                      <label class="form-check-label" for="flexCheckDefault23">
+                                        </div>
 
-                         Where Requered
+                                    </div>
 
-                      </label>
+                                    <!-- -------- Single Form Group End-->
+                                @endforeach
 
-                    </div>
+                            </div>
+                            <div class="col-md-4 location-dksld boxfixed-dksd">
 
-                </div>
 
-                <!-- -------- Single Form Group End-->
+                                <div class="title-model-style">
 
-             </div>
+                                    <h5>Location </h5>
 
-                <div class="col-md-4">
+                                </div>
 
-                    <hr>
+                                <hr>
 
-                    <div class="title-model-style">
+                                <!-- -------- Single Form Group -->
 
-                        <h5>Provides</h5>
+                                <div class="single-from-group">
 
-                    </div>
+                                    <div class="form-check">
 
-                    <hr>
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="flexCheckDefault22">
 
-                @foreach($provide as $item )
+                                        <label class="form-check-label" for="flexCheckDefault22">
 
-@php 
+                                            Single Base / Location
 
-    $checked = [];
+                                        </label>
 
-    if(isset($_GET['provide'])){   
+                                    </div>
 
-       $checked = $_GET['provide'];
+                                </div>
 
-    }
+                                <!-- -------- Single Form Group End-->
 
-@endphp    
+                                <!-- -------- Single Form Group -->
 
+                                <div class="single-from-group">
 
+                                    <div class="form-check">
 
-                    <!-- -------- Single Form Group -->
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="flexCheckDefault3">
 
-                    <div class="single-from-group">
+                                        <label class="form-check-label" for="flexCheckDefault3">
 
-                        <div class="form-check">
+                                            Multiple Location
 
-                          <input class="form-check-input" name="provide[]" type="checkbox" value="{{$item->id}}" id="provide{{$item->id}}"
+                                        </label>
 
-                           @if(in_array($item->id, $checked )) checked @endif
+                                    </div>
 
-                          >
+                                </div>
 
-                          <label class="form-check-label" for="provide{{$item->id}}">
+                                <!-- -------- Single Form Group End-->
 
-                             {{$item->name}}
+                                <!-- -------- Single Form Group -->
 
-                          </label>
+                                <div class="single-from-group">
+
+                                    <div class="form-check">
+
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="flexCheckDefault23">
+
+                                        <label class="form-check-label" for="flexCheckDefault23">
+
+                                            Where Requered
+
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- -------- Single Form Group End-->
+
+                            </div>
+
+                            <div class="col-md-4 location-dksld boxfixed-dksd">
+
+                                <div class="title-model-style">
+
+                                    <h5>Looking For </h5>
+
+                                </div>
+
+                                <hr>
+
+
+
+                                <div class="box456d">
+
+                                    @foreach ($lookingfor as $item)
+                                        <!-- -------- Single Form Group -->
+
+                                        <div class="single-from-group">
+
+                                            <div class="form-check">
+
+                                                <input class="form-check-input" type="checkbox" name="lookingfor[]"
+                                                    value="{{ $item->id }}" id="lookingfor{{ $item->id }}">
+
+                                                <label class="form-check-label" for="lookingfor{{ $item->id }}">
+
+                                                    {{ $item->name }}
+
+                                                </label>
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- -------- Single Form Group End-->
+                                    @endforeach
+
+                                </div>
+
+
+
+
+
+                            </div>
+
+
+                            <div class="col-md-4 boxfixed-dksd">
+
+                                <hr>
+
+                                <div class="title-model-style">
+
+                                    <h5>Provides</h5>
+
+                                </div>
+
+                                <hr>
+
+                                @foreach ($provide as $item)
+                                    @php
+                                        
+                                        $checked = [];
+                                        
+                                        if (isset($_GET['provide'])) {
+                                            $checked = $_GET['provide'];
+                                        }
+                                        
+                                    @endphp
+
+
+
+                                    <!-- -------- Single Form Group -->
+
+                                    <div class="single-from-group">
+
+                                        <div class="form-check">
+
+                                            <input class="form-check-input" name="provide[]" type="checkbox"
+                                                value="{{ $item->id }}" id="provide{{ $item->id }}"
+                                                @if (in_array($item->id, $checked)) checked @endif>
+
+                                            <label class="form-check-label" for="provide{{ $item->id }}">
+
+                                                {{ $item->name }}
+
+                                            </label>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- -------- Single Form Group End-->
+                                @endforeach
+
+                                @php
+                                    
+                                    $checked = [];
+                                    
+                                    if (isset($_GET['product'])) {
+                                        $checked = $_GET['product'];
+                                    }
+                                    
+                                @endphp
+
+
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <hr>
+
+                                <div class="title-model-style">
+
+                                    <h5>Products</h5>
+
+                                </div>
+
+                                <hr>
+
+                                <!-- -------- Single Form Group -->
+
+                                <div class="single-from-group">
+
+                                    <select class="form-select" name="product[]">
+
+                                        <option disabled selected> --- Select Product ---</option>
+
+                                        @foreach ($product as $item)
+                                            <option value="{{ $item->id }}"
+                                                @if (in_array($item->id, $checked)) selected @endif>{{ $item->name }}
+                                            </option>
+                                        @endforeach
+
+                                    </select>
+
+                                </div>
+
+                                <!-- -------- Single Form Group End-->
+
+                                <hr>
+
+                                <div class="title-model-style">
+
+                                    <h5>Services</h5>
+
+                                </div>
+
+                                <hr>
+
+                                @php
+                                    
+                                    $checked = [];
+                                    
+                                    if (isset($_GET['service'])) {
+                                        $checked = $_GET['service'];
+                                    }
+                                    
+                                @endphp
+
+
+
+                                <!-- -------- Single Form Group -->
+
+                                <div class="single-from-group">
+
+                                    <select class="form-select" name="service[]">
+
+                                        <option disabled selected>--- Select Service ---</option>
+
+                                        @foreach ($service as $item)
+                                            <option value="{{ $item->id }}"
+                                                @if (in_array($item->id, $checked)) selected @endif>{{ $item->name }}
+                                            </option>
+                                        @endforeach
+
+                                    </select>
+
+                                </div>
+
+                                <!-- -------- Single Form Group End-->
+
+                            </div>
 
                         </div>
 
                     </div>
 
-                    <!-- -------- Single Form Group End-->
+                    <div class="modal-footer style-dksld">
 
-                @endforeach
-
-@php 
-
-    $checked = [];
-
-    if(isset($_GET['product'])){   
-
-       $checked = $_GET['product'];
-
-    }
-
-@endphp  
+                        <button type="submit" class="btn btn-primary btn-green-dd">Apply</button>
 
 
 
-             </div>
-
-                <div class="col-md-4">
-
-                    <hr>
-
-                    <div class="title-model-style">
-
-                        <h5>Products</h5>
+                        <a class="btn btn-danger btn-dark-dd button uncheck-all">Clear</a>
+                        <button type="button" class="btn btn-danger btn-dark-dd" data-bs-dismiss="modal">Close</button>
 
                     </div>
 
-                    <hr>
+                </div>
 
-                    <!-- -------- Single Form Group -->
+            </div>
 
-                    <div class="single-from-group">
-
-                                <select class="form-select" name="product[]">
-
-                                    <option disabled selected> --- Select Product ---</option>
-
-                                    @foreach($product as $item)
-
-                                    <option value="{{$item->id}}"  
-
-@if(in_array($item->id, $checked )) selected @endif
-
-                                        >{{$item->name}}</option>
-
-                                    @endforeach
-
-                                </select>
-
-                    </div>
-
-                    <!-- -------- Single Form Group End-->
-
-                    <hr>
-
-                    <div class="title-model-style">
-
-                        <h5>Services</h5>
-
-                    </div>
-
-                    <hr>
-
-@php 
-
-    $checked = [];
-
-    if(isset($_GET['service'])){   
-
-       $checked = $_GET['service'];
-
-    }
-
-@endphp  
+        </div>
 
 
 
-                    <!-- -------- Single Form Group -->
+    </form>
 
-                    <div class="single-from-group">
+    <form method="get" action="{{ route('filter.event.filtter') }}">
 
-                                <select class="form-select" name="service[]">
+        @csrf
 
-                                    <option disabled selected>--- Select Service ---</option>
 
-                                    @foreach($service as $item)
 
-                                    <option value="{{$item->id}}"
+        <!--Organization Model -->
 
-@if(in_array($item->id, $checked )) selected @endif
+        <div class="modal fade" id="exampleModal55" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
 
-                                        >{{$item->name}}</option>
+            <div class="modal-dialog modal-dialog modal-xl">
 
-                                    @endforeach
+                <div class="modal-content">
 
-                                </select>
+                    <div class="modal-header">
+
+                        <h5 class="modal-title" id="exampleModalLabel">
+                        
+                            <span>SEARCH: </span>EXPERIENCES & EVENTS
+                        </h5>
 
                     </div>
 
-                    <!-- -------- Single Form Group End-->
+                    <div class="modal-body">
 
-             </div>
+                        <div class="row">
 
-            </div>        
-
-      </div>
-
-      <div class="modal-footer style-dksld">
-
-        <button type="submit" class="btn btn-primary btn-green-dd">Apply</button>
-
-        
-    
-        <a class="btn btn-danger btn-dark-dd button uncheck-all">Clear</a>
-        <button type="button" class="btn btn-danger btn-dark-dd" data-bs-dismiss="modal">Close</button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
+                            <div class="col-md-12 focus-event boxfixed-dksd fullwidth">
 
 
 
-</form>
+                                <label>Search</label>
 
-<form method="get" action="{{route('filter.event.filtter')}}">
+                                <br />
 
-    @csrf
+                                <input type="text" name="keyword" class="form-control">
 
-    
+                                <br />
 
-<!--Organization Model -->
+                                <label>Category</label>
 
-<div class="modal fade" id="exampleModal55" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <br />
 
-  <div class="modal-dialog modal-dialog modal-xl">
+                                @foreach ($eventcat as $item)
+                                    <!-- -------- Single Form Group -->
 
-    <div class="modal-content">
+                                    <div class="single-from-group">
 
-      <div class="modal-header">
+                                        <div class="form-check">
 
-        <h5 class="modal-title" id="exampleModalLabel">Exprience / Event Filter</h5>
+                                            <input class="form-check-input" name="event[]" type="checkbox"
+                                                value="{{ $item->id }}" id="event-{{ $item->id }}">
 
-      </div>
+                                            <label class="form-check-label" for="event-{{ $item->id }}">
 
-      <div class="modal-body">
+                                                {{ $item->name }}
+
+                                            </label>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- -------- Single Form Group End-->
+                                @endforeach
+
+
+
+
+
+
+
+
+
+                            </div>
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="modal-footer style-dksld">
+
+                        <button type="submit" class="btn btn-primary btn-green-dd">Apply</button>
+
+
+                        <button type="button" class="btn btn-danger btn-dark-dd" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+
+
+    <form method="get" action="{{ route('filter.project.filtter') }}" class="checkboxes">
+
+        @csrf
+
+
+
+
+
+        <!--Organization Model -->
+
+        <div class="modal fade" id="exampleModa66" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+
+            <div class="modal-dialog modal-dialog modal-xl">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h5 class="modal-title" id="exampleModalLabel"> PROJECT FILTER</h5>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="row">
+
+                            <div class="col-md-12 focus-event boxfixed-dksd fullwidth">
+
+
+
+
+
+
+
+                                <label>Search</label>
+
+                                <br />
+
+                                <input type="text" name="keyword" class="form-control">
+
+                                <br />
+
+
+
+                                <label>Category</label>
+
+
+
+                                <br />
+
+                                @foreach ($projectcat as $item)
+                                    <!-- -------- Single Form Group -->
+
+                                    <div class="single-from-group">
+
+                                        <div class="form-check">
+
+                                            <input class="form-check-input" name="project[]" type="checkbox"
+                                                value="{{ $item->id }}" id="project-{{ $item->id }}">
+
+                                            <label class="form-check-label" for="project-{{ $item->id }}">
+
+                                                {{ $item->name }}
+
+                                            </label>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- -------- Single Form Group End-->
+                                @endforeach
+
+
+
+
+
+
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="modal-footer style-dksld">
+
+                        <button type="submit" class="btn btn-primary btn-green-dd">Apply</button>
+
+
+                        <button type="button" class="btn btn-danger btn-dark-dd" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </form>
+
+
+
+    <!-- -------------------- -->
+
+    <div class="search-filtter-section">
+
+        <div class="container-fluid">
 
             <div class="row">
 
-                <div class="col-md-12 focus-event">
+                <div class="col-md-7">
 
 
 
-<label>Search</label>
 
-<br/>
 
-<input type="text" name="keyword" class="form-control">
+                    <div class="row">
 
-<br/>
+                        <div class="col-md-4">
 
-<label>Category</label>
+                            <div class="button-top-search">
 
-<br/>
+                                <!-- Example split danger button -->
 
-@foreach($eventcat as $item)
+                                <div class="btn-group search-dark">
 
-                <!-- -------- Single Form Group -->
+                                    <button class="btn btn-danger btn-block" ype="button" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">Organisations</button>
 
-                <div class="single-from-group">
+                                    <a href="{{ route('filter.index') }}"
+                                        class="btn btn-danger dropdown-toggle dropdown-toggle-split">
 
-                    <div class="form-check">
+                                        <img src="{{ asset('frontend/img/icon-cross.png') }}" class="filtter-order">
 
-                      <input class="form-check-input" name="event[]" type="checkbox" value="{{$item->id}}" id="event-{{$item->id}}">
+                                    </a>
 
-                      <label class="form-check-label" for="event-{{$item->id}}">
+                                </div>
 
-                        {{$item->name}}
-
-                      </label>
-
-                    </div>
-
-                </div>
-
-                <!-- -------- Single Form Group End-->
-
-@endforeach
-
-
-
-
-
-
-
-
-
-                </div>
-
-
-
-
-
-            </div>        
-
-      </div>
-
- 
-
-      <div class="modal-footer style-dksld">
-
-        <button type="submit" class="btn btn-primary btn-green-dd">Apply</button>
-
-
-        <button type="button" class="btn btn-danger btn-dark-dd" data-bs-dismiss="modal">Close</button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-</form>
-
-
-
-<form method="get" action="{{route('filter.project.filtter')}}" class="checkboxes">
-
-    @csrf
-
-    
-
-
-
-<!--Organization Model -->
-
-<div class="modal fade" id="exampleModa66" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-  <div class="modal-dialog modal-dialog modal-xl">
-
-    <div class="modal-content">
-
-      <div class="modal-header">
-
-        <h5 class="modal-title" id="exampleModalLabel"> PROJECT FILTER</h5>
-
-      </div>
-
-      <div class="modal-body">
-
-            <div class="row">
-
-                <div class="col-md-12 focus-event">
-
-
-
-
-
-
-
-<label>Search</label>
-
-<br/>
-
-<input type="text" name="keyword" class="form-control">
-
-<br/>
-
-
-
-<label>Category</label>
-
-
-
-<br/>
-
-@foreach($projectcat as $item)
-
-                <!-- -------- Single Form Group -->
-
-                <div class="single-from-group">
-
-                    <div class="form-check">
-
-                      <input class="form-check-input" name="project[]" type="checkbox" value="{{$item->id}}" id="project-{{$item->id}}">
-
-                      <label class="form-check-label" for="project-{{$item->id}}">
-
-                        {{$item->name}}
-
-                      </label>
-
-                    </div>
-
-                </div>
-
-                <!-- -------- Single Form Group End-->
-
-@endforeach             
-
-
-
-
-
-
-
-                </div>
-
-
-
-            </div>        
-
-      </div>
-
-
-
-      <div class="modal-footer style-dksld">
-
-        <button type="submit" class="btn btn-primary btn-green-dd">Apply</button>
-
-
-        <button type="button" class="btn btn-danger btn-dark-dd" data-bs-dismiss="modal">Close</button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-
-</form>
-
-
-
-<!-- -------------------- -->
-
-<div class="search-filtter-section">
-
-    <div class="container-fluid">
-
-        <div class="row">
-
-            <div class="col-md-7">
-
-
-
-
-
-                <div class="row">
-
-                    <div class="col-md-4">
-
-                        <div class="button-top-search">
-
-                            <!-- Example split danger button -->
-
-                            <div class="btn-group search-dark">
-
-                              <button  class="btn btn-danger btn-block" ype="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Organisations</button>
-
-                                  <a href="{{route('filter.index')}}" class="btn btn-danger dropdown-toggle dropdown-toggle-split">
-
-                                        <img src="{{asset('frontend/img/icon-cross.png')}}" class="filtter-order">
-
-                                  </a>
+                                <!-- Example split danger button -->
 
                             </div>
 
-                            <!-- Example split danger button -->
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="button-top-search">
+
+
+
+
+
+                                <!-- Example split danger button -->
+
+                                <div class="btn-group">
+
+                                    <button class="btn btn-danger btn-block" ype="button" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal55">Expriences / Events</button>
+
+
+
+                                </div>
+
+                                <!-- Example split danger button -->
+
+
+
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="button-top-search">
+
+                                <!-- Example split danger button -->
+
+                                <div class="btn-group ">
+
+                                    <button class="btn btn-danger btn-block" ype="button" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModa66">Projects</button>
+
+                                </div>
+
+                                <!-- Example split danger button -->
+
+                            </div>
 
                         </div>
 
                     </div>
 
-                    <div class="col-md-4">
-
-                        <div class="button-top-search">
 
 
 
 
 
-                            <!-- Example split danger button -->
 
-                            <div class="btn-group">
+                </div>
 
-                              <button  class="btn btn-danger btn-block" ype="button" data-bs-toggle="modal" data-bs-target="#exampleModal55">Expriences / Events</button>
-
-                              
-
-                            </div>
-
-                            <!-- Example split danger button -->
+                <div class="col-md-1">
 
 
-
-
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-4">
-
-                        <div class="button-top-search">
-
-                            <!-- Example split danger button -->
-
-                            <div class="btn-group ">
-
-                              <button  class="btn btn-danger btn-block" ype="button" data-bs-toggle="modal" data-bs-target="#exampleModa66">Projects</button>
-
-                            </div>
-
-                            <!-- Example split danger button -->
-
-                        </div>
-
-                    </div>
 
                 </div>
-
-                
-
-
-
-
-
-            </div>
-
-            <div class="col-md-1">
-
-                
 
             </div>
 
@@ -1593,11 +1556,9 @@ img.filtter-order {
 
     </div>
 
-</div>
 
 
-
-<div id="wrapper">
+    <div id="wrapper">
 
         <!-- Sidebar -->
 
@@ -1610,12 +1571,19 @@ img.filtter-order {
 
 
                     <!-- Places panel (auto removable) -->
-
+@if($org->count() >= 1)
                     <div id="activmap-places" class="hidden-xs">
-
-                        <h2 class="result-cound-skdsdf">Results - {{$org->count()}}</h2>
-
+                        
+                        <h2 class="result-cound-skdsdf">Results -
+                            {{ $org->count() }}
+                        </h2>
                     </div>
+@else
+                    <div class="no-found-message">
+                        
+                        <h1 class="text-danger">Sorry No Organisation Found</h1>
+                    </div>
+@endif                    
 
                 </div>
 
@@ -1637,35 +1605,35 @@ img.filtter-order {
 
 
 
-   
 
-    <div class="row">
 
-        <div class="col-md-12 col-lg-12">
+                <div class="row">
 
-            <div id="activmap-wrapper">
+                    <div class="col-md-12 col-lg-12">
 
-                <div id="activmap-container">
+                        <div id="activmap-wrapper">
 
-                    <!-- Map container REQUIRED -->
+                            <div id="activmap-container">
 
-                    <div id="activmap-canvas"></div>
+                                <!-- Map container REQUIRED -->
+
+                                <div id="activmap-canvas"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
-            </div>  
-
-        </div>  
-
-    </div>  
 
 
+                <button id="menu-toggle" class="btn btn-secondary">
 
-        <button id="menu-toggle" class="btn btn-secondary">
+                    <i id="toggleIcon" class="fa fa-angle-double-down"> </i> Map View
 
-            <i id="toggleIcon" class="fa fa-angle-double-down"> </i> Map View 
-
-        </button>                
+                </button>
 
             </div>
 
@@ -1683,24 +1651,7 @@ img.filtter-order {
 
 
 
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
 @endsection
 
 
@@ -1708,18 +1659,7 @@ img.filtter-order {
 
 
 @section('scripts')
-
-
-
-
-
-
-
-
-
-
-
-<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDjS5QXqKr4vDPLOTUwFcmn8oDSjQIawNc'></script>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDjS5QXqKr4vDPLOTUwFcmn8oDSjQIawNc'></script>
 
 
 
@@ -1731,23 +1671,22 @@ img.filtter-order {
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 
-          <!-- Activ'Map plugin -->
+    <!-- Activ'Map plugin -->
 
-    <link rel="stylesheet" href="{{asset('frontend/css/activmap-classic.css')}}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/activmap-classic.css') }}">
 
-    <script src="{{asset('frontend/js/jquery-activmap.min.js')}}"></script>
+    <script src="{{ asset('frontend/js/jquery-activmap.min.js') }}"></script>
 
-    <script src="{{asset('frontend/js/markercluster.min.js')}}"></script>
-
-
+    <script src="{{ asset('frontend/js/markercluster.min.js') }}"></script>
 
 
 
 
 
-        <script>
 
-        $(function(){
+
+    <script>
+        $(function() {
 
             // Activ'Map plugin init
 
@@ -1757,19 +1696,28 @@ img.filtter-order {
 
                 places: [
 
-                @foreach($org as $item)
+                    @foreach ($org as $item)
 
-                    {title: '{{$item->org_name}}', phone: '1122',address: '{{$item->address}}', url: '{{route('org.index',$item->slug)}}', tags: ['tourism_01'], lat:{{$item->lat}}, lng: {{$item->long}}, img: '{{asset('img/upload/org/logo/'.$item->logo)}}', icon: '{{asset('frontend/images/icons/map.png')}}'},
-
-                @endforeach
+                        {
+                            title: '{{ $item->org_name }}',
+                            phone: '1122',
+                            address: '{{ $item->address }}',
+                            url: '{{ route('org.index', $item->slug) }}',
+                            tags: ['tourism_01'],
+                            lat: {{ $item->lat }},
+                            lng: {{ $item->long }},
+                            img: '{{ asset('img/upload/org/logo/' . $item->logo) }}',
+                            icon: '{{ asset('frontend/images/icons/map.png') }}'
+                        },
+                    @endforeach
 
                 ],
 
                 icon: 's',
 
-                lat: 51.5286416,       //latitude of the center
+                lat: 51.5286416, //latitude of the center
 
-                lng: -0.1015987,       //longitude of the center
+                lng: -0.1015987, //longitude of the center
 
                 posPanel: 'left',
 
@@ -1785,62 +1733,57 @@ img.filtter-order {
 
                 request: 'large',
 
-                locationTypes: ['geocode','establishment']
+                locationTypes: ['geocode', 'establishment']
 
-            }); 
+            });
+
+        });
+    </script>
+
+
+
+    <script id="rendered-js">
+        $("#menu-toggle").click(function(e) {
+
+            e.preventDefault();
+
+            var isIE11 = !!navigator.userAgent.match(/Trident.*rv\:11\./);
+
+            $("#toggleIcon").toggleClass("fa fa-angle-double-down fa fa-angle-double-up");
+
+            $("#wrapper").toggleClass("toggled");
+
+            if (isIE11) {
+
+                if ($("#wrapper").hasClass("toggled")) {
+
+                    $('#sidebar-wrapper').css("margin-left", "-268px");
+
+                } else {
+
+                    $('#sidebar-wrapper').css("margin-left", "-250px");
+
+                }
+
+            }
 
         });
 
-    </script>
-
-
-
-          <script id="rendered-js" >
-
-$("#menu-toggle").click(function (e) {
-
-  e.preventDefault();
-
-  var isIE11 = !!navigator.userAgent.match(/Trident.*rv\:11\./);
-
-  $("#toggleIcon").toggleClass("fa fa-angle-double-down fa fa-angle-double-up");
-
-  $("#wrapper").toggleClass("toggled");
-
-  if (isIE11) {
-
-    if ($("#wrapper").hasClass("toggled")) {
-
-      $('#sidebar-wrapper').css("margin-left", "-268px");
-
-    } else {
-
-      $('#sidebar-wrapper').css("margin-left", "-250px");
-
-    }
-
-  }
-
-});
-
-//# sourceURL=pen.js
-
+        //# sourceURL=pen.js
     </script>
 
 
 
 
-      <script id="rendered-js" >
-$(function () {
-  $('.check-all').on('click', function () {
-    $('.checkboxes input:checkbox').prop('checked', true);
-  });
-  $('.uncheck-all').on('click', function () {
-    $('.checkboxes input:checkbox').prop('checked', false);
-  });
-});
-//# sourceURL=pen.js
+    <script id="rendered-js">
+        $(function() {
+            $('.check-all').on('click', function() {
+                $('.checkboxes input:checkbox').prop('checked', true);
+            });
+            $('.uncheck-all').on('click', function() {
+                $('.checkboxes input:checkbox').prop('checked', false);
+            });
+        });
+        //# sourceURL=pen.js
     </script>
-
-
 @endsection

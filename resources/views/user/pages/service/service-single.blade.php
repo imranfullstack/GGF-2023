@@ -355,18 +355,6 @@ a.first-title-dksld0c span {
                 </td>
               </tr>
               <tr>
-                <th>Indvidual or Group</th>
-                <td>
-                  {{$service->indvidual_or_group}}
-                </td>
-              </tr>
-              <tr>
-                <th>Number of People</th>
-                <td>
-                  {{$service->number_people}}
-                </td>
-              </tr>
-              <tr>
                 <th>Preferred start Date</th>
                 <td>
                   {{$service->preferred_start_date}}
@@ -397,28 +385,16 @@ a.first-title-dksld0c span {
                 </td>
               </tr>
               <tr>
-                <th>Requierments</th>
+                <th>Comments question</th>
                 <td>
-                  {{$service->requirements}}
-                </td>
-              </tr>
-              <tr>
-                <th>Comments</th>
-                <td>
-                  {{$service->comments}}
-                </td>
-              </tr>
-              <tr>
-                <th>Questions</th>
-                <td>
-                  {{$service->question}}
+                  {{$service->comments_question}}
                 </td>
               </tr>
             </tbody>
 </table>
 <div class="row">
 	<div class="col-md-6">
-		<a href="" class="btn btn-green btn-block">View Job</a>
+		<a href="" class="btn btn-green btn-block">View Service</a>
 	</div>
 	<div class="col-md-6">
 		<a href="{{route('user.index')}}" class="btn btn-green btn-block">Back To Dashboard</a>
