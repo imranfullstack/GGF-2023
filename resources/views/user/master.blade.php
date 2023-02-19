@@ -17,13 +17,13 @@
         <div class="col-md-2">
             @include('user.asset.navmenu')
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10">
             @yield('user_content')
+            @include('user.asset.footer')
         </div>
       </div>
     </div>
 
-    @include('user.asset.footer')
 
 
     @include('user.asset.scripts')

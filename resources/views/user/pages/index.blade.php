@@ -119,8 +119,9 @@
 
     <style type="text/css">
         a.first-title-dksld0c {
-            font-size: 29px;
+            font-size: 24px;
             margin: 0;
+            line-height: 41px;
             padding: 0;
             text-decoration: none;
             color: #fff;
@@ -500,8 +501,7 @@
                                     <div class="title-dkdksldkfdf2 bg-dksld">
                                         <a data-bs-toggle="collapse" href="#projecttabs-d03d" role="button"
                                             aria-expanded="false" aria-controls="collapseExample"
-                                            class="first-title-dksld0c"> PROJECTS <b> ( {{ $project->count() }} )</b>
-                                            <span>
+                                            class="first-title-dksld0c"> PROJECTS<span>
                                                 <i class="fas fa-caret-down"></i>
                                             </span>
                                         </a>
@@ -590,7 +590,7 @@
                                     <div class="title-dkdksldkfdf2 bg-dksld">
                                         <a data-bs-toggle="collapse" href="#jobscollups" role="button"
                                             aria-expanded="false" aria-controls="collapseExample"
-                                            class="first-title-dksld0c"> JOBS <b>( {{ $jobs->count() }} )</b><span>
+                                            class="first-title-dksld0c"> JOBS <span>
                                                 <i class="fas fa-caret-down"></i>
                                             </span>
                                         </a>
@@ -674,7 +674,7 @@
                                     <div class="title-dkdksldkfdf2 bg-dksld">
                                         <a data-bs-toggle="collapse" href="#eventtabs-sldk" role="button"
                                             aria-expanded="false" aria-controls="collapseExample"
-                                            class="first-title-dksld0c"> EVENTS <b>( {{ $event->count() }} )</b><span>
+                                            class="first-title-dksld0c"> EVENTS <span>
                                                 <i class="fas fa-caret-down"></i>
                                             </span>
                                         </a>
@@ -765,7 +765,7 @@
                                     <div class="title-dkdksldkfdf2 bg-dksld">
                                         <a data-bs-toggle="collapse" href="#products-sldk" role="button"
                                             aria-expanded="false" aria-controls="collapseExample"
-                                            class="first-title-dksld0c"> Products <b>( {{ $product->count() }} )</b><span>
+                                            class="first-title-dksld0c"> Products <span>
                                                 <i class="fas fa-caret-down"></i>
                                             </span>
                                         </a>
@@ -849,7 +849,7 @@
                                     <div class="title-dkdksldkfdf2 bg-dksld">
                                         <a data-bs-toggle="collapse" href="#services-sldk" role="button"
                                             aria-expanded="false" aria-controls="collapseExample"
-                                            class="first-title-dksld0c"> Services <b>( {{ $service->count() }} )</b><span>
+                                            class="first-title-dksld0c"> Services<span>
                                                 <i class="fas fa-caret-down"></i>
                                             </span>
                                         </a>

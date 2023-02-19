@@ -1,6 +1,6 @@
 
       <header class="header desktop">
-         <div class="container">
+         <div class="container-ddsdf">
             <nav class="navbar navbar-expand-lg navbar-light">
                <div class="container-fluid">
                   <a class="navbar-brand header-logo" href="{{URL('/')}}">
@@ -12,10 +12,7 @@
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                      <ul class="navbar-nav me-auto mb-2 mb-lg-0 form-top-style">
                         <li class="nav-item search-form">
-                           <form class="d-flex top-search-aria">
-                              <button class="search-btn-top-1560cdc" type="submit">Search</button>
-                              <input class="form-control me-2 search-input-top-dksld0c" type="search" aria-label="Search">
-                           </form>
+                         
                         </li>
                      </ul>
             @if(Auth::user())

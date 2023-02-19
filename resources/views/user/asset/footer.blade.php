@@ -7,6 +7,9 @@
     color: #fff;
     margin-left: 25px;
 }
+footer.footer {
+    margin-left: -25px;
+}
 </style>
 @php
   $footer = App\Models\Footer::first();

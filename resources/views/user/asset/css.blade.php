@@ -217,6 +217,7 @@ span.far.fa-times {
     padding: 50px 0;
     height: 100%;
     border: 1px solid #ffffff52;
+    margin-top: 70px; 
 }
 footer.footer {
     margin-top: 0px;
@@ -227,6 +228,17 @@ footer.footer {
 }
 .main_content {
     overflow: hidden;
+}
+.body-aria {
+    margin-top: 100px;
+}
+.manuleftuser ul {
+    margin: 0;
+    padding: 0;
+}
+.manuleftuser ul li {
+    display: block;
+    padding: 10px 13px;
 }
 .manuleftuser ul li {
     display: block;
@@ -242,7 +254,18 @@ manuleftuser ul {
     font-weight: 500;
     color: #fff;
     padding: 8px 15px;
-    font-size: 17px;
+    font-size: 20px;
+}
+.container-ddsdf {
+    padding: 0px 111px;
+}
+.manuleftuser ul {
+    position: fixed;
+}
+header.header.desktop {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
 }
 </style>
 

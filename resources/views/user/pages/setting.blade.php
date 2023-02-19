@@ -18,6 +18,36 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/on-off-switch.css') }}" />
 
     <style type="text/css">
+        .input-body-fieldddd.selectwidth-d03675d .label.ui.selection.fluid.dropdown.multiple {
+            width: 75%;
+            display: inline-block;
+            border: none;
+        }
+
+
+        footer.footer {
+            margin-left: -30px !important;
+        }
+
+        .single-selection-dks {
+            margin-bottom: 32px;
+        }
+
+        .width-dls03697d textarea.form-control {
+            display: inline-block;
+            border: 2px solid #84b04a;
+        }
+
+        .width-dls03697d {
+            display: inline-flex;
+            width: 100%;
+            align-content: space-between;
+        }
+
+        .input-body-fieldddd.checksection-dol0 {
+            border-bottom: none;
+        }
+
         .lookingfor-dksld .form-check {
             margin: 14px 50px;
         }
@@ -26,6 +56,13 @@
             text-transform: uppercase;
         }
 
+        .input-body-fieldddd.checksection-dol0 .form-check.form-switch {
+            float: right;
+        }
+
+        .profile-update-table th {
+            font-size: 16px;
+        }
 
         button.btnb.btn-green.btn-block {
             border: none;
@@ -35,12 +72,14 @@
         }
 
         a.first-title-dksld0c {
-            font-size: 29px;
+            font-size: 24px;
             margin: 0;
+            line-height: 41px;
             padding: 0;
             text-decoration: none;
             color: #fff;
         }
+
 
         .title-dkdksldkfdf2.bg-dksld:before {
             background: #6e933e;
@@ -85,7 +124,7 @@
         }
 
         .form-lable-name-dksld0c label {
-            font-size: 19px;
+            font-size: 16px;
             color: #000;
             font-weight: 700;
             text-transform: uppercase;
@@ -94,6 +133,12 @@
         .border-dksldc {
             border: 3px solid #6663;
             margin-bottom: 22px;
+        }
+
+        button.btn.dropdown-toggle.btn-light {
+            margin-left: -45px;
+            padding: 10px 23px;
+            border-bottom: 2px solid #6e933e;
         }
 
         ul.toggle-gff-dksld li {
@@ -211,6 +256,10 @@
             padding: 0;
             margin: 20px 0;
         }
+
+        td.widthcskd2d {
+            width: 75%;
+        }
     </style>
 @endsection()
 
@@ -220,12 +269,12 @@
 
     <div class="body-aria">
 
-        <div class="container">
+        <div class="ss">
 
             <br><br>
 
             <section>
-                <div class="container">
+                <div class="content-aria-dksd">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="first-collaps-part">
@@ -239,7 +288,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="accordion-collapse collapse " id="profile-edit">
+                                <div class="accordion-collapse collapse show" id="profile-edit">
                                     <div class="tab-body-dksld">
                                         <div class="row">
                                             <div class="col-md-2"></div>
@@ -252,24 +301,35 @@
                                                                 <tr>
                                                                     <th>Name</th>
                                                                     <td>
-                                                                        <input type="text" class="form-control"
-                                                                            name="name" value="{{ Auth::user()->name }}"
-                                                                            required>
+                                                                        <div class="input-body-fieldddd">
+
+                                                                            <input type="text"
+                                                                                class="form-control field-skdlsd"
+                                                                                name="name"
+                                                                                value="{{ Auth::user()->name }}" required>
+
+                                                                        </div>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Email</th>
-                                                                    <td>
-                                                                        <input type="email" class="form-control"
-                                                                            name="email" value="{{ Auth::user()->email }}"
-                                                                            required>
+                                                                    <td class="widthcskd2d">
+                                                                        <div class="input-body-fieldddd">
+                                                                            <input type="email"
+                                                                                class="form-control field-skdlsd"
+                                                                                name="email"
+                                                                                value="{{ Auth::user()->email }}" required>
+                                                                        </div>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Profile Picture</th>
                                                                     <td>
-                                                                        <input type="file" class="form-control"
-                                                                            name="pic">
+                                                                        <div class="input-body-fieldddd">
+                                                                            <input type="file"
+                                                                                class="form-control field-skdlsd"
+                                                                                name="pic">
+                                                                        </div>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -298,7 +358,7 @@
 
 
             <section>
-                <div class="container">
+                <div class="content-aria-dksd">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="first-collaps-part">
@@ -318,7 +378,7 @@
                                     <form action="{{ route('user.password.update', Auth::user()->id) }}" method="post">
                                         @csrf
                                         <div class="tab-body">
-                                            <div class="container">
+                                            <div class="">
                                                 <div class="row">
 
                                                     <div class="col-md-2"></div>
@@ -329,23 +389,32 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <th>Current password</th>
-                                                                        <td>
-                                                                            <input type="password" class="form-control"
-                                                                                name="old_pass">
+                                                                        <td class="widthcskd2d">
+                                                                            <div class="input-body-fieldddd">
+                                                                                <input type="password"
+                                                                                    class="form-control field-skdlsd"
+                                                                                    name="old_pass">
+                                                                            </div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th>New password</th>
                                                                         <td>
-                                                                            <input type="password" class="form-control"
-                                                                                name="new_pass">
+                                                                            <div class="input-body-fieldddd">
+                                                                                <input type="password"
+                                                                                    class="form-control  field-skdlsd"
+                                                                                    name="new_pass">
+                                                                            </div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th>Confirm new password</th>
                                                                         <td>
-                                                                            <input type="password" class="form-control"
-                                                                                name="confirm_pass">
+                                                                            <div class="input-body-fieldddd">
+                                                                                <input type="password"
+                                                                                    class="form-control field-skdlsd"
+                                                                                    name="confirm_pass">
+                                                                            </div>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
@@ -375,7 +444,7 @@
             </section>
 
             <section>
-                <div class="container">
+                <div class="content-aria-dksd">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="first-collaps-part">
@@ -404,7 +473,7 @@
                                 @if ($register)
                                     <form action="{{ route('user.register.update', $register->id) }}" method="post">
                                         @csrf
-                                        <div class="accordion-collapse collapse show" id="collapseExample">
+                                        <div class="collapse" id="collapseExample">
                                             <div class="tab-body-dksld">
                                                 <div class="offset-md-2 col-md-8">
                                                     <!-- single form body -->
@@ -566,7 +635,7 @@
                                 @else
                                     <form action="{{ route('user.register.store') }}" method="post">
                                         @csrf
-                                        <div class="accordion-collapse collapse show" id="collapseExample">
+                                        <div class="collapse" id="collapseExample">
                                             <div class="tab-body-dksld">
                                                 <div class="offset-md-2 col-md-8">
                                                     <!-- single form body -->
@@ -735,7 +804,7 @@
 
             @if ($befound)
                 <section>
-                    <div class="container">
+                    <div class="content-aria-dksd">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="first-collaps-part">
@@ -798,6 +867,8 @@
                                                         </div>
                                                     </div>
                                                     <!-- single form body -->
+
+
                                                     <!-- single form body -->
                                                     <div class="single-form-aria-dksld">
                                                         <div class="row">
@@ -1108,7 +1179,7 @@
                 </section>
             @else
                 <section>
-                    <div class="container">
+                    <div class="content-aria-dksd">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="first-collaps-part">
@@ -1139,45 +1210,61 @@
                                                         </div>
                                                     </div>
                                                     <!-- single form body -->
+
+
                                                     <!-- single form body -->
                                                     <div class="single-form-aria-dksld">
                                                         <div class="row">
-                                                            <div class="col-md-12">
+                                                            <div class="col-md-3">
                                                                 <div class="form-lable-name-dksld0c">
-                                                                    <div class="form-check">
-                                                                        <label class="form-check-label" for="dd">
-                                                                            Looking For
-                                                                        </label>
-                                                                    </div>
+                                                                    <label>Looking For</label>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-12 lookingfor-dksld">
+                                                            <div class="col-md-9">
+                                                                {{-- single Field --}}
+                                                                <div class="single-selection-dks">
+                                                                    <div class="input-body-fieldddd checksection-dol0">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                            id="flexCheckDefault"
+                                                                            name="volunteer_oppertunity_status"
+                                                                            value="1">
+                                                                        <label class="form-check-label"
+                                                                            for="flexCheckDefault">
+                                                                            <b>Volunteer opportunities</b>
+                                                                        </label>
 
 
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        id="flexCheckDefault"
-                                                                        name="volunteer_oppertunity_status"
-                                                                        value="1">
-                                                                    <label class="form-check-label"
-                                                                        for="flexCheckDefault">
-                                                                        <b>Volunteer opportunities</b>
-                                                                    </label>
+                                                                        <div class="form-check form-switch">
+                                                                            <input type="checkbox" id="on-off-switch12"
+                                                                                name="other_info_status" value="1"
+                                                                                checked>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        id="paidwork" name="paid_work_status"
-                                                                        value="1">
-                                                                    <label class="form-check-label" for="paidwork">
-                                                                        <b>Paid Work</b>
-                                                                    </label>
+                                                                {{-- single Field End --}}
+                                                                {{-- single Field --}}
+                                                                <div class="single-selection-dks">
+                                                                    <div class="input-body-fieldddd checksection-dol0">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                            id="paidwork" name="paid_work_status"
+                                                                            value="1">
+                                                                        <label class="form-check-label" for="paidwork">
+                                                                            <b>Paid Work</b>
+                                                                        </label>
+
+
+                                                                        <div class="form-check form-switch">
+                                                                            <input type="checkbox" id="on-off-switch13"
+                                                                                name="paid_work_status" value="1">
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-
-
+                                                                {{-- single Field End --}}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <!-- single form body -->
+
                                                     <!-- single form body -->
                                                     <div class="single-form-aria-dksld">
                                                         <div class="row">
@@ -1187,16 +1274,23 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <div class="input-body-fieldddd text">
-                                                                    <textarea class="form-control" rows="3" name="short_desc"></textarea>
+                                                                <div class=" width-dls03697d">
+                                                                    <textarea class="form-control" rows="2" name="short_desc"></textarea>
+                                                                    <div class="form-check form-switch">
+                                                                        <input type="checkbox" id="on-off-switch70"
+                                                                            name="dfdd" checked value="1">
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- single form body --> @php
+                                                    <!-- single form body -->
+                                                    @php
                                                         $keyskill = App\Models\Keyskill::where('status', 1)->get();
                                                         $interest = App\Models\Interest::where('status', 1)->get();
                                                     @endphp
+
+
                                                     <!-- single form body -->
                                                     <div class="single-form-aria-dksld">
                                                         <div class="row">
@@ -1206,7 +1300,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <div class="input-body-fieldddd">
+                                                                <div class="input-body-fieldddd selectwidth-d03675d">
                                                                     <select multiple=""
                                                                         class="label ui selection fluid dropdown"
                                                                         name="keyskill[]">
@@ -1217,11 +1311,20 @@
                                                                                 {{ $item->name }}</option>
                                                                         @endforeach
                                                                     </select>
+                                                                    <div class="form-check form-switch">
+
+
+                                                                        <input type="checkbox" id="on-off-switch15"
+                                                                            checked name="key_skill_status"
+                                                                            value="1">
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <!-- single form body -->
+
+
                                                     <!-- single form body -->
                                                     <div class="single-form-aria-dksld">
                                                         <div class="row">
@@ -1231,7 +1334,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <div class="input-body-fieldddd">
+                                                                <div class="input-body-fieldddd selectwidth-d03675d">
                                                                     <select multiple=""
                                                                         class="label ui selection fluid dropdown"
                                                                         name="interests[]">
@@ -1242,35 +1345,23 @@
                                                                                 {{ $item->name }}</option>
                                                                         @endforeach
                                                                     </select>
+                                                                    <div class="form-check form-switch">
+
+                                                                        <input type="checkbox" id="on-off-switch16"
+                                                                            checked name="key_interests_status"
+                                                                            value="1">
+                                                                    </div>
                                                                 </div>
+
+
+
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <!-- single form body -->
-                                                    <!-- single form body -->
-                                                    <div class="single-form-aria-dksld arialeeds">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-lable-name-dksld0c">
-                                                                    <label>Key Skills / Knowledge Status</label>
-                                                                </div>
-                                                                <div class="form-check form-switch">
-                                                                    <input type="checkbox" id="on-off-switch15" checked
-                                                                        name="key_skill_status" value="1">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-lable-name-dksld0c">
-                                                                    <label>Key Interests Status</label>
-                                                                </div>
-                                                                <div class="form-check form-switch">
-                                                                    <input type="checkbox" id="on-off-switch16" checked
-                                                                        name="key_interests_status" value="1">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- single form body -->
+
+
                                                     <!-- single form body -->
                                                     <div class="single-form-aria-dksld">
                                                         <div class="row">
@@ -1305,6 +1396,10 @@
                                                                 <div class="input-body-fieldddd">
                                                                     <input type="text"
                                                                         class="form-control field-skdlsd" name="location">
+                                                                    <div class="form-check form-switch">
+                                                                        <input type="checkbox" id="on-off-switch71"
+                                                                            name="dd" checked value="1">
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1323,7 +1418,13 @@
                                                                     <input type="text" placeholder="INPUT PLACEHOLDER"
                                                                         class="form-control field-skdlsd"
                                                                         name="availabitity">
-                                                                    <div class="form-check form-switch"></div>
+
+
+                                                                    <div class="form-check form-switch">
+                                                                        <input type="checkbox" id="on-off-switch72"
+                                                                            name="dd" checked value="1">
+                                                                    </div>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1372,7 +1473,7 @@
                                                     </div>
                                                     <!-- single form body -->
 
-                                                    
+
                                                     <!-- single form body -->
                                                     <div class="single-form-aria-dksld">
                                                         <div class="row">
@@ -1397,7 +1498,7 @@
                                                     </div>
                                                     <!-- single form body -->
 
-                                                    
+
                                                     <br>
                                                     <!-- single form body -->
                                                     <div class="single-form-aria-dksld">
@@ -1432,7 +1533,7 @@
 
 
             <section>
-                <div class="container">
+                <div class="content-aria-dksd">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="first-collaps-part">
@@ -1453,54 +1554,266 @@
 
 
 
-                                <form action="" method="post">
-                                    @csrf
 
 
 
-                                    <div class="collapse" id="fdsafdsaf">
-                                        <div class="tab-body-dksld">
 
-                                            <div class="offset-md-2 col-md-8">
-                                                <!-- single form body -->
-                                                <div class="single-form-aria-dksld">
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <div class="form-lable-name-dksld0c">
-                                                                <label>INVITATION CODE</label>
-                                                            </div>
+                                <div class="collapse" id="fdsafdsaf">
+                                    <div class="tab-body-dksld">
+
+                                        <div class="offset-md-2 col-md-8">
+                                            <!-- single form body -->
+
+
+                                            <table class="table">
+                                                <thead>
+                                                    <th>Date</th>
+                                                    <th>Title</th>
+                                                    <th>Location</th>
+                                                    <th>View</th>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td>Hello</td>
+                                                        <td>Hello</td>
+                                                        <td>Hello</td>
+                                                        <td>Hello</td>
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td colspan="4">
+                                                            <br>
+                                                            <button type="button" class="btnb btn-green btn-block"
+                                                                data-bs-toggle="modal" data-bs-target="#contributepopup">Add
+                                                                New</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- single form body -->
+                                            {{-- popup Start --}}
+                                            <!-- Button trigger modal -->
+
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="contributepopup" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add new contribute</h1>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
-                                                        <div class="col-md-9">
-                                                            <div class="input-body-fieldddd">
-                                                                <input type="text" placeholder="INPUT PLACEHOLDER"
-                                                                    class="form-control field-skdlsd"
-                                                                    name="invitation_code" value="">
-                                                                <div class="form-check form-switch">
-                                                                </div>
-                                                            </div>
+                                                        <div class="modal-body">
+             
+
+                                                            
+<table class="table table-borderless">
+    <tbody>
+
+
+      <!-- ---- single Form Start --- -->
+        <tr>
+          <th scope="row" width="20%" class="label-dksldc">Contribute Title</th>
+          <td>
+              <div class="sigle-form-input-sddksldc0sd">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="title">
+                </div>
+              </div>
+          </td>
+        </tr>
+      <!-- ---- single Form Start --- -->
+
+      <!-- ---- single Form Start --- -->
+        <tr>
+          <th scope="row" width="20%" class="label-dksldc">Category  Of Offering</th>
+          <td>
+            @php 
+              $contribute = App\Models\Contributecat::orderby('id','desc')->get(); 
+            @endphp
+              <!-- single Form Start-->
+              <div class="sigle-form-input-sddksldc0sd">
+                <div class="input-group mb-3">
+
+                  <select  id="mounth" multiple class="form-select" aria-label="Default select example" name="contributecat_id[]">
+                      @foreach($contribute as $cat) 
+                        <option value="{{$cat->id}}"> {{$cat->name}}</option> 
+                       @endforeach
+                  </select>
+                </div>
+              </div>
+        <!-- single Form Start-->
+          </td>
+        </tr>
+      <!-- ---- single Form Start --- -->
+
+
+      <!-- ---- single Form Start --- -->
+        <tr>
+          <th scope="row" width="20%" class="label-dksldc">Short Description</th>
+          <td>
+              <div class="sigle-form-input-sddksldc0sd">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Max 500 carector" maxlength="500"  aria-label="Username" aria-describedby="basic-addon1" name="short_desc">
+                </div>
+              </div>
+          </td>
+        </tr>
+      <!-- ---- single Form Start --- -->
+      <!-- ---- single Form Start --- -->
+        <tr>
+          <th scope="row" width="20%" class="label-dksldc">Long Version </th>
+          <td>
+              <div class="sigle-form-input-sddksldc0sd">
+                <div class="input-group mb-3">
+                  <textarea class="form-control" rows="3" name="long_version"></textarea>
+                </div>
+              </div>
+          </td>
+        </tr>
+      <!-- ---- single Form Start --- -->
+      <!-- ---- single Form Start --- -->
+        <tr>
+          <th scope="row" width="20%" class="label-dksldc">Location Availability</th>
+          <td>
+              <div class="sigle-form-input-sddksldc0sd">
+                <div class="input-group mb-3">
+
+
+<input  placeholder="Search Location ..." class="form-control" name="location_availability" onFocus="initializeAutocomplete()" id="locality" />
+          
+<div>
+<input type="text" class="form-control" name="city" id="city" placeholder="City" value="" >
+<input type="text" class="form-control" name="latitude" id="latitude" placeholder="Latitude" value="" >
+<input type="text" class="form-control" name="longitude" id="longitude" placeholder="Longitude" value="" >
+</div>
+
+
+
+
+
+                </div>
+              </div>
+          </td>
+        </tr>
+      <!-- ---- single Form Start --- -->
+
+
+
+                
+              
+          
+        
+      <!-- ---- single Form Start --- -->
+      <!-- ---- single Form Start --- -->
+        <tr>
+          <th scope="row" width="20%" class="label-dksldc">File Name</th>
+          <td>
+              <div class="sigle-form-input-sddksldc0sd">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="file_name">
+                </div>
+              </div>
+          </td>
+        </tr>
+      <!-- ---- single Form Start --- -->
+      <!-- ---- single Form Start --- -->
+        <tr>
+          <th scope="row" width="20%" class="label-dksldc">File Upload</th>
+          <td>
+              <div class="sigle-form-input-sddksldc0sd">
+                <div class="input-group mb-3">
+                  <input type="file" class="form-control" placeholder="Enter organization details" aria-label="Username" aria-describedby="basic-addon1" name="file_upload">
+                </div>
+              </div>
+          </td>
+        </tr>
+      <!-- ---- single Form Start --- -->
+      <!-- ---- single Form Start --- -->
+        <tr>
+          <th scope="row" width="20%" class="label-dksldc">Upload date</th>
+          <td>
+              <div class="sigle-form-input-sddksldc0sd">
+                <div class="input-group mb-3">
+                  <input type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="contact_parson">
+                </div>
+              </div>
+          </td>
+        </tr>
+      <!-- ---- single Form Start --- -->
+      <!-- ---- single Form Start --- -->
+        <tr>
+          <th scope="row" width="20%" class="label-dksldc">Contact parson</th>
+          <td>
+              <div class="sigle-form-input-sddksldc0sd">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" name="contact_parson">
+                </div>
+              </div>
+          </td>
+        </tr>
+      <!-- ---- single Form Start --- -->
+      <!-- ---- single Form Start --- -->
+        <tr>
+          <th scope="row" width="20%" class="label-dksldc">Contact Email</th>
+          <td>
+              <div class="sigle-form-input-sddksldc0sd">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="contact_email">
+                </div>
+              </div>
+          </td>
+        </tr>
+      <!-- ---- single Form Start --- -->
+      <!-- ---- single Form Start --- -->
+        <tr>
+          <th scope="row" width="20%" class="label-dksldc">Contact Phone</th>
+          <td>
+              <div class="sigle-form-input-sddksldc0sd">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="contact_phone">
+                </div>
+              </div>
+
+
+          </td>
+        </tr>
+      <!-- ---- single Form Start --- -->
+      <!-- ---- single Form Start --- -->
+        <tr>
+          <th scope="row" width="20%" class="label-dksldc">Keywords</th>
+          <td>
+              <div class="sigle-form-input-sddksldc0sd keyword-dksld0c3">
+                <div class="id">
+<input type="text" id="tag-input1" name="keywords[]" class="form-control">
+                </div>
+              </div>
+
+
+          </td>
+        </tr>
+      <!-- ---- single Form Start --- -->
+
+
+    </tbody>
+  </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btnb btn-green btn-block">SAVE </button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- single form body -->
-
-
-                                                <!-- single form body -->
-                                                <div class="single-form-aria-dksld">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="btn-save-dksldkf">
-                                                                <button type="submit" class="btn-block">Update</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- single form body -->
-                                                <div class="border-dksldc"></div>
                                             </div>
+
+                                            {{-- popup End --}}
                                         </div>
                                     </div>
+                                </div>
 
-                                </form>
 
                             </div>
                         </div>
@@ -1508,7 +1821,7 @@
                 </div>
             </section>
             <section>
-                <div class="container">
+                <div class="content-aria-dksd">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="first-collaps-part">
@@ -1541,9 +1854,6 @@
                                 @if ($apply)
                                     <form action="{{ route('user.join.update', $apply->id) }}" method="post">
                                         @csrf
-
-
-
                                         <div class="collapse" id="collapseExampledd">
                                             <div class="tab-body-dksld">
 
@@ -1552,7 +1862,7 @@
                                                     <div class="single-form-aria-dksld">
                                                         <div class="row">
                                                             <div class="col-md-3">
-                                                                <div class="form-lable-name-dksld0c">
+                                                                <div class="form-lable-name-dksld0c kfdsalfdsa">
                                                                     <label>ORGANISATION</label>
                                                                 </div>
                                                             </div>
@@ -1560,17 +1870,20 @@
                                                                 <div class="input-body-fieldddd">
 
 
-                                                                    <select class="selectpicker" data-show-subtext="true"
-                                                                        data-live-search="true">
-                                                                        <option disabled selected>-- Select Orgnisation --
-                                                                        </option>
-                                                                        @foreach ($org as $item)
-                                                                            <option value="{{ $item->id }}"
-                                                                                {{ $item->id == $apply->organisation_id ? 'selected' : '' }}>
-                                                                                {{ $item->org_name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-
+                                                                    <div class="input-body-fieldddd">
+                                                                        <select class="selectpicker field-skdlsd"
+                                                                            data-show-subtext="true" name="organisation"
+                                                                            data-live-search="true">
+                                                                            <option disabled selected>-- Select Orgnisation
+                                                                                --
+                                                                            </option>
+                                                                            @foreach ($org as $item)
+                                                                                <option value="{{ $item->id }}"
+                                                                                    {{ $item->id == $apply->organisation_id ? 'selected' : '' }}>
+                                                                                    {{ $item->org_name }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
 
                                                                 </div>
                                                             </div>
@@ -1708,9 +2021,6 @@
 @endsection()
 
 @section('scripts')
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
@@ -1776,6 +2086,21 @@
         });
         new DG.OnOffSwitch({
             el: '#on-off-switch69',
+            textOn: 'Share',
+            textOff: 'Private',
+        });
+        new DG.OnOffSwitch({
+            el: '#on-off-switch70',
+            textOn: 'Share',
+            textOff: 'Private',
+        });
+        new DG.OnOffSwitch({
+            el: '#on-off-switch71',
+            textOn: 'Share',
+            textOff: 'Private',
+        });
+        new DG.OnOffSwitch({
+            el: '#on-off-switch72',
             textOn: 'Share',
             textOff: 'Private',
         });
