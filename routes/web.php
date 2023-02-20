@@ -1007,6 +1007,8 @@ Route::group(['as'=> 'user.' , 'prefix' => 'user' , 'namespace' => 'user' , 'mid
         Route::group(['as' => 'contribute.', 'prefix' => 'contribute' , 'namespace' => 'contribute'],function(){
             // User Profile Contribute  Section on seeting page
             Route::post('/store', [UserContributeController::class, 'store'])->name('store');
+            // Delete
+            Route::get('/delete/{id}', [UserContributeController::class, 'delete'])->name('delete');
         });
 
 

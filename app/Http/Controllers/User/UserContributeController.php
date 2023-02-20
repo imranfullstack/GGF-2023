@@ -153,8 +153,10 @@ class UserContributeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $data = Contribute::where('user_id',Auth::user()->id)->where('id',$id)->first();
+        $data->delete();
+        return redirect()->back()->with('success','Successfully delete');         
     }
 }

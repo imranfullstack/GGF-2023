@@ -1604,7 +1604,7 @@
                                                                     data-toggle="modal"
                                                                     data-target="#edit_{{ $item->id }}"><i
                                                                         class="fa fa-edit"></i></a>
-                                                                <a href="#" class="btn btn-danger"><i
+                                                                <a href="{{route('user.contribute.delete',$item->id)}}" class="btn btn-danger"><i
                                                                         class="fa fa-trash"></i></a>
                                                             </td>
                                                         </tr>
@@ -2002,7 +2002,9 @@
                                                                                                     class="form-control"
                                                                                                     name="location_availability"
                                                                                                     onFocus="initializeAutocomplete()"
-                                                                                                    id="locality" />
+                                                                                                    id="locality" 
+                                                                                                    value="{{$item->location_availability}}"
+                                                                                                    />
         
                                                                                                 <div>
                                                                                                     <input type="text"
@@ -2010,19 +2012,22 @@
                                                                                                         name="city"
                                                                                                         id="city"
                                                                                                         placeholder="City"
-                                                                                                        value="">
+                                                                                                        value="{{$item->city}}"
+                                                                                                    >
                                                                                                     <input type="text"
                                                                                                         class="form-control"
                                                                                                         name="latitude"
                                                                                                         id="latitude"
                                                                                                         placeholder="Latitude"
-                                                                                                        value="">
+                                                                                                        value="{{$item->latitude}}"
+                                                                                                    >
                                                                                                     <input type="text"
                                                                                                         class="form-control"
                                                                                                         name="longitude"
                                                                                                         id="longitude"
                                                                                                         placeholder="Longitude"
-                                                                                                        value="">
+                                                                                                        value="{{$item->latitude}}"
+                                                                                                    />
                                                                                                 </div>
         
         
@@ -2323,7 +2328,8 @@
                                                                                             class="form-control"
                                                                                             name="location_availability"
                                                                                             onFocus="initializeAutocomplete()"
-                                                                                            id="locality" />
+                                                                                            id="locality"
+                                                                                            />
 
                                                                                         <div>
                                                                                             <input type="text"
