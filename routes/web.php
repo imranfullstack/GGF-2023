@@ -91,7 +91,7 @@ use App\Http\Controllers\User\UserProductController;
 use App\Http\Controllers\User\UserRecruitController;
 use App\Http\Controllers\User\UserEventController;
 use App\Http\Controllers\User\UserServiceController;
-
+use App\Http\Controllers\User\UserContributeController;
 
 
 /*
@@ -992,12 +992,28 @@ Route::group(['as'=> 'user.' , 'prefix' => 'user' , 'namespace' => 'user' , 'mid
         // User Profile register Section on seeting page
         Route::get('/single-recruit/{id}', [UserRecruitController::class, 'single_recruit'])->name('single.recruit');
     });
-// ------- Organisation contribute --------
-    Route::group(['as' => 'service.', 'prefix' => 'service' , 'namespace' => 'service'],function(){
-        // User Profile register Section on seeting page
-        Route::get('/single-service/{id}', [UserServiceController::class, 'single_service'])->name('single.service');
-    });
 
+
+
+    // ------- Organisation contribute --------
+        Route::group(['as' => 'service.', 'prefix' => 'service' , 'namespace' => 'service'],function(){
+            // User Profile register Section on seeting page
+            Route::get('/single-service/{id}', [UserServiceController::class, 'single_service'])->name('single.service');
+        });
+
+
+
+            // ------- Organisation contribute --------
+        Route::group(['as' => 'contribute.', 'prefix' => 'contribute' , 'namespace' => 'contribute'],function(){
+            // User Profile Contribute  Section on seeting page
+            Route::post('/store', [UserContributeController::class, 'store'])->name('store');
+        });
+
+
+
+
+
+    
 // ------- Organisation contribute --------
     Route::group(['as' => 'event.', 'prefix' => 'event' , 'namespace' => 'event'],function(){
         // User Profile register Section on seeting page
